@@ -1,0 +1,4 @@
+#Fri Apr 29 17:04:42 KST 2022
+base.0=/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/build/intermediates/dex/release/mergeDexRelease/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

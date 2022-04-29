@@ -1,0 +1,222 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:tools="http://schemas.android.com/tools"
+4    package="com.unity3d.player"
+5    android:installLocation="preferExternal"
+6    android:versionCode="1"
+7    android:versionName="1.0.2" >
+8
+9    <uses-sdk
+10        android:minSdkVersion="22"
+10-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml
+11        android:targetSdkVersion="30" />
+11-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml
+12
+13    <supports-screens
+13-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:3:3-163
+14        android:anyDensity="true"
+14-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:3:135-160
+15        android:largeScreens="true"
+15-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:3:78-105
+16        android:normalScreens="true"
+16-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:3:49-77
+17        android:smallScreens="true"
+17-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:3:21-48
+18        android:xlargeScreens="true" />
+18-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:3:106-134
+19
+20    <uses-feature android:glEsVersion="0x00020000" />
+20-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:31:3-52
+20-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:31:17-49
+21
+22    <uses-permission android:name="android.permission.INTERNET" />
+22-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:32:3-65
+22-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:32:20-62
+23    <uses-permission android:name="android.permission.BLUETOOTH" />
+23-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:33:3-66
+23-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:33:20-63
+24    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+24-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:34:3-72
+24-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:34:20-69
+25    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+25-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:35:3-79
+25-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:35:20-76
+26    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+26-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:36:3-77
+26-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:36:20-74
+27    <uses-permission android:name="android.permission.VIBRATE" />
+27-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:37:3-64
+27-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:37:20-61
+28
+29    <uses-feature
+29-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:38:3-88
+30        android:name="android.hardware.touchscreen"
+30-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:38:17-60
+31        android:required="false" />
+31-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:38:61-85
+32    <uses-feature
+32-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:39:3-99
+33        android:name="android.hardware.touchscreen.multitouch"
+33-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:39:17-71
+34        android:required="false" />
+34-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:39:72-96
+35    <uses-feature
+35-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:40:3-108
+36        android:name="android.hardware.touchscreen.multitouch.distinct"
+36-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:40:17-80
+37        android:required="false" />
+37-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:40:81-105
+38    <uses-feature
+38-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:41:3-93
+39        android:name="android.hardware.sensor.gyroscope"
+39-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:41:17-65
+40        android:required="false" />
+40-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:41:66-90
+41    <uses-feature
+41-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:42:3-91
+42        android:name="android.hardware.vulkan.version"
+42-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:42:17-63
+43        android:required="false" />
+43-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:42:64-88
+44
+45    <application
+45-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:4:3-30:17
+46        android:extractNativeLibs="true"
+46-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:4:146-178
+47        android:icon="@mipmap/app_icon"
+47-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:4:58-89
+48        android:isGame="false"
+48-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:4:123-145
+49        android:label="@string/app_name"
+49-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:4:90-122
+50        android:theme="@style/UnityThemeSelector" >
+50-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:4:16-57
+51        <activity
+51-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:5:5-13:16
+52            android:name="com.unity3d.player.UnityPlayerActivity"
+52-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:5:15-68
+53            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
+53-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:5:173-354
+54            android:hardwareAccelerated="false"
+54-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:5:390-425
+55            android:label="@string/app_name"
+55-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:5:69-101
+56            android:launchMode="singleTask"
+56-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:5:141-172
+57            android:resizeableActivity="false"
+57-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:5:355-389
+58            android:screenOrientation="fullSensor" >
+58-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:5:102-140
+59            <intent-filter>
+59-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:6:7-10:23
+60                <action android:name="android.intent.action.MAIN" />
+60-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:7:9-61
+60-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:7:17-58
+61
+62                <category android:name="android.intent.category.LAUNCHER" />
+62-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:8:9-69
+62-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:8:19-66
+63                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+63-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:9:9-78
+63-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:9:19-75
+64            </intent-filter>
+65
+66            <meta-data
+66-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:11:7-82
+67                android:name="unityplayer.UnityActivity"
+67-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:11:18-58
+68                android:value="true" />
+68-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:11:59-79
+69            <meta-data
+69-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:12:7-78
+70                android:name="android.notch_support"
+70-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:12:18-54
+71                android:value="true" />
+71-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:12:55-75
+72        </activity>
+73        <activity
+73-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:14:5-15:16
+74            android:name="com.beom.myble.MainActivity"
+74-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:14:15-57
+75            android:configChanges="keyboardHidden|orientation|screenSize"
+75-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:14:133-194
+76            android:label="@string/app_name"
+76-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:14:58-90
+77            android:windowSoftInputMode="stateHidden" >
+77-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:14:91-132
+78        </activity>
+79        <activity
+79-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:16:5-99
+80            android:name="com.beom.myble.DeviceListActivity"
+80-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:16:15-63
+81            android:label="@string/app_name" />
+81-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:16:64-96
+82
+83        <service
+83-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:17:5-81
+84            android:name="com.beom.myble.UartService"
+84-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:17:37-78
+85            android:enabled="true" />
+85-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:17:14-36
+86
+87        <meta-data
+87-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:18:5-101
+88            android:name="unity.build-id"
+88-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:18:16-45
+89            android:value="0be35ef4-21be-4755-a90b-1ea9ed4133cf" />
+89-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:18:46-98
+90        <meta-data
+90-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:19:5-69
+91            android:name="unity.splash-mode"
+91-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:19:16-48
+92            android:value="0" />
+92-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:19:49-66
+93        <meta-data
+93-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:20:5-74
+94            android:name="unity.splash-enable"
+94-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:20:16-50
+95            android:value="True" />
+95-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:20:51-71
+96        <meta-data
+96-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:21:5-78
+97            android:name="unity.launch-fullscreen"
+97-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:21:16-54
+98            android:value="True" />
+98-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:21:55-75
+99        <meta-data
+99-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:22:5-84
+100            android:name="unity.allow-resizable-window"
+100-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:22:16-59
+101            android:value="False" />
+101-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:22:60-81
+102        <meta-data
+102-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:23:5-81
+103            android:name="notch.config"
+103-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:23:16-43
+104            android:value="portrait|landscape" />
+104-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:23:44-78
+105
+106        <receiver
+106-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:24:5-112
+107            android:name="com.unity.androidnotifications.UnityNotificationManager"
+107-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:24:15-85
+108            android:exported="true" />
+108-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:24:86-109
+109        <receiver
+109-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:25:5-29:16
+110            android:name="com.unity.androidnotifications.UnityNotificationRestartOnBootReceiver"
+110-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:25:15-99
+111            android:enabled="false"
+111-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:25:100-123
+112            android:exported="true" >
+112-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:25:124-147
+113            <intent-filter>
+113-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:26:7-28:23
+114                <action android:name="android.intent.action.BOOT_COMPLETED" />
+114-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:27:9-71
+114-->/Users/beom/Documents/WonderScope_2022/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/AndroidManifest.xml:27:17-68
+115            </intent-filter>
+116        </receiver>
+117    </application>
+118
+119</manifest>

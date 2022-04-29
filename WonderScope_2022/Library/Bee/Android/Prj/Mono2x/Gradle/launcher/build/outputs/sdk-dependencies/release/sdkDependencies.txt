@@ -1,0 +1,54 @@
+# List of SDK dependencies of this app, this information is also included in an encrypted form in the APK.
+# For more information visit: https://d.android.com/r/tools/dependency-metadata
+
+library {
+  maven_library {
+    artifactId: "myble_v10-debug"
+  }
+  digests {
+    sha256: "<\237\241\346<\022\200v\311\300\000\311._\265\315.\243\'\237\216^\362e3\367Q\002B\233\037y"
+  }
+}
+library {
+  maven_library {
+    artifactId: "localbroadcastmanager-1.0.0"
+  }
+  digests {
+    sha256: "\347\0342\214\356\365\304\247\327o-\206\337\033e\326_\342\254\370h\261\244\357\330J?43a\206\330"
+  }
+}
+library {
+  digests {
+    sha256: "F\fWR]\000\310\227\223\204v\311\241D=\034\277T!x\307\204\200D\367\376x\332t=GT"
+  }
+}
+library {
+  digests {
+    sha256: ".m]?\303\241\233\336\242\032\035\246\\\320>f\207\240\037\253)\206\212\323\t\217\"\365\211\232\317\336"
+  }
+}
+library {
+  digests {
+    sha256: "\350\355\252\335\003-\f0d\314\204\252c`^\213eE\371\223\300a\024\207{\341E\264\fvWz"
+  }
+}
+library_dependencies {
+}
+library_dependencies {
+  library_index: 1
+}
+library_dependencies {
+  library_index: 2
+}
+library_dependencies {
+  library_index: 3
+}
+library_dependencies {
+  library_index: 4
+}
+module_dependencies {
+  module_name: "base"
+  dependency_index: 2
+  dependency_index: 3
+  dependency_index: 4
+}
