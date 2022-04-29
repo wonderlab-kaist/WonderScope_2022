@@ -10,8 +10,8 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
-Library/
-Logs/
+WonderScope_2022/Library/
+WonderScope_2022/Logs/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
