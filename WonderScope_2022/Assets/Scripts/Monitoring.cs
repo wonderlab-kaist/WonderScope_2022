@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class Monitoring : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class Monitoring : MonoBehaviour
 
             distance.text = "Distance : " + (int)tmp.distance;
             if (!(tmp.tag_id[0] == 0 && tmp.tag_id[1] == 0 && tmp.tag_id[2] == 0 && tmp.tag_id[3] == 0))
-                rfid.text = "RFID : " + tmp.tag_id[0] + tmp.tag_id[1] + tmp.tag_id[2] + tmp.tag_id[3];
+                rfid.text = "RFID : " + Convert.ToString(tmp.tag_id[0],16)+":"+ Convert.ToString(tmp.tag_id[1], 16)+":"+ Convert.ToString(tmp.tag_id[2], 16)+":"+ Convert.ToString(tmp.tag_id[3], 16);
             mouse.text = "Mouse : " + (int)tmp.mouse_x + ",  " + (int)tmp.mouse_y;
 
 

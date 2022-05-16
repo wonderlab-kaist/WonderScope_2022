@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 
 public class camera_movement : MonoBehaviour
@@ -12,7 +13,7 @@ public class camera_movement : MonoBehaviour
     float movement_threshold = 300;
     float distance_threshold = 100;
 
-    public Text raw_data; //debugging text, monitoring raw data from module
+    public TextMeshProUGUI raw_data; //debugging text, monitoring raw data from module
     private stethoscope_data data;
     public Transform cam;
     public Transform rig;
