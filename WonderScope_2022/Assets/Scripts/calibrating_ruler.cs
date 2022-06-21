@@ -13,19 +13,19 @@ public class calibrating_ruler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       if(cam_control != null)
+        if (cam_control != null)
         {
-            gain.text = "Gain: "+ cam_control.gain;
-            indicator_distance.text = "z-depth: " + indicator.position.z; 
+            gain.text = "Gain: " + cam_control.gain;
+            indicator_distance.text = "z-depth: " + indicator.position.z;
         }
 
-       if(Input.touchCount > 0)
+        if (Input.touchCount > 0)
         {
             if (Input.GetTouch(0).deltaPosition.x > 0) cam_control.gain += 0.00001f;
             else if (Input.GetTouch(0).deltaPosition.x < 0) cam_control.gain -= 0.00001f;
