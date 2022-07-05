@@ -19,6 +19,7 @@ public class camera_movement : MonoBehaviour
     public Transform rig;
     public bool isthisWatch;
     public bool use_gravity; // checking for calibrating by gravity from mobile device data
+    public bool move_activation = true; // movement activation, default = true
 
     //public Transform rotate_tester;
 
@@ -30,7 +31,7 @@ public class camera_movement : MonoBehaviour
     private int reconnect_duration = 0;
 
     ////ADDED FOR CALIBRATION
-    public calibrating_tag calibrating;
+    //public calibrating_tag calibrating; // deleted by beom
     ////
 
     // Start is called before the first frame update
@@ -70,10 +71,10 @@ public class camera_movement : MonoBehaviour
 
             ////ADDED FOR CALIBRATION
             // raw_data.text = monitoring;
-            calibrating.connected = true;
-            calibrating.tag_id = data.tag_id;
-            calibrating.mouse_x = data.mouse_x;
-            calibrating.mouse_y = data.mouse_y;
+            //calibrating.connected = true;
+            //calibrating.tag_id = data.tag_id;
+            //calibrating.mouse_x = data.mouse_x;
+            //calibrating.mouse_y = data.mouse_y;
             ////
 
             if (data.distance <= distance_threshold)
@@ -85,7 +86,7 @@ public class camera_movement : MonoBehaviour
                 if (Mathf.Abs(data.mouse_y) > movement_threshold) y = data.mouse_y;
                 Vector3 delta = new Vector3(-y, x, 0);
 
-                //Quaternion for ratation
+                //Quaternion for rotation
                 for (int i = 0; i < 3; i++) q[i + 1] = data.q[i] / 1073741824f;
 
                 if (1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2) > 0 && Mathf.Abs(q[1]) < 1 && Mathf.Abs(q[2]) < 1 && Mathf.Abs(q[3]) < 1)
@@ -130,10 +131,13 @@ public class camera_movement : MonoBehaviour
 
                 }
 
-                rotate_smooth(new Vector3(0, 0, rig.localEulerAngles.z));
+                if (move_activation)
+                {
+                    rotate_smooth(new Vector3(0, 0, rig.localEulerAngles.z));
 
-                delta = cam.localRotation * delta;
-                move_smooth(delta);
+                    delta = cam.localRotation * delta;
+                    move_smooth(delta);
+                }
             }
             else if (data.distance >= distance_threshold)
             {
@@ -197,5 +201,28 @@ public class camera_movement : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
+    }
+
+    /// <summary>
+    /// added for get the data from this script.
+    /// recommend to use it in the lateUpdate()
+    /// </summary>
+    /// <returns></returns>
+    public Vector2 mouse_value()
+    {
+        Vector2 value = new Vector2(data.mouse_x,data.mouse_y);
+        return value;
+    }
+
+    public byte[] rfid_value()
+    {
+        byte[] value = data.tag_id;
+        return value;
+    }
+
+    public bool isitConnected()
+    {
+        if (data == null) return false;
+        else return true;
     }
 }

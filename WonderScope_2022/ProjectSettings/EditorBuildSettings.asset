@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Template_test_v1.unity
     guid: b846b67a8749d4841b0742fd2f2483a2
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
     path: Assets/Scenes/Calibrating.unity
     guid: 0aadb26f99177486f936828c0f1ebbf5
   - enabled: 1
