@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
+
 
 public class calibrating_tag : MonoBehaviour
 {
@@ -19,17 +21,28 @@ public class calibrating_tag : MonoBehaviour
     public float standardDistance = 15;
     public TextMeshProUGUI mouse, rfid, value, trialNum;
     public TextMeshProUGUI measuringStatus, savedValue, avgValue;
+    public TextMeshProUGUI gain_recommendation;
+    private Vector3 origin_pos;
 
     // camera_movement.cs 에서 받아올 데이터들
-    public bool connected = false;
-    public byte[] tag_id;
-    public float mouse_x, mouse_y;
-    //
+    public camera_movement cm; // camera_movement에 접근해서 데이터 받아오i
+    private bool connected = false;
+    private byte[] tag_id;
+    private float mouse_x, mouse_y;
+
+    public Transform leftend, rightend;
+    private float gain_rec;
+
+    private void Start()
+    {
+        origin_pos = cm.cam.position;
+        cm.move_activation = false;
+    }
 
     void Update()
     {
-        print("maxTrial: " + maxTrial);
-        print("standardDistance: " + standardDistance);
+        //print("maxTrial: " + maxTrial);
+        //print("standardDistance: " + standardDistance);
 
         if (connected)
         {
@@ -47,11 +60,16 @@ public class calibrating_tag : MonoBehaviour
 
                 if (measuring == false) //measuring이 시작되지 않은 상태면 시작
                 {
+
                     if ((trial == 0) || ((trial > 0) && (tagVal[0] != tag_id[0] || tagVal[1] != tag_id[1] || tagVal[2] != tag_id[2] || tagVal[3] != tag_id[3])))
                     {
                         if (trial < maxTrial)
                         {
                             measuring = true;
+                            cm.move_activation = true; //measuring하는 동안만 움직이게
+                            cm.cam.position = origin_pos;
+                            cm.cam.rotation = Quaternion.identity;
+
                             tagVal[0] = tag_id[0];
                             tagVal[1] = tag_id[1];
                             tagVal[2] = tag_id[2];
@@ -64,6 +82,8 @@ public class calibrating_tag : MonoBehaviour
                     if (tagVal[0] != tag_id[0] || tagVal[1] != tag_id[1] || tagVal[2] != tag_id[2] || tagVal[3] != tag_id[3]) //새로운 tag(두번째) 감지되면
                     {
                         measuring = false; //measuring 중지
+                        cm.move_activation = false; //measuring하는 동안만 움직이게
+
                         mouseVal[trial] = Mathf.Sqrt(Mathf.Pow(xSum, 2) + Mathf.Pow(ySum, 2)); // 측정 값 저장
                         tagVal[0] = tag_id[0];
                         tagVal[1] = tag_id[1];
@@ -82,6 +102,8 @@ public class calibrating_tag : MonoBehaviour
                             measuredDistance /= maxTrial; // trial 측정값 평균
                             avgValue.text = Convert.ToString(measuredDistance);
                             //기준길이(15cm: 변수명 standardDistance)랑 measuredDistance 값이랑 비교해서 gain 값 구하기
+                            gain_rec = Vector3.Distance(leftend.position, rightend.position) / measuredDistance;
+                            gain_recommendation.text += "" + gain_rec;
                         }
                     }
                 }
@@ -97,5 +119,24 @@ public class calibrating_tag : MonoBehaviour
 
         }
 
+        ///reload the scene (임시)
+        if(Input.touchCount > 2)
+        {
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
+        }
+
+    }
+
+    private void LateUpdate() // it updates at the end of frames.
+    {
+        if (cm.isitConnected())
+        {
+            connected = true;
+            mouse_x = cm.mouse_value().x;
+            mouse_y = cm.mouse_value().y;
+            tag_id = cm.rfid_value();
+            //Debug.Log(tag_id);
+            //print(tag_id);
+        }
     }
 }
