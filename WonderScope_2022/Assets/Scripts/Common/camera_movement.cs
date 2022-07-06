@@ -19,6 +19,7 @@ public class camera_movement : MonoBehaviour
     public Transform rig;
     public bool isthisWatch;
     public bool use_gravity; // checking for calibrating by gravity from mobile device data
+    public bool move_activation = true; // movement activation, default = true
 
     //public Transform rotate_tester;
 
@@ -28,6 +29,10 @@ public class camera_movement : MonoBehaviour
     private int reset_count = 0;
     private int goback_count = 0;
     private int reconnect_duration = 0;
+
+    ////ADDED FOR CALIBRATION
+    //public calibrating_tag calibrating; // deleted by beom
+    ////
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +51,7 @@ public class camera_movement : MonoBehaviour
         }
 
         q = new float[4];
-        
+
     }
 
     // Update is called once per frame
@@ -60,20 +65,28 @@ public class camera_movement : MonoBehaviour
             data = new stethoscope_data(income);
             string monitoring = "";
             monitoring += data.q[0] + " " + data.q[1] + " " + data.q[2];
-            monitoring += " "+data.distance;
-            monitoring += " " + data.mouse_x+ " "+ data.mouse_y;
+            monitoring += "\n" + data.distance;
+            monitoring += "\n" + data.mouse_x + " " + data.mouse_y;
             //Debug.Log(monitoring);
+
+            ////ADDED FOR CALIBRATION
+            // raw_data.text = monitoring;
+            //calibrating.connected = true;
+            //calibrating.tag_id = data.tag_id;
+            //calibrating.mouse_x = data.mouse_x;
+            //calibrating.mouse_y = data.mouse_y;
+            ////
 
             if (data.distance <= distance_threshold)
             {
                 //Displacement values
                 float x = 0;
-                float y=0;
+                float y = 0;
                 if (Mathf.Abs(data.mouse_x) > movement_threshold) x = data.mouse_x;
                 if (Mathf.Abs(data.mouse_y) > movement_threshold) y = data.mouse_y;
                 Vector3 delta = new Vector3(-y, x, 0);
 
-                //Quaternion for ratation
+                //Quaternion for rotation
                 for (int i = 0; i < 3; i++) q[i + 1] = data.q[i] / 1073741824f;
 
                 if (1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2) > 0 && Mathf.Abs(q[1]) < 1 && Mathf.Abs(q[2]) < 1 && Mathf.Abs(q[3]) < 1)
@@ -118,29 +131,34 @@ public class camera_movement : MonoBehaviour
 
                 }
 
-                rotate_smooth(new Vector3(0, 0, rig.localEulerAngles.z));
-               
-                delta = cam.localRotation * delta;
-                move_smooth(delta);
-            }else if (data.distance >= distance_threshold)
+                if (move_activation)
+                {
+                    rotate_smooth(new Vector3(0, 0, rig.localEulerAngles.z));
+
+                    delta = cam.localRotation * delta;
+                    move_smooth(delta);
+                }
+            }
+            else if (data.distance >= distance_threshold)
             {
                 if (!isthisWatch) SceneManager.LoadScene("1_RFID_waiting", LoadSceneMode.Single); /// go back to rfid waiting scene...
-                else SceneManager.LoadScene("0_watch_start",LoadSceneMode.Single);
-                    
+                else SceneManager.LoadScene("0_watch_start", LoadSceneMode.Single);
+
 
             }
 
-            
+
 
             reconnect_duration = 0;
-        }else if (income == null || income == null)
+        }
+        else if (income == null || income == null)
         {
             //Debug.Log(reconnect_duration++);
             reconnect_duration++;
             //GameObject.Find("BLEcontroller").GetComponent<aarcall>().connect();
         }
 
-        if(reconnect_duration >= 200)
+        if (reconnect_duration >= 200)
         {
             //Debug.Log("reconnecting...");
             GameObject.Find("BLEcontroller").GetComponent<aarcall>().connect();
@@ -158,15 +176,15 @@ public class camera_movement : MonoBehaviour
     void rotate_smooth(Vector3 delta_angle)
     {
         StartCoroutine("rotateSmooth", delta_angle);
-        
+
     }
 
     IEnumerator moveSmooth(Vector3 d)
     {
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             cam.position -= d / 3f;
-            yield return new WaitForSeconds(0.02f/3f);
+            yield return new WaitForSeconds(0.02f / 3f);
         }
     }
 
@@ -174,14 +192,37 @@ public class camera_movement : MonoBehaviour
     {
         Quaternion start = cam.localRotation;
         Quaternion end = Quaternion.Euler(0, 0, d.z);
-        
+
         for (int i = 0; i < 3; i++)
         {
             //cam.transform.localRotation = cam.transform.localRotation * Quaternion.Euler(0, 0, d.z / 3f);
-            cam.localRotation = Quaternion.Slerp(start, end, (float)(1f / 3f * (i+1)));
-            
+            cam.localRotation = Quaternion.Slerp(start, end, (float)(1f / 3f * (i + 1)));
+
             yield return new WaitForSeconds(0.01f);
         }
 
+    }
+
+    /// <summary>
+    /// added for get the data from this script.
+    /// recommend to use it in the lateUpdate()
+    /// </summary>
+    /// <returns></returns>
+    public Vector2 mouse_value()
+    {
+        Vector2 value = new Vector2(data.mouse_x,data.mouse_y);
+        return value;
+    }
+
+    public byte[] rfid_value()
+    {
+        byte[] value = data.tag_id;
+        return value;
+    }
+
+    public bool isitConnected()
+    {
+        if (data == null) return false;
+        else return true;
     }
 }
