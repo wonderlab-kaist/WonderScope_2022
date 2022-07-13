@@ -36,4 +36,9 @@ public class dataInput : MonoBehaviour
         if (data_in != null && data_in.Count > 0) return true;
         else return false;
     }
+
+    public static void flush()
+    {
+        data_in.Clear();
+    }
 }

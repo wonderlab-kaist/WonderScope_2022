@@ -16,12 +16,14 @@ public class calibrating_tag : MonoBehaviour
     private int trial = 0;
     float[] mouseVal = new float[5];
     float[] tagVal = new float[4];
+    private float trial_time;
 
     public int maxTrial = 3;
     public float standardDistance = 15;
     public TextMeshProUGUI mouse, rfid, value, trialNum;
     public TextMeshProUGUI measuringStatus, savedValue, avgValue;
     public TextMeshProUGUI gain_recommendation;
+    public TextMeshProUGUI avg_time_text;
 
     public TextMeshProUGUI gain_current, gain_average;
     private Vector3 origin_pos;
@@ -74,6 +76,7 @@ public class calibrating_tag : MonoBehaviour
                         {
                             measuring = true;
                             cm.move_activation = true; //measuring하는 동안만 움직이게
+                            dataInput.flush();
                             cm.cam.position = origin_pos;
                             cm.cam.rotation = Quaternion.identity;
 
@@ -92,12 +95,17 @@ public class calibrating_tag : MonoBehaviour
                         cm.move_activation = false; //measuring하는 동안만 움직이게
 
                         mouseVal[trial] = Mathf.Sqrt(Mathf.Pow(xSum, 2) + Mathf.Pow(ySum, 2)); // 측정 값 저장
+
                         tagVal[0] = tag_id[0];
                         tagVal[1] = tag_id[1];
                         tagVal[2] = tag_id[2];
                         tagVal[3] = tag_id[3];
                         xSum = 0;
                         ySum = 0;
+
+                        avg_time_text.text = "" + trial_time;
+                        trial_time = 0;
+
                         trial++;
                         if (trial < maxTrial)
                         {
@@ -131,6 +139,8 @@ public class calibrating_tag : MonoBehaviour
                 xSum += (int)mouse_x; // 측정 값 누적
                 ySum += (int)mouse_y;
                 value.text = "Value: " + xSum + " ," + ySum;
+
+                trial_time += Time.deltaTime;
             }
 
 
