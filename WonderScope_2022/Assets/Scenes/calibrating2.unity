@@ -3602,6 +3602,8 @@ MonoBehaviour:
   use_gravity: 0
   move_activation: 1
   reset_by_dist: 0
+  recalibrate_while_movment: 0
+  reset_RFIDs: []
 --- !u!4 &2000268187
 Transform:
   m_ObjectHideFlags: 0

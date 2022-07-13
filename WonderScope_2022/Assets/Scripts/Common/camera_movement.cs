@@ -21,6 +21,11 @@ public class camera_movement : MonoBehaviour
     public bool use_gravity; // checking for calibrating by gravity from mobile device data
     public bool move_activation = true; // movement activation, default = true
     public bool reset_by_dist = true;
+    public bool recalibrate_while_movment = true;
+    public string[] reset_RFIDs;
+    public Transform[] reset_points;
+
+
 
     private float[] q; //Quaternion container (temporal)
     private Quaternion origin;
@@ -63,15 +68,16 @@ public class camera_movement : MonoBehaviour
             monitoring += data.q[0] + " " + data.q[1] + " " + data.q[2];
             monitoring += "\n" + data.distance;
             monitoring += "\n" + data.mouse_x + " " + data.mouse_y;
-            //Debug.Log(monitoring);
 
-            ////ADDED FOR CALIBRATION
-            // raw_data.text = monitoring;
-            //calibrating.connected = true;
-            //calibrating.tag_id = data.tag_id;
-            //calibrating.mouse_x = data.mouse_x;
-            //calibrating.mouse_y = data.mouse_y;
-            ////
+            if (!(data.tag_id[0] == 0 && data.tag_id[1] == 0 && data.tag_id[2] == 0 && data.tag_id[3] == 0))
+            {
+                string id = System.BitConverter.ToString(data.tag_id).Replace("-", "");
+                for(int i = 0; i < reset_RFIDs.Length; i++)
+                {
+                    //////////////////
+                }
+            }
+
 
             if (data.distance <= distance_threshold)
             {
