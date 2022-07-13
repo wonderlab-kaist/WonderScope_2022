@@ -20,8 +20,7 @@ public class camera_movement : MonoBehaviour
     public bool isthisWatch;
     public bool use_gravity; // checking for calibrating by gravity from mobile device data
     public bool move_activation = true; // movement activation, default = true
-
-    //public Transform rotate_tester;
+    public bool reset_by_dist = true;
 
     private float[] q; //Quaternion container (temporal)
     private Quaternion origin;
@@ -30,9 +29,6 @@ public class camera_movement : MonoBehaviour
     private int goback_count = 0;
     private int reconnect_duration = 0;
 
-    ////ADDED FOR CALIBRATION
-    //public calibrating_tag calibrating; // deleted by beom
-    ////
 
     // Start is called before the first frame update
     void Start()
@@ -139,10 +135,13 @@ public class camera_movement : MonoBehaviour
                     move_smooth(delta);
                 }
             }
-            else if (data.distance >= distance_threshold)
+            else if (data.distance >= distance_threshold && reset_by_dist)
             {
-                if (!isthisWatch) SceneManager.LoadScene("1_RFID_waiting", LoadSceneMode.Single); /// go back to rfid waiting scene...
-                else SceneManager.LoadScene("0_watch_start", LoadSceneMode.Single);
+                if (!isthisWatch)
+                {
+                    //SceneManager.LoadScene("1_RFID_waiting", LoadSceneMode.Single); /// go back to rfid waiting scene...
+                    SceneManager.LoadScene(0, LoadSceneMode.Single);
+                }else SceneManager.LoadScene("0_watch_start", LoadSceneMode.Single);
 
 
             }
