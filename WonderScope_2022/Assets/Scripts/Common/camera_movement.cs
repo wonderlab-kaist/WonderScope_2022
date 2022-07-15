@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 
 public class camera_movement : MonoBehaviour
@@ -34,6 +35,8 @@ public class camera_movement : MonoBehaviour
     private int goback_count = 0;
     private int reconnect_duration = 0;
 
+    private int reset_index;
+    private float threshold = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -71,11 +74,20 @@ public class camera_movement : MonoBehaviour
 
             if (!(data.tag_id[0] == 0 && data.tag_id[1] == 0 && data.tag_id[2] == 0 && data.tag_id[3] == 0))
             {
-                string id = System.BitConverter.ToString(data.tag_id).Replace("-", "");
-                for(int i = 0; i < reset_RFIDs.Length; i++)
+                //string id = System.BitConverter.ToString(data.tag_id).Replace("-", "");
+                //for(int i = 0; i < reset_RFIDs.Length; i++)
+                //{
+                //    //////////////////
+                //}
+                string id = System.BitConverter.ToString(data.tag_id).Replace("-", ":");
+                reset_index = Array.FindIndex(reset_RFIDs, element => element == id);
+                raw_data.text = "id: "+id+" | RFID index: " + Convert.ToString(reset_index);
+                if (Vector3.Distance(cam.position,reset_points[reset_index].position)>threshold)
                 {
-                    //////////////////
+                    rig.position = rig.position - cam.position + reset_points[reset_index].position;
                 }
+
+
             }
 
 
