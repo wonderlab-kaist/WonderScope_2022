@@ -13,7 +13,10 @@ public class CaveGameController : MonoBehaviour
     private int distance;
     private int count = 0;
 
-    public ParticleSystem twinkle;
+    //public ParticleSystem twinkle;
+    public GameObject twinkle;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,35 +40,44 @@ public class CaveGameController : MonoBehaviour
         //    Crystal.SetActive(false);
 
         //}
+        //if (Crystals != null)
+        //{
+        //    foreach (Transform childCrystal in Crystals)
+        //    {
+        //        Crystal = GameObject.Find(childCrystal.name);
+        //        //Instantiate(twinkle, Crystal.transform.position, Quaternion.identity);
 
+        //        if (Crystal.activeSelf)
+        //        {
+        //            //_editableShape.position = Crystal.transform.position;
+
+        //            Instantiate(twinkle, Crystal.transform.position, Quaternion.identity);
+
+        //            //twinkle.transform.position = Crystal.transform.position;
+        //            //twinkle.Play();
+        //            Crystal.SetActive(false);
+
+        //        }
+        //    }
+        //}
+
+        // crystal의 child들 다 선회해서 active true인 것들 중에 cam이랑 거리값이 10 이내인 것?은 효과 주고 active false로 바꾸기. 그리고 score +1
         foreach (Transform childCrystal in Crystals)
         {
             Crystal = GameObject.Find(childCrystal.name);
-            if (Crystal.activeSelf)
+            if ((Vector3.Distance(Crystal.transform.position, Cam.transform.position) < distance) && Crystal.activeSelf)
             {
-                //_editableShape.position = Crystal.transform.position;
-                twinkle.transform.position = Crystal.transform.position;
-                twinkle.Play();
+                //_editableshape.position = crystal.transform.position;
+
+                Instantiate(twinkle, Crystal.transform.position, Quaternion.identity);
+                //twinkle.transform.position = crystal.transform.position;
+                //twinkle.play();
                 Crystal.SetActive(false);
 
             }
+            //crystal = gameobject.find(childcrystal.name);
+            //print(crystal.name);
+            ////print(childcrystal.);
         }
-
-        //// Crystal의 child들 다 선회해서 active true인 것들 중에 cam이랑 거리값이 10 이내인 것?은 효과 주고 active false로 바꾸기. 그리고 score +1
-        //foreach (Transform childCrystal in Crystals)
-        //{
-        //    Crystal = GameObject.Find(childCrystal.name);
-        //    if ((Vector3.Distance(Crystal.transform.position, Cam.transform.position) < distance) && Crystal.activeSelf)
-        //    {
-        //        //_editableShape.position = Crystal.transform.position;
-        //        twinkle.transform.position = Crystal.transform.position;
-        //        twinkle.Play();
-        //        Crystal.SetActive(false);
-
-        //    }
-        //    //Crystal = GameObject.Find(childCrystal.name);
-        //    //print(Crystal.name);
-        //    ////print(childCrystal.);
-        //}
     }
 }
