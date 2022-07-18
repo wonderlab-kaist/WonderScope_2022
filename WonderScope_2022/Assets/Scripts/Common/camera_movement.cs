@@ -20,8 +20,12 @@ public class camera_movement : MonoBehaviour
     public bool isthisWatch;
     public bool use_gravity; // checking for calibrating by gravity from mobile device data
     public bool move_activation = true; // movement activation, default = true
+    public bool reset_by_dist = true;
+    public bool recalibrate_while_movment = true;
+    public string[] reset_RFIDs;
+    public Transform[] reset_points;
 
-    //public Transform rotate_tester;
+
 
     private float[] q; //Quaternion container (temporal)
     private Quaternion origin;
@@ -30,9 +34,6 @@ public class camera_movement : MonoBehaviour
     private int goback_count = 0;
     private int reconnect_duration = 0;
 
-    ////ADDED FOR CALIBRATION
-    //public calibrating_tag calibrating; // deleted by beom
-    ////
 
     // Start is called before the first frame update
     void Start()
@@ -67,15 +68,16 @@ public class camera_movement : MonoBehaviour
             monitoring += data.q[0] + " " + data.q[1] + " " + data.q[2];
             monitoring += "\n" + data.distance;
             monitoring += "\n" + data.mouse_x + " " + data.mouse_y;
-            //Debug.Log(monitoring);
 
-            ////ADDED FOR CALIBRATION
-            // raw_data.text = monitoring;
-            //calibrating.connected = true;
-            //calibrating.tag_id = data.tag_id;
-            //calibrating.mouse_x = data.mouse_x;
-            //calibrating.mouse_y = data.mouse_y;
-            ////
+            if (!(data.tag_id[0] == 0 && data.tag_id[1] == 0 && data.tag_id[2] == 0 && data.tag_id[3] == 0))
+            {
+                string id = System.BitConverter.ToString(data.tag_id).Replace("-", "");
+                for(int i = 0; i < reset_RFIDs.Length; i++)
+                {
+                    //////////////////
+                }
+            }
+
 
             if (data.distance <= distance_threshold)
             {
@@ -139,10 +141,13 @@ public class camera_movement : MonoBehaviour
                     move_smooth(delta);
                 }
             }
-            else if (data.distance >= distance_threshold)
+            else if (data.distance >= distance_threshold && reset_by_dist)
             {
-                if (!isthisWatch) SceneManager.LoadScene("1_RFID_waiting", LoadSceneMode.Single); /// go back to rfid waiting scene...
-                else SceneManager.LoadScene("0_watch_start", LoadSceneMode.Single);
+                if (!isthisWatch)
+                {
+                    //SceneManager.LoadScene("1_RFID_waiting", LoadSceneMode.Single); /// go back to rfid waiting scene...
+                    SceneManager.LoadScene(0, LoadSceneMode.Single);
+                }else SceneManager.LoadScene("0_watch_start", LoadSceneMode.Single);
 
 
             }
