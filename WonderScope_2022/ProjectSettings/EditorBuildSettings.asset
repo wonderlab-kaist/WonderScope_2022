@@ -17,13 +17,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Moon/Scene/Moon_scene.unity
     guid: 3d5ef07c708abab4f9bd66318bde789b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Human_body/inside_human_body.unity
     guid: 2a9a89225e0284fb9af648f69c7f83fb
   - enabled: 0
     path: Assets/Scenes/Data Monitor.unity
     guid: a35582684545448e891f3016a07902b7
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Cave/Demo/demo.unity
     guid: 6e4f4176fe626b44980f1d9260d29259
   m_configObjects:
