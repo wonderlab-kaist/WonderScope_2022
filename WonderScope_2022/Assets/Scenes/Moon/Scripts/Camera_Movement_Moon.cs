@@ -15,6 +15,7 @@ public class Camera_Movement_Moon : MonoBehaviour
 
     public Text altitude;
     public Text raw_data; //debugging text, monitoring raw data from module
+    public Text direction; //orientation check
     private stethoscope_data data;
     public Transform cam;
     public Transform rig;
@@ -64,7 +65,7 @@ public class Camera_Movement_Moon : MonoBehaviour
             monitoring += data.q[0] + " " + data.q[1] + " " + data.q[2];
             monitoring += " " + data.distance;
             monitoring += " " + data.mouse_x + " " + data.mouse_y;
-            Debug.Log(monitoring);
+            //Debug.Log(monitoring);
 
             if (data.distance <= distance_limitation)
             {
@@ -87,6 +88,7 @@ public class Camera_Movement_Moon : MonoBehaviour
                     //Quaternion rot = new Quaternion(q[0], q[1], q[2], q[3]);
 
                     float angle = Quaternion.Angle((origin * rot), rig.rotation);
+                    direction.text = "" + rot.ToEuler().z / Mathf.PI * 180f;
 
                     if (!originated && !use_gravity)
                     {
@@ -130,8 +132,8 @@ public class Camera_Movement_Moon : MonoBehaviour
                 
             }else if (data.distance >= distance_limitation)
             {
-                SceneManager.LoadScene("1_RFID_waiting_moon", LoadSceneMode.Single); /// go back to rfid waiting scene...               
-
+                //SceneManager.LoadScene("1_RFID_waiting_moon", LoadSceneMode.Single); /// go back to rfid waiting scene...               
+                SceneManager.LoadScene(0, LoadSceneMode.Single); /// go back to rfid waiting scene...      
             }
 
 
