@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System;
 
 
 public class camera_movement : MonoBehaviour
@@ -15,8 +14,6 @@ public class camera_movement : MonoBehaviour
     float distance_threshold = 100;
 
     public TextMeshProUGUI raw_data; //debugging text, monitoring raw data from module
-    public TextMeshProUGUI raw_data2; //debugging text, monitoring raw data from module
-    public TextMeshProUGUI raw_data3; //debugging text, monitoring raw data from module
     private stethoscope_data data;
     public Transform cam;
     public Transform rig;
@@ -37,9 +34,6 @@ public class camera_movement : MonoBehaviour
     private int goback_count = 0;
     private int reconnect_duration = 0;
 
-    private int reset_index;
-    private float threshold = 2f;
-    float[] tagVal = new float[4];
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +59,7 @@ public class camera_movement : MonoBehaviour
     void Update()
     {
         byte[] income = dataInput.getData();
-        raw_data2.text = "Threshold: " + Convert.ToString(threshold);
+
         if (income != null && income != null)
         {
             //string[] data = income.Split(' ');
@@ -74,46 +68,14 @@ public class camera_movement : MonoBehaviour
             monitoring += data.q[0] + " " + data.q[1] + " " + data.q[2];
             monitoring += "\n" + data.distance;
             monitoring += "\n" + data.mouse_x + " " + data.mouse_y;
-            
-            
+
             if (!(data.tag_id[0] == 0 && data.tag_id[1] == 0 && data.tag_id[2] == 0 && data.tag_id[3] == 0))
             {
-                //string id = System.BitConverter.ToString(data.tag_id).Replace("-", "");
-                //for(int i = 0; i < reset_RFIDs.Length; i++)
-                //{
-                //    //////////////////
-                //}
-                //string id = System.BitConverter.ToString(data.tag_id).Replace("-", ":");
-                //reset_index = Array.FindIndex(reset_RFIDs, element => element == id);
-
-                //Vector3 oldrig = cam.position;
-                //cam.position = oldrig - cam.GetChild(0).position + reset_points[reset_index].position;
-
-
-                //cam.transform.localPosition = reset_points[reset_index].position;
-                //Vector3 oldrig = rig.transform.position;
-                //rig.transform.position = oldrig - cam.transform.position + reset_points[reset_index].transform.position;
-
-
-                if ((tagVal[0] != data.tag_id[0] || tagVal[1] != data.tag_id[1] || tagVal[2] != data.tag_id[2] || tagVal[3] != data.tag_id[3]))
+                string id = System.BitConverter.ToString(data.tag_id).Replace("-", "");
+                for (int i = 0; i < reset_RFIDs.Length; i++)
                 {
-                    string id = System.BitConverter.ToString(data.tag_id).Replace("-", ":");
-                    reset_index = Array.FindIndex(reset_RFIDs, element => element == id);
-                    //raw_data.text = "id: "+id+" | RFID index: " + Convert.ToString(reset_index);
-                    //rig.transform.position = rig.position - cam.position + reset_points[reset_index].position;
-                    if (Vector3.Distance(cam.position, reset_points[reset_index].position) > threshold)
-                    {
-                        raw_data3.text = "Rig pos: " + Convert.ToString(cam.position);
-                        Vector3 oldrig = cam.position;
-                        cam.position = oldrig - cam.GetChild(0).position + reset_points[reset_index].position;
-
-                        //cam.position = oldrig - cam.GetChild(0).position + reset_points[reset_index].position- new Vector3(0,80,0);
-
-                        //rig.transform.position = rig.position - cam.position + reset_points[reset_index].position;
-                        raw_data.text = "New rig: " + Convert.ToString(cam.position) + " || rfid pos: " + Convert.ToString(reset_points[reset_index].position);
-                    }
+                    //////////////////
                 }
-
             }
 
 
@@ -185,7 +147,8 @@ public class camera_movement : MonoBehaviour
                 {
                     //SceneManager.LoadScene("1_RFID_waiting", LoadSceneMode.Single); /// go back to rfid waiting scene...
                     SceneManager.LoadScene(0, LoadSceneMode.Single);
-                }else SceneManager.LoadScene("0_watch_start", LoadSceneMode.Single);
+                }
+                else SceneManager.LoadScene("0_watch_start", LoadSceneMode.Single);
 
 
             }
@@ -206,13 +169,6 @@ public class camera_movement : MonoBehaviour
             //Debug.Log("reconnecting...");
             GameObject.Find("BLEcontroller").GetComponent<aarcall>().connect();
             reconnect_duration = 0;
-        }
-
-        if (Input.touchCount > 0)
-        {
-            if (Input.GetTouch(0).deltaPosition.x > 0) threshold += 0.01f;
-            else if (Input.GetTouch(0).deltaPosition.x < 0) threshold -= 0.01f;
-
         }
 
     }
@@ -260,7 +216,7 @@ public class camera_movement : MonoBehaviour
     /// <returns></returns>
     public Vector2 mouse_value()
     {
-        Vector2 value = new Vector2(data.mouse_x,data.mouse_y);
+        Vector2 value = new Vector2(data.mouse_x, data.mouse_y);
         return value;
     }
 
