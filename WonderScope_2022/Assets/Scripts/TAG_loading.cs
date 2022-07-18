@@ -48,6 +48,7 @@ public class TAG_loading : MonoBehaviour
             if (!(tmp.tag_id[0] == 0&& tmp.tag_id[1] == 0&& tmp.tag_id[2] == 0&& tmp.tag_id[3] == 0) && !scene_detected)
             {
                 //Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
+                scene_detected = true;
 
                 explain.text = "잠시만 기다려주세요...";
                 Debug.Log(System.BitConverter.ToString(tmp.tag_id).Replace("-", ""));
