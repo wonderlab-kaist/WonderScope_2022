@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class aarcall : MonoBehaviour
 {
     private AndroidJavaObject javaClassInstance;
     AndroidJavaClass jc;
 
-    public Text deb;
+    //public Text deb;
     public string default_ble_address;
 
     private AndroidJavaObject plugin;
     private bool listening = false;
 
+    private float connection_time;
 
     void Start()
     {
@@ -53,6 +55,8 @@ public class aarcall : MonoBehaviour
 
     public void connect()
     {
+        Debug.Log("Connecting...");
+            
         if (Application.platform != RuntimePlatform.Android) return; 
         AndroidJavaClass androidJC = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject jo = androidJC.GetStatic<AndroidJavaObject>("currentActivity");
@@ -83,7 +87,21 @@ public class aarcall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!dataInput.isConnected())
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 0 && connection_time > 0.5f)
+            {
+                connection_time = 0f;
+                connect();
+            }
+            else
+            {
+                connection_time += Time.deltaTime;
+            }
+        }else
+        {
+            connection_time = 0f;
+        }
         
     }
 

@@ -41,7 +41,8 @@ public class TAG_loading : MonoBehaviour
         if (tmp!=null&&Application.platform == RuntimePlatform.Android)
         {
             //heading.text = "rea";
-            //Debug.Log(tmp);
+            Debug.Log(tmp.distance);
+            Debug.Log(tmp.tag_id[0]);
             scienscope_illust.transform.position = sc_illust_origin + new Vector3((255-tmp.distance)*0.00125f, 0, 0);
             
 
