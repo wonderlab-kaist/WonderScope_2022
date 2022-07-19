@@ -72,7 +72,7 @@ public class camera_movement : MonoBehaviour
             if (!(data.tag_id[0] == 0 && data.tag_id[1] == 0 && data.tag_id[2] == 0 && data.tag_id[3] == 0))
             {
                 string id = System.BitConverter.ToString(data.tag_id).Replace("-", "");
-                for(int i = 0; i < reset_RFIDs.Length; i++)
+                for (int i = 0; i < reset_RFIDs.Length; i++)
                 {
                     //////////////////
                 }
@@ -147,7 +147,8 @@ public class camera_movement : MonoBehaviour
                 {
                     //SceneManager.LoadScene("1_RFID_waiting", LoadSceneMode.Single); /// go back to rfid waiting scene...
                     SceneManager.LoadScene(0, LoadSceneMode.Single);
-                }else SceneManager.LoadScene("0_watch_start", LoadSceneMode.Single);
+                }
+                else SceneManager.LoadScene("0_watch_start", LoadSceneMode.Single);
 
 
             }
@@ -215,7 +216,7 @@ public class camera_movement : MonoBehaviour
     /// <returns></returns>
     public Vector2 mouse_value()
     {
-        Vector2 value = new Vector2(data.mouse_x,data.mouse_y);
+        Vector2 value = new Vector2(data.mouse_x, data.mouse_y);
         return value;
     }
 
