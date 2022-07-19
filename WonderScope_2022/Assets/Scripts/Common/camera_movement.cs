@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 
 public class camera_movement : MonoBehaviour
@@ -34,6 +35,11 @@ public class camera_movement : MonoBehaviour
     private int goback_count = 0;
     private int reconnect_duration = 0;
 
+    /// <summary>
+    /// added for human-body calibration
+    /// </summary>
+    private int reset_index;
+    private float threshold = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +66,7 @@ public class camera_movement : MonoBehaviour
     {
         byte[] income = dataInput.getData();
 
-        if (income != null && income != null)
+        if (income != null)
         {
             //string[] data = income.Split(' ');
             data = new stethoscope_data(income);
@@ -71,11 +77,13 @@ public class camera_movement : MonoBehaviour
 
             if (!(data.tag_id[0] == 0 && data.tag_id[1] == 0 && data.tag_id[2] == 0 && data.tag_id[3] == 0))
             {
-                string id = System.BitConverter.ToString(data.tag_id).Replace("-", "");
-                for(int i = 0; i < reset_RFIDs.Length; i++)
+                string id = System.BitConverter.ToString(data.tag_id).Replace("-", ":");
+                reset_index = Array.FindIndex(reset_RFIDs, element => element == id);
+                if (Vector3.Distance(cam.position, reset_points[reset_index].position) > threshold)
                 {
-                    //////////////////
+                    cam.position = cam.position - cam.GetChild(0).position + reset_points[reset_index].position;
                 }
+
             }
 
 
@@ -147,7 +155,8 @@ public class camera_movement : MonoBehaviour
                 {
                     //SceneManager.LoadScene("1_RFID_waiting", LoadSceneMode.Single); /// go back to rfid waiting scene...
                     SceneManager.LoadScene(0, LoadSceneMode.Single);
-                }else SceneManager.LoadScene("0_watch_start", LoadSceneMode.Single);
+                }
+                else SceneManager.LoadScene("0_watch_start", LoadSceneMode.Single);
 
 
             }
@@ -156,7 +165,7 @@ public class camera_movement : MonoBehaviour
 
             reconnect_duration = 0;
         }
-        else if (income == null || income == null)
+        else if (income == null)
         {
             //Debug.Log(reconnect_duration++);
             reconnect_duration++;
@@ -215,7 +224,7 @@ public class camera_movement : MonoBehaviour
     /// <returns></returns>
     public Vector2 mouse_value()
     {
-        Vector2 value = new Vector2(data.mouse_x,data.mouse_y);
+        Vector2 value = new Vector2(data.mouse_x, data.mouse_y);
         return value;
     }
 

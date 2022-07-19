@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RFID_waiting.unity
     guid: 8658916570db54898a128132567431fc
   - enabled: 0
@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/calibrating2.unity
     guid: df4c97ba2c21b41e4a71f2d75d15f2e6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Moon/Scene/Moon_scene.unity
     guid: 3d5ef07c708abab4f9bd66318bde789b
   - enabled: 0
@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Data Monitor.unity
     guid: a35582684545448e891f3016a07902b7
+  - enabled: 1
+    path: Assets/Scenes/Cave/Demo/demo.unity
+    guid: 6e4f4176fe626b44980f1d9260d29259
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 1f6440deb770e435f898ae2eb6e57858,
       type: 2}
