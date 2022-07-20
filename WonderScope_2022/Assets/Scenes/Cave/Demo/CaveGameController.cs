@@ -20,6 +20,12 @@ public class CaveGameController : MonoBehaviour
     public GameObject down;
     public GameObject left;
     public GameObject right;
+    public GameObject cry_andalusite;
+    public GameObject cry_emerald;
+    public GameObject cry_kunzite;
+    public GameObject cry_peridot;
+    public GameObject cry_ruby;
+    public GameObject cry_yel;
 
     private GameObject Crystal;
     private int score=0;
@@ -33,6 +39,14 @@ public class CaveGameController : MonoBehaviour
         down.SetActive(false);
         left.SetActive(false);
         right.SetActive(false);
+
+        cry_andalusite.SetActive(false);
+        cry_emerald.SetActive(false);
+        cry_kunzite.SetActive(false);
+        cry_peridot.SetActive(false);
+        cry_ruby.SetActive(false);
+        cry_yel.SetActive(false);
+
         closeCrystals.Add(Vector3.zero);
 
     }
@@ -63,8 +77,7 @@ public class CaveGameController : MonoBehaviour
         //        }
         //    }
         //}
-
-        if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
+        //if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
 
 
         #region ForDebugging
@@ -81,6 +94,7 @@ public class CaveGameController : MonoBehaviour
                     Crystal = GameObject.Find(rig.name);
                     crystalSound.time = 1;
                     crystalSound.Play();
+
                     Vector3 preloc = Crystal.transform.position;
                     Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
                     Destroy(GameObject.Find("Effect_" + Crystal.name));
@@ -88,6 +102,10 @@ public class CaveGameController : MonoBehaviour
                     //move to center
                     StartCoroutine(move(Crystal, preloc, centerloc));
                     Crystal.tag = "EffectOff";
+                    //if (Crystal.GetComponent<Renderer>().material.name == "crystal_andalusite") ;
+
+                    //print(Crystal.GetComponent<Renderer>().material.name);
+                    //Crystal.SetActive(false);
                     score++;
                 }
             }
@@ -186,7 +204,13 @@ public class CaveGameController : MonoBehaviour
                 down.SetActive(true);
             }
         }
-        
+
+
+        // 선택된 gameobject의 renderer.material 이름 가져와서 그에 대한 이미지 띄우기
+        // 광물 종류: andalusite / emerald / kunzite / peridot / ruby / yellow sapphire
+        //if (== 'crystal_andalusite')
+        //    cry_an.SetActive(true);
+   
     }
 
     IEnumerator move(GameObject crystal, Vector3 prev, Vector3 cur)
