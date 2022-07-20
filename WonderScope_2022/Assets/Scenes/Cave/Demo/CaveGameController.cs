@@ -41,37 +41,10 @@ public class CaveGameController : MonoBehaviour
     {
         scoreTxt.text = Convert.ToString(score);
 
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            Touch touch = Input.GetTouch(0);
-            var ray = Camera.main.ScreenPointToRay(touch.position);
-            RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo))
-            {
-                var rig = hitInfo.collider.GetComponent<Rigidbody>();
-                if (rig != null)
-                {
-                    Crystal = GameObject.Find(rig.name);
-                    crystalSound.time = 1;
-                    crystalSound.Play();
-                    Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
-                    Destroy(GameObject.Find("Effect_" + Crystal.name));
-                    Crystal.tag = "EffectOff";
-                    Crystal.SetActive(false);
-                    score++;
-                    aar.vibrate_phone();
-                }
-            }
-        }
-
-        if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
-
-
-        #region ForDebugging
-        //if (Input.GetMouseButtonDown(0))
+        //if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
         //{
-        //    Vector3 touchpos = Input.mousePosition;
-        //    var ray = Camera.main.ScreenPointToRay(touchpos);
+        //    Touch touch = Input.GetTouch(0);
+        //    var ray = Camera.main.ScreenPointToRay(touch.position);
         //    RaycastHit hitInfo;
         //    if (Physics.Raycast(ray, out hitInfo))
         //    {
@@ -86,9 +59,48 @@ public class CaveGameController : MonoBehaviour
         //            Crystal.tag = "EffectOff";
         //            Crystal.SetActive(false);
         //            score++;
+        //            aar.vibrate_phone();
         //        }
         //    }
         //}
+
+        if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
+
+
+        #region ForDebugging
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 touchpos = Input.mousePosition;
+            var ray = Camera.main.ScreenPointToRay(touchpos);
+            RaycastHit hitInfo;
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                var rig = hitInfo.collider.GetComponent<Rigidbody>();
+                if (rig != null)
+                {
+                    Crystal = GameObject.Find(rig.name);
+                    crystalSound.time = 1;
+                    crystalSound.Play();
+                    Vector3 preloc = Crystal.transform.position;
+                    Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
+                    Destroy(GameObject.Find("Effect_" + Crystal.name));
+                    Vector3 centerloc = new Vector3 (Cam.transform.position.x, preloc.y + 20, Cam.transform.position.z);
+                    //if (Crystal.transform.position != centerloc)
+                    //{
+                    //    for (float t = 0f; t <= 1f; t += 0.01f)
+                    //    {
+                    //        Crystal.transform.position = Vector3.Lerp(preloc, centerloc, t);
+                    //    }
+                            
+                    //    //Crystal.transform.position = centerloc;
+                    //}
+                    StartCoroutine(move(Crystal, preloc, centerloc));
+                    //Crystal.tag = "EffectOff";
+                    //Crystal.SetActive(false);
+                    //score++;
+                }
+            }
+        }
         #endregion
 
 
@@ -184,5 +196,18 @@ public class CaveGameController : MonoBehaviour
             }
         }
         
+    }
+
+    IEnumerator move(GameObject crystal, Vector3 prev, Vector3 cur)
+    {
+        if (crystal.transform.position != cur)
+        {
+            for (float t = 0f; t <= 1f; t += 0.02f)
+            {
+                crystal.transform.position = Vector3.Lerp(prev, cur, t);
+                yield return new WaitForSeconds(0.01f);
+            }
+
+        }
     }
 }
