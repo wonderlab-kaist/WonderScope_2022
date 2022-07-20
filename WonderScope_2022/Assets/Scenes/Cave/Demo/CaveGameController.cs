@@ -20,6 +20,12 @@ public class CaveGameController : MonoBehaviour
     public GameObject down;
     public GameObject left;
     public GameObject right;
+    public GameObject cry_andalusite;
+    public GameObject cry_emerald;
+    public GameObject cry_kunzite;
+    public GameObject cry_peridot;
+    public GameObject cry_ruby;
+    public GameObject cry_yel;
 
     private GameObject Crystal;
     private int score=0;
@@ -33,6 +39,14 @@ public class CaveGameController : MonoBehaviour
         down.SetActive(false);
         left.SetActive(false);
         right.SetActive(false);
+
+        cry_andalusite.SetActive(false);
+        cry_emerald.SetActive(false);
+        cry_kunzite.SetActive(false);
+        cry_peridot.SetActive(false);
+        cry_ruby.SetActive(false);
+        cry_yel.SetActive(false);
+
         closeCrystals.Add(Vector3.zero);
 
     }
@@ -41,37 +55,10 @@ public class CaveGameController : MonoBehaviour
     {
         scoreTxt.text = Convert.ToString(score);
 
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            Touch touch = Input.GetTouch(0);
-            var ray = Camera.main.ScreenPointToRay(touch.position);
-            RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo))
-            {
-                var rig = hitInfo.collider.GetComponent<Rigidbody>();
-                if (rig != null)
-                {
-                    Crystal = GameObject.Find(rig.name);
-                    crystalSound.time = 1;
-                    crystalSound.Play();
-                    Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
-                    Destroy(GameObject.Find("Effect_" + Crystal.name));
-                    Crystal.tag = "EffectOff";
-                    Crystal.SetActive(false);
-                    score++;
-                    aar.vibrate_phone();
-                }
-            }
-        }
-
-        if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
-
-
-        #region ForDebugging
-        //if (Input.GetMouseButtonDown(0))
+        //if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
         //{
-        //    Vector3 touchpos = Input.mousePosition;
-        //    var ray = Camera.main.ScreenPointToRay(touchpos);
+        //    Touch touch = Input.GetTouch(0);
+        //    var ray = Camera.main.ScreenPointToRay(touch.position);
         //    RaycastHit hitInfo;
         //    if (Physics.Raycast(ray, out hitInfo))
         //    {
@@ -86,9 +73,40 @@ public class CaveGameController : MonoBehaviour
         //            Crystal.tag = "EffectOff";
         //            Crystal.SetActive(false);
         //            score++;
+        //            aar.vibrate_phone();
         //        }
         //    }
         //}
+
+        //if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
+
+
+        #region ForDebugging
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 touchpos = Input.mousePosition;
+            var ray = Camera.main.ScreenPointToRay(touchpos);
+            RaycastHit hitInfo;
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                var rig = hitInfo.collider.GetComponent<Rigidbody>();
+                if (rig != null)
+                {
+                    Crystal = GameObject.Find(rig.name);
+                    crystalSound.time = 1;
+                    crystalSound.Play();
+                    Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
+                    Destroy(GameObject.Find("Effect_" + Crystal.name));
+                    Crystal.tag = "EffectOff";
+
+                    //if (Crystal.GetComponent<Renderer>().material.name == "crystal_andalusite") ;
+
+                    //print(Crystal.GetComponent<Renderer>().material.name);
+                    Crystal.SetActive(false);
+                    score++;
+                }
+            }
+        }
         #endregion
 
 
@@ -183,6 +201,12 @@ public class CaveGameController : MonoBehaviour
                 down.SetActive(true);
             }
         }
-        
+
+
+        // 선택된 gameobject의 renderer.material 이름 가져와서 그에 대한 이미지 띄우기
+        // 광물 종류: andalusite / emerald / kunzite / peridot / ruby / yellow sapphire
+        //if (== 'crystal_andalusite')
+        //    cry_an.SetActive(true);
+   
     }
 }
