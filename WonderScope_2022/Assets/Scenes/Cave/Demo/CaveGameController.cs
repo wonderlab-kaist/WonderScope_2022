@@ -77,7 +77,6 @@ public class CaveGameController : MonoBehaviour
         //        }
         //    }
         //}
-
         //if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
 
 
@@ -95,14 +94,18 @@ public class CaveGameController : MonoBehaviour
                     Crystal = GameObject.Find(rig.name);
                     crystalSound.time = 1;
                     crystalSound.Play();
+
+                    Vector3 preloc = Crystal.transform.position;
                     Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
                     Destroy(GameObject.Find("Effect_" + Crystal.name));
+                    Vector3 centerloc = new Vector3 (Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z);
+                    //move to center
+                    StartCoroutine(move(Crystal, preloc, centerloc));
                     Crystal.tag = "EffectOff";
-
                     //if (Crystal.GetComponent<Renderer>().material.name == "crystal_andalusite") ;
 
                     //print(Crystal.GetComponent<Renderer>().material.name);
-                    Crystal.SetActive(false);
+                    //Crystal.SetActive(false);
                     score++;
                 }
             }
@@ -208,5 +211,37 @@ public class CaveGameController : MonoBehaviour
         //if (== 'crystal_andalusite')
         //    cry_an.SetActive(true);
    
+    }
+
+    IEnumerator move(GameObject crystal, Vector3 prev, Vector3 cur)
+    {
+        Quaternion q = Quaternion.Euler(90, 0, -90);
+        if (crystal.transform.position != cur)
+        {
+            for (float t = 0f; t <= 1f; t += 0.05f)
+            {
+                crystal.transform.position = Vector3.Lerp(prev, cur, t);
+                crystal.transform.rotation = Quaternion.Lerp(Quaternion.identity, q, t);
+                //yield return new WaitForSeconds(0.01f);
+                yield return new WaitForEndOfFrame();
+            }
+
+        }
+        yield return new WaitForSeconds(5);
+
+        Vector3 disappearPt = new Vector3(crystal.transform.position.x - 50, crystal.transform.position.y, crystal.transform.position.z);
+        Vector3 ctrPt = crystal.transform.position;
+        if (crystal.transform.position != disappearPt)
+        {
+            for (float t = 0f; t <= 1f; t += 0.05f)
+            {
+                crystal.transform.position = Vector3.Lerp(ctrPt, disappearPt, t);
+                //yield return new WaitForSeconds(0.01f);
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        crystal.transform.rotation = Quaternion.Euler(0, 0, 0);
+        crystal.transform.position = prev;
+        crystal.SetActive(false);
     }
 }
