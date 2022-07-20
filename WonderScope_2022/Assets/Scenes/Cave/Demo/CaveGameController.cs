@@ -41,37 +41,10 @@ public class CaveGameController : MonoBehaviour
     {
         scoreTxt.text = Convert.ToString(score);
 
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            Touch touch = Input.GetTouch(0);
-            var ray = Camera.main.ScreenPointToRay(touch.position);
-            RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo))
-            {
-                var rig = hitInfo.collider.GetComponent<Rigidbody>();
-                if (rig != null)
-                {
-                    Crystal = GameObject.Find(rig.name);
-                    crystalSound.time = 1;
-                    crystalSound.Play();
-                    Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
-                    Destroy(GameObject.Find("Effect_" + Crystal.name));
-                    Crystal.tag = "EffectOff";
-                    Crystal.SetActive(false);
-                    score++;
-                    aar.vibrate_phone();
-                }
-            }
-        }
-
-        if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
-
-
-        #region ForDebugging
-        //if (Input.GetMouseButtonDown(0))
+        //if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
         //{
-        //    Vector3 touchpos = Input.mousePosition;
-        //    var ray = Camera.main.ScreenPointToRay(touchpos);
+        //    Touch touch = Input.GetTouch(0);
+        //    var ray = Camera.main.ScreenPointToRay(touch.position);
         //    RaycastHit hitInfo;
         //    if (Physics.Raycast(ray, out hitInfo))
         //    {
@@ -86,9 +59,39 @@ public class CaveGameController : MonoBehaviour
         //            Crystal.tag = "EffectOff";
         //            Crystal.SetActive(false);
         //            score++;
+        //            aar.vibrate_phone();
         //        }
         //    }
         //}
+
+        if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
+
+
+        #region ForDebugging
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 touchpos = Input.mousePosition;
+            var ray = Camera.main.ScreenPointToRay(touchpos);
+            RaycastHit hitInfo;
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                var rig = hitInfo.collider.GetComponent<Rigidbody>();
+                if (rig != null)
+                {
+                    Crystal = GameObject.Find(rig.name);
+                    crystalSound.time = 1;
+                    crystalSound.Play();
+                    Vector3 preloc = Crystal.transform.position;
+                    Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
+                    Destroy(GameObject.Find("Effect_" + Crystal.name));
+                    Vector3 centerloc = new Vector3 (Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z);
+                    //move to center
+                    StartCoroutine(move(Crystal, preloc, centerloc));
+                    Crystal.tag = "EffectOff";
+                    score++;
+                }
+            }
+        }
         #endregion
 
 
@@ -184,5 +187,37 @@ public class CaveGameController : MonoBehaviour
             }
         }
         
+    }
+
+    IEnumerator move(GameObject crystal, Vector3 prev, Vector3 cur)
+    {
+        Quaternion q = Quaternion.Euler(90, 0, -90);
+        if (crystal.transform.position != cur)
+        {
+            for (float t = 0f; t <= 1f; t += 0.05f)
+            {
+                crystal.transform.position = Vector3.Lerp(prev, cur, t);
+                crystal.transform.rotation = Quaternion.Lerp(Quaternion.identity, q, t);
+                //yield return new WaitForSeconds(0.01f);
+                yield return new WaitForEndOfFrame();
+            }
+
+        }
+        yield return new WaitForSeconds(5);
+
+        Vector3 disappearPt = new Vector3(crystal.transform.position.x - 50, crystal.transform.position.y, crystal.transform.position.z);
+        Vector3 ctrPt = crystal.transform.position;
+        if (crystal.transform.position != disappearPt)
+        {
+            for (float t = 0f; t <= 1f; t += 0.05f)
+            {
+                crystal.transform.position = Vector3.Lerp(ctrPt, disappearPt, t);
+                //yield return new WaitForSeconds(0.01f);
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        crystal.transform.rotation = Quaternion.Euler(0, 0, 0);
+        crystal.transform.position = prev;
+        crystal.SetActive(false);
     }
 }
