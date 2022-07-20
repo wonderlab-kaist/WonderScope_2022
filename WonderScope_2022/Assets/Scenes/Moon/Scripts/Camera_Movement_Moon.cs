@@ -89,8 +89,8 @@ public class Camera_Movement_Moon : MonoBehaviour
                     //Quaternion rot = new Quaternion(q[0], q[1], q[2], q[3]);
 
                     float angle = Quaternion.Angle((origin * rot), rig.rotation);
-                    direction =  rot.ToEuler().z / Mathf.PI * 180f;
-                    directionTxt.text = string.Format("{0:0}", direction);
+                    direction =  (rot.ToEuler().z / Mathf.PI * 180f)+180;
+                    directionTxt.text = string.Format("{0:0}", direction) + "¡Æ";
 
                     if (!originated && !use_gravity)
                     {
