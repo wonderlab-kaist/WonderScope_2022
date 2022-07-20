@@ -85,10 +85,10 @@ public class CaveGameController : MonoBehaviour
                     Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
                     Destroy(GameObject.Find("Effect_" + Crystal.name));
                     Vector3 centerloc = new Vector3 (Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z);
+                    //move to center
                     StartCoroutine(move(Crystal, preloc, centerloc));
-                    //Crystal.tag = "EffectOff";
-                    //Crystal.SetActive(false);
-                    //score++;
+                    Crystal.tag = "EffectOff";
+                    score++;
                 }
             }
         }
@@ -198,9 +198,26 @@ public class CaveGameController : MonoBehaviour
             {
                 crystal.transform.position = Vector3.Lerp(prev, cur, t);
                 crystal.transform.rotation = Quaternion.Lerp(Quaternion.identity, q, t);
-                yield return new WaitForSeconds(0.01f);
+                //yield return new WaitForSeconds(0.01f);
+                yield return new WaitForEndOfFrame();
             }
 
         }
+        yield return new WaitForSeconds(5);
+
+        Vector3 disappearPt = new Vector3(crystal.transform.position.x - 50, crystal.transform.position.y, crystal.transform.position.z);
+        Vector3 ctrPt = crystal.transform.position;
+        if (crystal.transform.position != disappearPt)
+        {
+            for (float t = 0f; t <= 1f; t += 0.05f)
+            {
+                crystal.transform.position = Vector3.Lerp(ctrPt, disappearPt, t);
+                //yield return new WaitForSeconds(0.01f);
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        crystal.transform.rotation = Quaternion.Euler(0, 0, 0);
+        crystal.transform.position = prev;
+        crystal.SetActive(false);
     }
 }
