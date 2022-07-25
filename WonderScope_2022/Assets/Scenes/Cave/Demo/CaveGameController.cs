@@ -98,8 +98,7 @@ public class CaveGameController : MonoBehaviour
                     Vector3 preloc = Crystal.transform.position;
                     Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
                     Destroy(GameObject.Find("Effect_" + Crystal.name));
-                    Vector3 centerloc = new Vector3 (Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z);
-
+                    Vector3 centerloc = new Vector3 (Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
                     //move to center
                     StartCoroutine(move(Crystal, preloc, centerloc));
                     Crystal.tag = "EffectOff";
@@ -218,15 +217,14 @@ public class CaveGameController : MonoBehaviour
         else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_ruby") cry_ruby.SetActive(true);
         else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_yel_sapp") cry_yel.SetActive(true);
 
-        yield return new WaitForSeconds(4);
-
+        crystal.GetComponent<MeshCollider>().enabled = false;
+        yield return new WaitForSeconds(5);
         if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_andalusite") cry_andalusite.SetActive(false);
         else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_emerald") cry_emerald.SetActive(false);
         else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_kunzite") cry_kunzite.SetActive(false);
         else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_peridot") cry_peridot.SetActive(false);
         else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_ruby") cry_ruby.SetActive(false);
         else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_yel_sapp") cry_yel.SetActive(false);
-
 
         Vector3 disappearPt = new Vector3(crystal.transform.position.x - 50, crystal.transform.position.y, crystal.transform.position.z);
         Vector3 ctrPt = crystal.transform.position;
