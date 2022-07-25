@@ -102,9 +102,14 @@ public class CaveGameController : MonoBehaviour
                     Vector3 preloc = Crystal.transform.position;
                     Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
                     Destroy(GameObject.Find("Effect_" + Crystal.name));
-                    Vector3 centerloc = new Vector3(Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
+                    //Vector3 centerloc = new Vector3(Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
+
+                    Vector2 loc = new Vector2(0, 5);
+                    float theta = (Cam.transform.eulerAngles.y - 90) * Mathf.Deg2Rad;
+                    Vector3 rotloc = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(theta) + loc.y * Mathf.Sin(theta), preloc.y + 18, Cam.transform.position.z + loc.x * Mathf.Sin(theta) + loc.y * Mathf.Cos(theta) );
+
                     //move to center
-                    StartCoroutine(move(Crystal, preloc, centerloc));
+                    StartCoroutine(move(Crystal, preloc, rotloc, Cam.transform.eulerAngles.y - 90));
                     Crystal.tag = "EffectOff";
                     //Crystal.SetActive(false);
                     score++;
@@ -199,9 +204,9 @@ public class CaveGameController : MonoBehaviour
    
     }
 
-    IEnumerator move(GameObject crystal, Vector3 prev, Vector3 cur)
+    IEnumerator move(GameObject crystal, Vector3 prev, Vector3 cur, float theta)
     {
-        Quaternion q = Quaternion.Euler(90, 0, -90);
+        Quaternion q = Quaternion.Euler(90, theta, -90);
         if (crystal.transform.position != cur)
         {
             for (float t = 0f; t <= 1f; t += 0.07f)
