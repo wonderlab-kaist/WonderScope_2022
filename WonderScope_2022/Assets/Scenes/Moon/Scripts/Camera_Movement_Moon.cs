@@ -15,12 +15,13 @@ public class Camera_Movement_Moon : MonoBehaviour
 
     public Text altitude;
     public Text raw_data; //debugging text, monitoring raw data from module
-    public Text direction; //orientation check
+    public Text directionTxt; //orientation check for ui
     private stethoscope_data data;
     public Transform cam;
     public Transform rig;
     public bool isthisWatch;
     public bool use_gravity; // checking for calibrating by gravity from mobile device data
+    public float direction; //oriention float
 
     //public Transform rotate_tester;
 
@@ -88,7 +89,8 @@ public class Camera_Movement_Moon : MonoBehaviour
                     //Quaternion rot = new Quaternion(q[0], q[1], q[2], q[3]);
 
                     float angle = Quaternion.Angle((origin * rot), rig.rotation);
-                    direction.text = "" + rot.ToEuler().z / Mathf.PI * 180f;
+                    direction =  (rot.ToEuler().z / Mathf.PI * 180f)+180;
+                    directionTxt.text = string.Format("{0:0}", direction) + "¡Æ";
 
                     if (!originated && !use_gravity)
                     {
