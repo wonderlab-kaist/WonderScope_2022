@@ -6270,6 +6270,7 @@ MonoBehaviour:
   rig: {fileID: 903245057}
   isthisWatch: 0
   use_gravity: 0
+  start_angle: 0
 --- !u!1 &647736740
 GameObject:
   m_ObjectHideFlags: 0
@@ -14793,7 +14794,7 @@ PrefabInstance:
     - target: {fileID: 6402122941289838925, guid: a11a62b43551f714ba9484f10da5a4a2,
         type: 3}
       propertyPath: default_ble_address
-      value: E1:F3:4B:12:F9:6C
+      value: C5:31:BA:E3:E2:6A
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a11a62b43551f714ba9484f10da5a4a2, type: 3}

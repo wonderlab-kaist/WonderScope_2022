@@ -22,6 +22,8 @@ public class Camera_Movement_Moon : MonoBehaviour
     public bool isthisWatch;
     public bool use_gravity; // checking for calibrating by gravity from mobile device data
 
+    public float start_angle;
+
     //public Transform rotate_tester;
 
     private float[] q; //Quaternion container (temporal)
@@ -94,7 +96,8 @@ public class Camera_Movement_Moon : MonoBehaviour
                     {
                         originated = true;
 
-                        origin = Quaternion.Inverse(rot);
+                        //origin = Quaternion.Inverse(rot);
+                        origin = rot;
                     }
                     else if (use_gravity)
                     {
