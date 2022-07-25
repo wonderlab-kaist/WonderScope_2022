@@ -23,6 +23,8 @@ public class Camera_Movement_Moon : MonoBehaviour
     public bool use_gravity; // checking for calibrating by gravity from mobile device data
     public float direction; //oriention float
 
+    public float start_angle_shift;
+
     //public Transform rotate_tester;
 
     private float[] q; //Quaternion container (temporal)
@@ -90,13 +92,14 @@ public class Camera_Movement_Moon : MonoBehaviour
 
                     float angle = Quaternion.Angle((origin * rot), rig.rotation);
                     direction =  (rot.ToEuler().z / Mathf.PI * 180f)+180;
-                    directionTxt.text = string.Format("{0:0}", direction) + "¡Æ";
+                    directionTxt.text = string.Format("{0:0}", direction) + "??";
 
                     if (!originated && !use_gravity)
                     {
                         originated = true;
 
-                        origin = Quaternion.Inverse(rot);
+                        //origin = Quaternion.Inverse(rot);
+                        origin = rot * Quaternion.Euler(0, 0, start_angle_shift);
                     }
                     else if (use_gravity)
                     {
