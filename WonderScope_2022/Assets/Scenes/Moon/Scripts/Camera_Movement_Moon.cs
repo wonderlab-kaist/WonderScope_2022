@@ -22,6 +22,7 @@ public class Camera_Movement_Moon : MonoBehaviour
     public bool isthisWatch;
     public bool use_gravity; // checking for calibrating by gravity from mobile device data
     public float direction; //oriention float
+    public GameObject popup; //no signal pop-up
 
     public float start_angle_shift;
 
@@ -92,7 +93,7 @@ public class Camera_Movement_Moon : MonoBehaviour
 
                     float angle = Quaternion.Angle((origin * rot), rig.rotation);
                     direction =  (rot.ToEuler().z / Mathf.PI * 180f)+180;
-                    directionTxt.text = string.Format("{0:0}", direction) + "??";
+                    directionTxt.text = string.Format("{0:0}", direction) + "°";
 
                     if (!originated && !use_gravity)
                     {
@@ -159,6 +160,20 @@ public class Camera_Movement_Moon : MonoBehaviour
             reconnect_duration = 0;
         }
 
+        //카메라위치 벗어나면
+        if (cam.position.z < 0f)
+        {
+            popup.SetActive(true);
+            Invoke("noSignal", 3f);
+        }
+        
+
+
+    }
+
+    void noSignal() //카메라위치 벗어나면 함수
+    {
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 
     void move_smooth(Vector3 delta_distance)
@@ -178,7 +193,7 @@ public class Camera_Movement_Moon : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             cam.position -= d / 3f;
-            yield return new WaitForSeconds(0.02f / 3f);
+            yield return new WaitForSeconds(0.02f / 2f);
         }
         cam.position = new Vector3(cam.position.x, cam_original_height + data.distance/3, cam.position.z);
         altitude.text = string.Format("{0:N2}", data.distance); //altitude
