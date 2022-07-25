@@ -68,10 +68,14 @@ public class CaveGameController : MonoBehaviour
         //            Crystal = GameObject.Find(rig.name);
         //            crystalSound.time = 1;
         //            crystalSound.Play();
+
+        //            Vector3 preloc = Crystal.transform.position;
         //            Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
         //            Destroy(GameObject.Find("Effect_" + Crystal.name));
+        //            Vector3 centerloc = new Vector3(Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
+        //            StartCoroutine(move(Crystal, preloc, centerloc));
         //            Crystal.tag = "EffectOff";
-        //            Crystal.SetActive(false);
+        //            //Crystal.SetActive(false);
         //            score++;
         //            aar.vibrate_phone();
         //        }
@@ -98,7 +102,7 @@ public class CaveGameController : MonoBehaviour
                     Vector3 preloc = Crystal.transform.position;
                     Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
                     Destroy(GameObject.Find("Effect_" + Crystal.name));
-                    Vector3 centerloc = new Vector3 (Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
+                    Vector3 centerloc = new Vector3(Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
                     //move to center
                     StartCoroutine(move(Crystal, preloc, centerloc));
                     Crystal.tag = "EffectOff";
@@ -218,7 +222,9 @@ public class CaveGameController : MonoBehaviour
         else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_yel_sapp") cry_yel.SetActive(true);
 
         crystal.GetComponent<MeshCollider>().enabled = false;
-        yield return new WaitForSeconds(5);
+
+        yield return new WaitForSeconds(4);
+
         if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_andalusite") cry_andalusite.SetActive(false);
         else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_emerald") cry_emerald.SetActive(false);
         else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_kunzite") cry_kunzite.SetActive(false);
