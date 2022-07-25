@@ -98,7 +98,7 @@ public class CaveGameController : MonoBehaviour
                     Vector3 preloc = Crystal.transform.position;
                     Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
                     Destroy(GameObject.Find("Effect_" + Crystal.name));
-                    Vector3 centerloc = new Vector3 (Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z);
+                    Vector3 centerloc = new Vector3 (Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
                     //move to center
                     StartCoroutine(move(Crystal, preloc, centerloc));
                     Crystal.tag = "EffectOff";
@@ -227,8 +227,9 @@ public class CaveGameController : MonoBehaviour
             }
 
         }
+        crystal.GetComponent<MeshCollider>().enabled = false;
         yield return new WaitForSeconds(5);
-
+        
         Vector3 disappearPt = new Vector3(crystal.transform.position.x - 50, crystal.transform.position.y, crystal.transform.position.z);
         Vector3 ctrPt = crystal.transform.position;
         if (crystal.transform.position != disappearPt)
