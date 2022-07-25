@@ -20,11 +20,13 @@ public class TAG_loading : MonoBehaviour
     public string[] RFID_address;
 
     public GameObject scienscope_illust;
+    public Transform touchPoint;
     //public ParticleSystem ps_effect;
     //public Transform ps_origin;
 
     private bool scene_detected = false;
     private Vector3 sc_illust_origin;
+
     
     void Start()
     {
@@ -42,16 +44,15 @@ public class TAG_loading : MonoBehaviour
         {
             //heading.text = "rea";
             Debug.Log(tmp.distance);
-            Debug.Log(tmp.tag_id[0]);
-            scienscope_illust.transform.position = sc_illust_origin + new Vector3((255-tmp.distance)*0.00125f, 0, 0);
-            
+            //Debug.Log(tmp.tag_id[0]);
+            scienscope_illust.transform.position = Vector3.Lerp(sc_illust_origin, touchPoint.position, (float)((255 - tmp.distance) / 255f));            
 
             if (!(tmp.tag_id[0] == 0&& tmp.tag_id[1] == 0&& tmp.tag_id[2] == 0&& tmp.tag_id[3] == 0) && !scene_detected)
             {
                 //Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
                 scene_detected = true;
 
-                explain.text = "잠시만 기다려주세요...";
+                explain.text = "Detected!! Wait for a second...";
                 Debug.Log(System.BitConverter.ToString(tmp.tag_id).Replace("-", ""));
                 string id = System.BitConverter.ToString(tmp.tag_id).Replace("-", "");
                 address.SetLastRFID(id); //save RFID Address for load in next scene
