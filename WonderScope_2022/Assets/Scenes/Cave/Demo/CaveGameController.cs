@@ -204,7 +204,7 @@ public class CaveGameController : MonoBehaviour
         Quaternion q = Quaternion.Euler(90, 0, -90);
         if (crystal.transform.position != cur)
         {
-            for (float t = 0f; t <= 1f; t += 0.05f)
+            for (float t = 0f; t <= 1f; t += 0.07f)
             {
                 crystal.transform.position = Vector3.Lerp(prev, cur, t);
                 crystal.transform.rotation = Quaternion.Lerp(Quaternion.identity, q, t);
@@ -223,7 +223,36 @@ public class CaveGameController : MonoBehaviour
 
         crystal.GetComponent<MeshCollider>().enabled = false;
 
-        yield return new WaitForSeconds(4);
+        //yield return new WaitForSeconds(4);
+        for (float timer = 4; timer >= 0; timer -= Time.deltaTime)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_andalusite") cry_andalusite.SetActive(false);
+                else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_emerald") cry_emerald.SetActive(false);
+                else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_kunzite") cry_kunzite.SetActive(false);
+                else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_peridot") cry_peridot.SetActive(false);
+                else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_ruby") cry_ruby.SetActive(false);
+                else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_yel_sapp") cry_yel.SetActive(false);
+
+                Vector3 disPt = new Vector3(crystal.transform.position.x - 50, crystal.transform.position.y, crystal.transform.position.z);
+                Vector3 centerPt = crystal.transform.position;
+                if (crystal.transform.position != disPt)
+                {
+                    for (float t = 0f; t <= 1f; t += 0.05f)
+                    {
+                        crystal.transform.position = Vector3.Lerp(centerPt, disPt, t);
+                        //yield return new WaitForSeconds(0.01f);
+                        yield return new WaitForEndOfFrame();
+                    }
+                }
+                crystal.transform.rotation = Quaternion.Euler(0, 0, 0);
+                crystal.transform.position = prev;
+                crystal.SetActive(false);
+                yield break;
+            }
+            yield return null;
+        }
 
         if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_andalusite") cry_andalusite.SetActive(false);
         else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_emerald") cry_emerald.SetActive(false);
