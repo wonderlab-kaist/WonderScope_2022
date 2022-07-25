@@ -55,40 +55,10 @@ public class CaveGameController : MonoBehaviour
     {
         scoreTxt.text = Convert.ToString(score);
 
-        //if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
-        //{
-        //    Touch touch = Input.GetTouch(0);
-        //    var ray = Camera.main.ScreenPointToRay(touch.position);
-        //    RaycastHit hitInfo;
-        //    if (Physics.Raycast(ray, out hitInfo))
-        //    {
-        //        var rig = hitInfo.collider.GetComponent<Rigidbody>();
-        //        if (rig != null)
-        //        {
-        //            Crystal = GameObject.Find(rig.name);
-        //            crystalSound.time = 1;
-        //            crystalSound.Play();
-
-        //            Vector3 preloc = Crystal.transform.position;
-        //            Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
-        //            Destroy(GameObject.Find("Effect_" + Crystal.name));
-        //            Vector3 centerloc = new Vector3(Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
-        //            StartCoroutine(move(Crystal, preloc, centerloc));
-        //            Crystal.tag = "EffectOff";
-        //            //Crystal.SetActive(false);
-        //            score++;
-        //            aar.vibrate_phone();
-        //        }
-        //    }
-        //}
-        //if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
-
-
-        #region ForDebugging
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            Vector3 touchpos = Input.mousePosition;
-            var ray = Camera.main.ScreenPointToRay(touchpos);
+            Touch touch = Input.GetTouch(0);
+            var ray = Camera.main.ScreenPointToRay(touch.position);
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))
             {
@@ -102,20 +72,52 @@ public class CaveGameController : MonoBehaviour
                     Vector3 preloc = Crystal.transform.position;
                     Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
                     Destroy(GameObject.Find("Effect_" + Crystal.name));
-                    //Vector3 centerloc = new Vector3(Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
-
                     Vector2 loc = new Vector2(0, 5);
                     float theta = (Cam.transform.eulerAngles.y - 90) * Mathf.Deg2Rad;
-                    Vector3 rotloc = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(theta) + loc.y * Mathf.Sin(theta), preloc.y + 18, Cam.transform.position.z + loc.x * Mathf.Sin(theta) + loc.y * Mathf.Cos(theta) );
-
-                    //move to center
+                    Vector3 rotloc = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(theta) + loc.y * Mathf.Sin(theta), preloc.y + 18, Cam.transform.position.z + loc.x * Mathf.Sin(theta) + loc.y * Mathf.Cos(theta));
                     StartCoroutine(move(Crystal, preloc, rotloc, Cam.transform.eulerAngles.y - 90));
                     Crystal.tag = "EffectOff";
                     //Crystal.SetActive(false);
                     score++;
+                    aar.vibrate_phone();
                 }
             }
         }
+        if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
+
+
+        #region ForDebugging
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Vector3 touchpos = Input.mousePosition;
+        //    var ray = Camera.main.ScreenPointToRay(touchpos);
+        //    RaycastHit hitInfo;
+        //    if (Physics.Raycast(ray, out hitInfo))
+        //    {
+        //        var rig = hitInfo.collider.GetComponent<Rigidbody>();
+        //        if (rig != null)
+        //        {
+        //            Crystal = GameObject.Find(rig.name);
+        //            crystalSound.time = 1;
+        //            crystalSound.Play();
+
+        //            Vector3 preloc = Crystal.transform.position;
+        //            Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
+        //            Destroy(GameObject.Find("Effect_" + Crystal.name));
+        //            //Vector3 centerloc = new Vector3(Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
+
+        //            Vector2 loc = new Vector2(0, 5);
+        //            float theta = (Cam.transform.eulerAngles.y - 90) * Mathf.Deg2Rad;
+        //            Vector3 rotloc = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(theta) + loc.y * Mathf.Sin(theta), preloc.y + 18, Cam.transform.position.z + loc.x * Mathf.Sin(theta) + loc.y * Mathf.Cos(theta) );
+
+        //            //move to center
+        //            StartCoroutine(move(Crystal, preloc, rotloc, Cam.transform.eulerAngles.y - 90));
+        //            Crystal.tag = "EffectOff";
+        //            //Crystal.SetActive(false);
+        //            score++;
+        //        }
+        //    }
+        //}
         #endregion
 
 
