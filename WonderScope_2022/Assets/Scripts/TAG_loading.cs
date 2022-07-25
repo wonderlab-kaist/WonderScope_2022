@@ -52,7 +52,7 @@ public class TAG_loading : MonoBehaviour
                 //Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
                 scene_detected = true;
 
-                explain.text = "잠시만 기다려주세요...";
+                explain.text = "Detected!! Wait for a second...";
                 Debug.Log(System.BitConverter.ToString(tmp.tag_id).Replace("-", ""));
                 string id = System.BitConverter.ToString(tmp.tag_id).Replace("-", "");
                 address.SetLastRFID(id); //save RFID Address for load in next scene
