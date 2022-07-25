@@ -102,9 +102,6 @@ public class CaveGameController : MonoBehaviour
                     //move to center
                     StartCoroutine(move(Crystal, preloc, centerloc));
                     Crystal.tag = "EffectOff";
-                    //if (Crystal.GetComponent<Renderer>().material.name == "crystal_andalusite") ;
-
-                    //print(Crystal.GetComponent<Renderer>().material.name);
                     //Crystal.SetActive(false);
                     score++;
                 }
@@ -164,16 +161,6 @@ public class CaveGameController : MonoBehaviour
         // 방향 구하기
         foreach (Vector3 crystal in closeCrystals)
         {
-            //Vector3 v = Cam.transform.forward-crystal;
-            //Vector3 v = Cam.transform.forward*10- crystal;
-
-            //Vector3 v = Cam.transform.position - crystal;
-            //Vector3 v = crystal - Cam.transform.position;
-
-            //var degree = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
-            //float degree = Vector3.Angle(Cam.transform.forward, crystal);
-
-
             float degree = Vector3.SignedAngle(transform.up, crystal - Cam.transform.position, -transform.forward);
             if (degree >= -45 && degree < 45)
             {
@@ -205,11 +192,6 @@ public class CaveGameController : MonoBehaviour
             }
         }
 
-
-        // 선택된 gameobject의 renderer.material 이름 가져와서 그에 대한 이미지 띄우기
-        // 광물 종류: andalusite / emerald / kunzite / peridot / ruby / yellow sapphire
-        //if (== 'crystal_andalusite')
-        //    cry_an.SetActive(true);
    
     }
 
@@ -227,9 +209,23 @@ public class CaveGameController : MonoBehaviour
             }
 
         }
+
+        if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_andalusite") cry_andalusite.SetActive(true);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_emerald") cry_emerald.SetActive(true);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_kunzite") cry_kunzite.SetActive(true);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_peridot") cry_peridot.SetActive(true);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_ruby") cry_ruby.SetActive(true);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_yel_sapp") cry_yel.SetActive(true);
+
         crystal.GetComponent<MeshCollider>().enabled = false;
         yield return new WaitForSeconds(5);
-        
+        if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_andalusite") cry_andalusite.SetActive(false);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_emerald") cry_emerald.SetActive(false);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_kunzite") cry_kunzite.SetActive(false);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_peridot") cry_peridot.SetActive(false);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_ruby") cry_ruby.SetActive(false);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_yel_sapp") cry_yel.SetActive(false);
+
         Vector3 disappearPt = new Vector3(crystal.transform.position.x - 50, crystal.transform.position.y, crystal.transform.position.z);
         Vector3 ctrPt = crystal.transform.position;
         if (crystal.transform.position != disappearPt)
