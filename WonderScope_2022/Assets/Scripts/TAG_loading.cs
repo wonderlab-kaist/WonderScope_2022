@@ -21,8 +21,8 @@ public class TAG_loading : MonoBehaviour
 
     public GameObject scienscope_illust;
     public Transform touchPoint;
-    //public ParticleSystem ps_effect;
-    //public Transform ps_origin;
+    public ParticleSystem ps_effect;
+    public Transform ps_origin;
 
     private bool scene_detected = false;
     private Vector3 sc_illust_origin;
@@ -49,7 +49,7 @@ public class TAG_loading : MonoBehaviour
 
             if (!(tmp.tag_id[0] == 0&& tmp.tag_id[1] == 0&& tmp.tag_id[2] == 0&& tmp.tag_id[3] == 0) && !scene_detected)
             {
-                //Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
+                Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
                 scene_detected = true;
 
                 explain.text = "Detected!! Wait for a second...";
