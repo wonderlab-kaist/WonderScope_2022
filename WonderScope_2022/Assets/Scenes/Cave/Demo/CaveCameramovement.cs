@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class CaveCameramovement : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class CaveCameramovement : MonoBehaviour
     public bool isthisWatch;
     public bool use_gravity; // checking for calibrating by gravity from mobile device data
 
+    public string[] reset_RFIDs;
+    public Transform[] reset_points;
+
     //public Transform rotate_tester;
 
     private float[] q; //Quaternion container (temporal)
@@ -26,6 +30,9 @@ public class CaveCameramovement : MonoBehaviour
     private int reset_count = 0;
     private int goback_count = 0;
     private int reconnect_duration = 0;
+
+    private int reset_index;
+    private float threshold = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +68,17 @@ public class CaveCameramovement : MonoBehaviour
             monitoring += " " + data.distance;
             monitoring += " " + data.mouse_x + " " + data.mouse_y;
             //Debug.Log(monitoring);
+
+            if(!(data.tag_id[0] == 0 && data.tag_id[1] == 0 && data.tag_id[2] == 0 && data.tag_id[3] == 0))
+            {
+                string id = System.BitConverter.ToString(data.tag_id).Replace("-", ":");
+                reset_index = Array.FindIndex(reset_RFIDs, element => element == id);
+                if (Vector3.Distance(cam.position, reset_points[reset_index].position) > threshold)
+                {
+                    cam.position = cam.position - cam.GetChild(0).position + reset_points[reset_index].position;
+                }
+
+            }
 
             if (data.distance <= distance_threshold)
             {
