@@ -55,42 +55,10 @@ public class CaveGameController : MonoBehaviour
     {
         scoreTxt.text = Convert.ToString(score);
 
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            Touch touch = Input.GetTouch(0);
-            var ray = Camera.main.ScreenPointToRay(touch.position);
-            RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo))
-            {
-                var rig = hitInfo.collider.GetComponent<Rigidbody>();
-                if (rig != null)
-                {
-                    Crystal = GameObject.Find(rig.name);
-                    crystalSound.time = 1;
-                    crystalSound.Play();
-
-                    Vector3 preloc = Crystal.transform.position;
-                    Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
-                    Destroy(GameObject.Find("Effect_" + Crystal.name));
-                    Vector2 loc = new Vector2(0, 5);
-                    float theta = (Cam.transform.eulerAngles.y - 90) * Mathf.Deg2Rad;
-                    Vector3 rotloc = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(theta) + loc.y * Mathf.Sin(theta), preloc.y + 18, Cam.transform.position.z + loc.x * Mathf.Sin(theta) + loc.y * Mathf.Cos(theta));
-                    StartCoroutine(move(Crystal, preloc, rotloc, Cam.transform.eulerAngles.y - 90));
-                    Crystal.tag = "EffectOff";
-                    //Crystal.SetActive(false);
-                    score++;
-                    aar.vibrate_phone();
-                }
-            }
-        }
-        if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
-
-
-        #region ForDebugging
-        //if (Input.GetMouseButtonDown(0))
+        //if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
         //{
-        //    Vector3 touchpos = Input.mousePosition;
-        //    var ray = Camera.main.ScreenPointToRay(touchpos);
+        //    Touch touch = Input.GetTouch(0);
+        //    var ray = Camera.main.ScreenPointToRay(touch.position);
         //    RaycastHit hitInfo;
         //    if (Physics.Raycast(ray, out hitInfo))
         //    {
@@ -104,20 +72,53 @@ public class CaveGameController : MonoBehaviour
         //            Vector3 preloc = Crystal.transform.position;
         //            Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
         //            Destroy(GameObject.Find("Effect_" + Crystal.name));
-        //            //Vector3 centerloc = new Vector3(Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
-
         //            Vector2 loc = new Vector2(0, 4);
         //            float theta = (Cam.transform.eulerAngles.y - 90) * Mathf.Deg2Rad;
-        //            Vector3 rotloc = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(theta) + loc.y * Mathf.Sin(theta), preloc.y + 18, Cam.transform.position.z + loc.x * Mathf.Sin(theta) + loc.y * Mathf.Cos(theta));
-
-        //            //move to center
+        //            Vector3 rotloc = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(theta) + loc.y * Mathf.Sin(theta), 38, Cam.transform.position.z + loc.x * Mathf.Sin(theta) + loc.y * Mathf.Cos(theta));
         //            StartCoroutine(move(Crystal, preloc, rotloc, Cam.transform.eulerAngles.y - 90));
         //            Crystal.tag = "EffectOff";
         //            //Crystal.SetActive(false);
         //            score++;
+        //            aar.vibrate_phone();
         //        }
         //    }
         //}
+        //if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
+
+
+        #region ForDebugging
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 touchpos = Input.mousePosition;
+            var ray = Camera.main.ScreenPointToRay(touchpos);
+            RaycastHit hitInfo;
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                var rig = hitInfo.collider.GetComponent<Rigidbody>();
+                if (rig != null)
+                {
+                    Crystal = GameObject.Find(rig.name);
+                    crystalSound.time = 1;
+                    crystalSound.Play();
+
+                    Vector3 preloc = Crystal.transform.position;
+                    Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
+                    Destroy(GameObject.Find("Effect_" + Crystal.name));
+                    //Vector3 centerloc = new Vector3(Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
+
+                    Vector2 loc = new Vector2(0, 5);
+                    float theta = (Cam.transform.eulerAngles.y - 90) * Mathf.Deg2Rad;
+                    Vector3 rotloc = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(theta) + loc.y * Mathf.Sin(theta), Cam.transform.position.y - 10, Cam.transform.position.z + loc.x * Mathf.Sin(theta) + loc.y * Mathf.Cos(theta));
+                    //Debug.Log(preloc.y + 18);
+                    //Debug.Log(Cam.transform.position.y);
+                    //move to center
+                    StartCoroutine(move(Crystal, preloc, rotloc, Cam.transform.eulerAngles.y - 90));
+                    Crystal.tag = "EffectOff";
+                    //Crystal.SetActive(false);
+                    score++;
+                }
+            }
+        }
         #endregion
 
 
@@ -208,10 +209,16 @@ public class CaveGameController : MonoBehaviour
 
     IEnumerator move(GameObject crystal, Vector3 prev, Vector3 cur, float theta)
     {
+        if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_andalusite") cry_andalusite.SetActive(true);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_emerald") cry_emerald.SetActive(true);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_kunzite") cry_kunzite.SetActive(true);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_peridot") cry_peridot.SetActive(true);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_ruby") cry_ruby.SetActive(true);
+        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_yel_sapp") cry_yel.SetActive(true);
         Quaternion q = Quaternion.Euler(90, theta, -90);
         if (crystal.transform.position != cur)
         {
-            for (float t = 0f; t <= 1f; t += 0.07f)
+            for (float t = 0f; t <= 1f; t += 0.1f)
             {
                 crystal.transform.position = Vector3.Lerp(prev, cur, t);
                 crystal.transform.rotation = Quaternion.Lerp(Quaternion.identity, q, t);
@@ -220,26 +227,21 @@ public class CaveGameController : MonoBehaviour
 
         }
         
-        if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_andalusite") cry_andalusite.SetActive(true);
-        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_emerald") cry_emerald.SetActive(true);
-        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_kunzite") cry_kunzite.SetActive(true);
-        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_peridot") cry_peridot.SetActive(true);
-        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_ruby") cry_ruby.SetActive(true);
-        else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_yel_sapp") cry_yel.SetActive(true);
+       
 
         crystal.GetComponent<MeshCollider>().enabled = false;
 
         for (float timer = 4; timer >= 0; timer -= Time.deltaTime)
         {
             //update location
-            Vector2 loc = new Vector2(0, 4);
+            Vector2 loc = new Vector2(0, 5);
             float alpha = (Cam.transform.eulerAngles.y - 90) * Mathf.Deg2Rad;
-            crystal.transform.position = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(alpha) + loc.y * Mathf.Sin(alpha), prev.y + 18, Cam.transform.position.z + loc.x * Mathf.Sin(alpha) + loc.y * Mathf.Cos(alpha));
+            crystal.transform.position = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(alpha) + loc.y * Mathf.Sin(alpha), Cam.transform.position.y - 10, Cam.transform.position.z + loc.x * Mathf.Sin(alpha) + loc.y * Mathf.Cos(alpha));
             crystal.transform.rotation = Quaternion.Euler(90, Cam.transform.eulerAngles.y - 90, -90);
 
             //detect touch input
-            //if (Input.GetMouseButtonDown(0))
-            if (Input.touchCount == 1)
+            if (Input.GetMouseButtonDown(0))
+            //if (Input.touchCount == 1)
             {
                 if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_andalusite") cry_andalusite.SetActive(false);
                 else if (Convert.ToString(crystal.GetComponent<Renderer>().sharedMaterial.name) == "crystal_emerald") cry_emerald.SetActive(false);
