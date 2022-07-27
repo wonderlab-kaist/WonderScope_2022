@@ -26,6 +26,8 @@ public class Camera_Movement_Moon : MonoBehaviour
 
     public float start_angle_shift;
 
+    public Transform starting_point_2;
+
     //public Transform rotate_tester;
 
     private float[] q; //Quaternion container (temporal)
@@ -54,6 +56,11 @@ public class Camera_Movement_Moon : MonoBehaviour
 
         q = new float[4];
         cam_original_height = cam.transform.position.y;
+
+        if (address.GetLastRFID().Equals("1D3C56A0"))
+        {
+            cam.position = starting_point_2.position;
+        }
     }
 
     // Update is called once per frame
@@ -93,14 +100,15 @@ public class Camera_Movement_Moon : MonoBehaviour
 
                     float angle = Quaternion.Angle((origin * rot), rig.rotation);
                     direction =  (rot.ToEuler().z / Mathf.PI * 180f)+180;
-                    directionTxt.text = string.Format("{0:0}", direction) + "°";
+                    directionTxt.text = string.Format("{0:0}", direction);
 
                     if (!originated && !use_gravity)
                     {
                         originated = true;
 
                         //origin = Quaternion.Inverse(rot);
-                        origin = rot * Quaternion.Euler(0, 0, start_angle_shift);
+                        //origin = rot * Quaternion.Euler(0, 0, start_angle_shift);
+                        origin = rot;
                     }
                     else if (use_gravity)
                     {
@@ -131,7 +139,7 @@ public class Camera_Movement_Moon : MonoBehaviour
 
                 }
 
-                rotate_smooth(new Vector3(0, -rig.localEulerAngles.z, 0));
+                rotate_smooth(new Vector3(0, -rig.localEulerAngles.z + start_angle_shift, 0));
 
                 delta = cam.localRotation * Quaternion.Euler(0,0,90f) * delta;
                 move_smooth(delta);
@@ -153,14 +161,14 @@ public class Camera_Movement_Moon : MonoBehaviour
             //GameObject.Find("BLEcontroller").GetComponent<aarcall>().connect();
         }
 
-        if (reconnect_duration >= 200)
+        /*if (reconnect_duration >= 800)
         {
-            Debug.Log("reconnecting...");
+            Debug.Log("reconnecting...MoonScene_Cam");
             GameObject.Find("BLEcontroller").GetComponent<aarcall>().connect();
             reconnect_duration = 0;
-        }
+        }*/
 
-        //카메라위치 벗어나면
+        //?????????? ????????
         if (cam.position.z < 0f)
         {
             popup.SetActive(true);
@@ -171,7 +179,7 @@ public class Camera_Movement_Moon : MonoBehaviour
 
     }
 
-    void noSignal() //카메라위치 벗어나면 함수
+    void noSignal() //?????????? ???????? ????
     {
         SceneManager.LoadScene(0, LoadSceneMode.Single);
     }

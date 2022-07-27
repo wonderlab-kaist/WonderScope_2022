@@ -21,11 +21,13 @@ public class TAG_loading : MonoBehaviour
 
     public GameObject scienscope_illust;
     public Transform touchPoint;
-    public ParticleSystem ps_effect;
+    public GameObject ps_effect;
     public Transform ps_origin;
 
     private bool scene_detected = false;
     private Vector3 sc_illust_origin;
+
+    public string detected_expression;
 
     
     void Start()
@@ -49,36 +51,36 @@ public class TAG_loading : MonoBehaviour
 
             if (!(tmp.tag_id[0] == 0&& tmp.tag_id[1] == 0&& tmp.tag_id[2] == 0&& tmp.tag_id[3] == 0) && !scene_detected)
             {
-                Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
-                scene_detected = true;
+                //Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
 
-                explain.text = "곧 달에 착륙합니다!";
+
+                //scene_detected = true;
+
+
+                //SceneManager.LoadSceneAsync(1, LoadSceneMode.Single); ///i값을 원하는 scene의 build index로 대체
                 Debug.Log(System.BitConverter.ToString(tmp.tag_id).Replace("-", ""));
                 string id = System.BitConverter.ToString(tmp.tag_id).Replace("-", "");
                 address.SetLastRFID(id); //save RFID Address for load in next scene
 
-                SceneManager.LoadSceneAsync(1, LoadSceneMode.Single); ///i값을 원하는 scene의 build index로 대체
-
-                /*
                 for (int i = 0; i < RFID_address.Length; i++)
                 {
                     if (RFID_address[i].Equals(id))
                     {
-                        if (i == 0)
-                        {
-                            /// move on contents scenes ///
-                            scene_detected = true;
-                            SceneManager.LoadSceneAsync(1, LoadSceneMode.Single); ///i값을 원하는 scene의 build index로 대체
-                        }
-                        else
-                        {
-                            /// move on contents scenes ///
-                            scene_detected = true;
-                            SceneManager.LoadSceneAsync(2, LoadSceneMode.Single); ///i값을 원하는 scene의 build index로 대체
-                        }
+                        explain.text = detected_expression;
+                        Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
+
+                        
+                        
+                        
+
+
+                        /// move on contents scenes ///
+                        scene_detected = true;
+                        SceneManager.LoadSceneAsync(1, LoadSceneMode.Single); ///i값을 원하는 scene의 build index로 대체
+                        
                     }
                 }
-                */
+                
 
 
 

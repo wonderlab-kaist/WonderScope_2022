@@ -31,4 +31,6 @@ public class inside_body_scenecontrol : MonoBehaviour
         respiratory_system.GetComponent<Animation>()["CINEMA_4D_Main"].speed = heart_beat_speed;
         heart_beat.pitch = heart_beat_speed;
     }
+
+
 }
