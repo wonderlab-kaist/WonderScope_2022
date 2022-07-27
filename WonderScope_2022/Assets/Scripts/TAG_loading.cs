@@ -61,6 +61,7 @@ public class TAG_loading : MonoBehaviour
                 Debug.Log(System.BitConverter.ToString(tmp.tag_id).Replace("-", ""));
                 string id = System.BitConverter.ToString(tmp.tag_id).Replace("-", "");
                 address.SetLastRFID(id); //save RFID Address for load in next scene
+                explain.text = id;
 
                 for (int i = 0; i < RFID_address.Length; i++)
                 {
@@ -68,10 +69,7 @@ public class TAG_loading : MonoBehaviour
                     {
                         explain.text = detected_expression;
                         Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
-
-                        
-                        
-                        
+                        //ps_effect.Play();
 
 
                         /// move on contents scenes ///
