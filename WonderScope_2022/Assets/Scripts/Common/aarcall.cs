@@ -17,6 +17,7 @@ public class aarcall : MonoBehaviour
     private bool listening = false;
 
     private float connection_time;
+    public bool reconnect = true;
 
     void Start()
     {
@@ -87,9 +88,9 @@ public class aarcall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!dataInput.isConnected())
+        if (reconnect && !dataInput.isConnected())
         {
-            if (SceneManager.GetActiveScene().buildIndex == 0 && connection_time > 0.5f)
+            if (SceneManager.GetActiveScene().buildIndex == 0 && connection_time > 1.0f)
             {
                 connection_time = 0f;
                 connect();
