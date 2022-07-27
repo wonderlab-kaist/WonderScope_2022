@@ -87,7 +87,9 @@ public class Camera_Movement_Moon : MonoBehaviour
                 if (Mathf.Abs(data.mouse_x) > movement_threshold) x = data.mouse_x;
                 if (Mathf.Abs(data.mouse_y) > movement_threshold) y = data.mouse_y;
                 if (Mathf.Abs(data.distance) > distance_threshold) z = data.distance;
-                Vector3 delta = new Vector3(x, 0, -y);
+                //Vector3 delta = new Vector3(-x, 0, y);
+                Vector3 delta = new Vector3(-x, 0, y);
+                delta = Quaternion.AngleAxis(180, new Vector3(-1, 0, 1)) * delta;
 
                 //Quaternion for ratation
                 for (int i = 0; i < 3; i++) q[i + 1] = data.q[i] / 1073741824f;
@@ -121,10 +123,12 @@ public class Camera_Movement_Moon : MonoBehaviour
 
                         origin = origin * Quaternion.Inverse(rot);
                     }
-
+                    rig.rotation = rot;
+                    /*
                     if (angle < 40)
                     {
-                        rig.rotation = (origin * rot);
+                        //rig.rotation = (origin * rot);
+                        rig.rotation = rot;
                     }
                     else if (angle >= 40)
                     {
@@ -135,13 +139,16 @@ public class Camera_Movement_Moon : MonoBehaviour
                     {
                         rig.rotation = (origin * rot);
                         reset_count = 0;
-                    }
+                    }*/
 
                 }
 
+                //rotate_smooth(new Vector3(0, -rig.localEulerAngles.z, 0));
                 rotate_smooth(new Vector3(0, -rig.localEulerAngles.z + start_angle_shift, 0));
 
-                delta = cam.localRotation * Quaternion.Euler(0,0,90f) * delta;
+                delta = cam.localRotation * delta;
+                //directionTxt.text = "" + delta;
+                
                 move_smooth(delta);
                 
             }else if (data.distance >= distance_limitation)
@@ -149,8 +156,6 @@ public class Camera_Movement_Moon : MonoBehaviour
                 //SceneManager.LoadScene("1_RFID_waiting_moon", LoadSceneMode.Single); /// go back to rfid waiting scene...               
                 SceneManager.LoadScene(0, LoadSceneMode.Single); /// go back to rfid waiting scene...      
             }
-
-
 
             reconnect_duration = 0;
         }
@@ -168,18 +173,16 @@ public class Camera_Movement_Moon : MonoBehaviour
             reconnect_duration = 0;
         }*/
 
-        //?????????? ????????
+        //if cursor go out of map
         if (cam.position.z < 0f)
         {
             popup.SetActive(true);
             Invoke("noSignal", 3f);
         }
-        
-
 
     }
 
-    void noSignal() //?????????? ???????? ????
+    void noSignal() 
     {
         SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
@@ -200,7 +203,7 @@ public class Camera_Movement_Moon : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            cam.position -= d / 3f;
+            cam.position += d / 3f;
             yield return new WaitForSeconds(0.02f / 2f);
         }
         cam.position = new Vector3(cam.position.x, cam_original_height + data.distance/3, cam.position.z);
