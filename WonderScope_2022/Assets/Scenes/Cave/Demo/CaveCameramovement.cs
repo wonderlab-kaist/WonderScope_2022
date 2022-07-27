@@ -13,7 +13,7 @@ public class CaveCameramovement : MonoBehaviour
     float movement_threshold = 200;
     float distance_threshold = 100;
 
-    public Text raw_data; //debugging text, monitoring raw data from module
+    //public Text raw_data; //debugging text, monitoring raw data from module
     private stethoscope_data data;
     public Transform cam;
     public Transform rig;
@@ -106,12 +106,13 @@ public class CaveCameramovement : MonoBehaviour
                     //Quaternion rot = new Quaternion(q[0], q[1], q[2], q[3]);
 
                     float angle = Quaternion.Angle((origin * rot), rig.rotation);
-
+                    Debug.Log(rot.eulerAngles);
                     if (!originated && !use_gravity)
                     {
                         originated = true;
 
-                        origin = Quaternion.Inverse(rot);
+                        //origin = Quaternion.Inverse(rot);
+                        origin = rot;
                     }
                     else if (use_gravity)
                     {
@@ -125,6 +126,9 @@ public class CaveCameramovement : MonoBehaviour
                         origin = origin * Quaternion.Inverse(rot);
                     }
 
+                    rig.rotation = rot;
+
+                    /*
                     if (angle < 40)
                     {
                         rig.rotation = (origin * rot);
@@ -139,11 +143,12 @@ public class CaveCameramovement : MonoBehaviour
                         rig.rotation = (origin * rot);
                         reset_count = 0;
                     }
+                    */
 
                 }
 
-                rotate_smooth(new Vector3(90, 90, rig.localEulerAngles.z));
-
+                rotate_smooth(new Vector3(90, 90, rig.localEulerAngles.z - origin.eulerAngles.z));
+                //Debug.Log();
                 delta = cam.localRotation * delta;
                 move_smooth(delta);
             }
