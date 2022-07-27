@@ -53,6 +53,7 @@ public class TAG_loading : MonoBehaviour
             {
                 //Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
 
+
                 //scene_detected = true;
 
 
