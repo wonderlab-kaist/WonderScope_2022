@@ -74,10 +74,13 @@ public class CaveGameController : MonoBehaviour
                     Vector3 rotloc = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(theta) + loc.y * Mathf.Sin(theta), Cam.transform.position.y - 10, Cam.transform.position.z + loc.x * Mathf.Sin(theta) + loc.y * Mathf.Cos(theta));
                     StartCoroutine(move(Crystal, preloc, rotloc, Cam.transform.eulerAngles.y - 90));
                     Crystal.tag = "EffectOff";
-                    //Crystal.SetActive(false);
-                    //cry_img.SetActive(false);
+
                     score++;
                     aar.vibrate_phone();
+                }
+                else
+                {
+                    cry_img.SetActive(false);
                 }
             }
         }
@@ -102,19 +105,18 @@ public class CaveGameController : MonoBehaviour
         //            Vector3 preloc = Crystal.transform.position;
         //            Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
         //            Destroy(GameObject.Find("Effect_" + Crystal.name));
-        //            //Vector3 centerloc = new Vector3(Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
 
         //            Vector2 loc = new Vector2(0, 5);
         //            float theta = (Cam.transform.eulerAngles.y - 90) * Mathf.Deg2Rad;
         //            Vector3 rotloc = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(theta) + loc.y * Mathf.Sin(theta), Cam.transform.position.y - 10, Cam.transform.position.z + loc.x * Mathf.Sin(theta) + loc.y * Mathf.Cos(theta));
-        //            //Debug.Log(preloc.y + 18);
-        //            //Debug.Log(Cam.transform.position.y);
         //            //move to center
         //            StartCoroutine(move(Crystal, preloc, rotloc, Cam.transform.eulerAngles.y - 90));
         //            Crystal.tag = "EffectOff";
-        //            //Crystal.SetActive(false);
-
         //            score++;
+        //        }
+        //        else
+        //        {
+        //            cry_img.SetActive(false);
         //        }
         //    }
         //}
@@ -227,7 +229,9 @@ public class CaveGameController : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
-        
+
+        crystal.transform.SetParent(Cam.transform);
+
         //crystal.GetComponent<MeshCollider>().enabled = false;
 
         for (float timer = 4; timer >= 0; timer -= Time.deltaTime)
@@ -240,45 +244,39 @@ public class CaveGameController : MonoBehaviour
 
             //detect touch input
             if (Input.GetMouseButtonDown(0))
-            //if (Input.touchCount == 1)
             {
-                
-
-                Vector3 disPt = new Vector3(crystal.transform.position.x - 50, crystal.transform.position.y, crystal.transform.position.z);
-                Vector3 centerPt = crystal.transform.position;
-                if (crystal.transform.position != disPt)
+                Vector3 disPt = new Vector3(0, -50, 0);
+                Vector3 centerPt = crystal.transform.localPosition;
+                if (crystal.transform.localPosition != disPt)
                 {
                     for (float t = 0f; t <= 1f; t += 0.05f)
                     {
-                        crystal.transform.position = Vector3.Lerp(centerPt, disPt, t);
-                        //yield return new WaitForSeconds(0.01f);
+                        crystal.transform.localPosition = Vector3.Lerp(centerPt, disPt, t);
                         yield return new WaitForEndOfFrame();
                     }
                 }
                 crystal.transform.rotation = Quaternion.Euler(0, 0, 0);
                 crystal.transform.position = prev;
                 crystal.SetActive(false);
-                //cry_img.SetActive(false);
-                if (cry_img.activeSelf) cry_img.SetActive(false);
+                if (crystal.activeSelf) cry_img.SetActive(false);
                 yield break;
             }
             yield return null;
         }
-        
-        Vector3 disappearPt = new Vector3(crystal.transform.position.x - 50, crystal.transform.position.y, crystal.transform.position.z);
-        Vector3 ctrPt = crystal.transform.position;
-        if (crystal.transform.position != disappearPt)
+
+        if (cry_img.activeSelf) cry_img.SetActive(false);
+        Vector3 disappearPt = new Vector3(0, -50, 0);
+        Vector3 ctrPt = crystal.transform.localPosition;
+        if (crystal.transform.localPosition != disappearPt)
         {
             for (float t = 0f; t <= 1f; t += 0.05f)
             {
-                crystal.transform.position = Vector3.Lerp(ctrPt, disappearPt, t);
+                crystal.transform.localPosition = Vector3.Lerp(ctrPt, disappearPt, t);
                 //yield return new WaitForSeconds(0.01f);
                 yield return new WaitForEndOfFrame();
             }
         }
         crystal.transform.rotation = Quaternion.Euler(0, 0, 0);
-        crystal.transform.position = prev;
-        crystal.SetActive(false);
-        if (cry_img.activeSelf) cry_img.SetActive(false);
+        Destroy(crystal);      
     }
 }
