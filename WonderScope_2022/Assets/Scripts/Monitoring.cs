@@ -46,6 +46,7 @@ public class Monitoring : MonoBehaviour
                 connection.text = "Connection : False";
             }
 
+            rotation.text = "Angle : " + rotation_indicator.transform.localEulerAngles;
             //////////////////
         }
     }

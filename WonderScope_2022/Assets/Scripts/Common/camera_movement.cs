@@ -1,4 +1,4 @@
-using System.Collections;
+  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,6 +58,11 @@ public class camera_movement : MonoBehaviour
         }
 
         q = new float[4];
+
+        for(int i = 0; i < reset_RFIDs.Length;i++)
+        {
+            if (address.GetLastRFID().Equals(reset_RFIDs)) cam.position = reset_points[i].position;
+        }
 
     }
 
