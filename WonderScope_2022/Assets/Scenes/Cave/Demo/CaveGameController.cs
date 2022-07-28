@@ -52,43 +52,10 @@ public class CaveGameController : MonoBehaviour
     {
         scoreTxt.text = Convert.ToString(score);
 
-        //if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
-        //{
-        //    Touch touch = Input.GetTouch(0);
-        //    var ray = Camera.main.ScreenPointToRay(touch.position);
-        //    RaycastHit hitInfo;
-        //    if (Physics.Raycast(ray, out hitInfo))
-        //    {
-        //        var rig = hitInfo.collider.GetComponent<Rigidbody>();
-        //        if (rig != null)
-        //        {
-        //            Crystal = GameObject.Find(rig.name);
-        //            crystalSound.time = 1;
-        //            crystalSound.Play();
-
-        //            Vector3 preloc = Crystal.transform.position;
-        //            Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
-        //            Destroy(GameObject.Find("Effect_" + Crystal.name));
-        //            Vector2 loc = new Vector2(0, 5);
-        //            float theta = (Cam.transform.eulerAngles.y - 90) * Mathf.Deg2Rad;
-        //            Vector3 rotloc = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(theta) + loc.y * Mathf.Sin(theta), Cam.transform.position.y - 10, Cam.transform.position.z + loc.x * Mathf.Sin(theta) + loc.y * Mathf.Cos(theta));
-        //            StartCoroutine(move(Crystal, preloc, rotloc, Cam.transform.eulerAngles.y - 90));
-        //            Crystal.tag = "EffectOff";
-        //            //Crystal.SetActive(false);
-        //            //cry_img.SetActive(false);
-        //            score++;
-        //            aar.vibrate_phone();
-        //        }
-        //    }
-        //}
-        //if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
-
-
-        #region ForDebugging
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            Vector3 touchpos = Input.mousePosition;
-            var ray = Camera.main.ScreenPointToRay(touchpos);
+            Touch touch = Input.GetTouch(0);
+            var ray = Camera.main.ScreenPointToRay(touch.position);
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))
             {
@@ -102,22 +69,57 @@ public class CaveGameController : MonoBehaviour
                     Vector3 preloc = Crystal.transform.position;
                     Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
                     Destroy(GameObject.Find("Effect_" + Crystal.name));
-                    //Vector3 centerloc = new Vector3(Cam.transform.position.x, preloc.y + 18, Cam.transform.position.z + 5);
-
                     Vector2 loc = new Vector2(0, 5);
                     float theta = (Cam.transform.eulerAngles.y - 90) * Mathf.Deg2Rad;
                     Vector3 rotloc = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(theta) + loc.y * Mathf.Sin(theta), Cam.transform.position.y - 10, Cam.transform.position.z + loc.x * Mathf.Sin(theta) + loc.y * Mathf.Cos(theta));
-                    //Debug.Log(preloc.y + 18);
-                    //Debug.Log(Cam.transform.position.y);
-                    //move to center
                     StartCoroutine(move(Crystal, preloc, rotloc, Cam.transform.eulerAngles.y - 90));
                     Crystal.tag = "EffectOff";
-                    //Crystal.SetActive(false);
 
                     score++;
+                    aar.vibrate_phone();
+                }
+                else
+                {
+                    cry_img.SetActive(false);
                 }
             }
         }
+        if (Input.touchCount == 3) SceneManager.LoadScene(0, LoadSceneMode.Single);
+
+
+        #region ForDebugging
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Vector3 touchpos = Input.mousePosition;
+        //    var ray = Camera.main.ScreenPointToRay(touchpos);
+        //    RaycastHit hitInfo;
+        //    if (Physics.Raycast(ray, out hitInfo))
+        //    {
+        //        var rig = hitInfo.collider.GetComponent<Rigidbody>();
+        //        if (rig != null)
+        //        {
+        //            Crystal = GameObject.Find(rig.name);
+        //            crystalSound.time = 1;
+        //            crystalSound.Play();
+
+        //            Vector3 preloc = Crystal.transform.position;
+        //            Instantiate(effect1, Crystal.transform.position, Quaternion.identity);
+        //            Destroy(GameObject.Find("Effect_" + Crystal.name));
+
+        //            Vector2 loc = new Vector2(0, 5);
+        //            float theta = (Cam.transform.eulerAngles.y - 90) * Mathf.Deg2Rad;
+        //            Vector3 rotloc = new Vector3(Cam.transform.position.x - loc.x * Mathf.Cos(theta) + loc.y * Mathf.Sin(theta), Cam.transform.position.y - 10, Cam.transform.position.z + loc.x * Mathf.Sin(theta) + loc.y * Mathf.Cos(theta));
+        //            //move to center
+        //            StartCoroutine(move(Crystal, preloc, rotloc, Cam.transform.eulerAngles.y - 90));
+        //            Crystal.tag = "EffectOff";
+        //            score++;
+        //        }
+        //        else
+        //        {
+        //            cry_img.SetActive(false);
+        //        }
+        //    }
+        //}
         #endregion
 
 
@@ -242,9 +244,7 @@ public class CaveGameController : MonoBehaviour
 
             //detect touch input
             if (Input.GetMouseButtonDown(0))
-            //if (Input.touchCount == 1)
             {
-                //Vector3 disPt = new Vector3(crystal.transform.position.x - 50, crystal.transform.position.y, crystal.transform.position.z);
                 Vector3 disPt = new Vector3(0, -50, 0);
                 Vector3 centerPt = crystal.transform.localPosition;
                 if (crystal.transform.localPosition != disPt)
@@ -252,14 +252,12 @@ public class CaveGameController : MonoBehaviour
                     for (float t = 0f; t <= 1f; t += 0.05f)
                     {
                         crystal.transform.localPosition = Vector3.Lerp(centerPt, disPt, t);
-                        //yield return new WaitForSeconds(0.01f);
                         yield return new WaitForEndOfFrame();
                     }
                 }
                 crystal.transform.rotation = Quaternion.Euler(0, 0, 0);
                 crystal.transform.position = prev;
                 crystal.SetActive(false);
-                //cry_img.SetActive(false);
                 if (crystal.activeSelf) cry_img.SetActive(false);
                 yield break;
             }
@@ -279,9 +277,6 @@ public class CaveGameController : MonoBehaviour
             }
         }
         crystal.transform.rotation = Quaternion.Euler(0, 0, 0);
-        //crystal.transform.position = prev;
-        //crystal.SetActive(false);
-        Destroy(crystal);
-        
+        Destroy(crystal);      
     }
 }
