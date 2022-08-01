@@ -174,7 +174,7 @@ public class Camera_Movement_Moon : MonoBehaviour
         }*/
 
         //if cursor go out of map
-        if (cam.position.z < 0f)
+        if (cam.position.z < -10f)
         {
             popup.SetActive(true);
             Invoke("noSignal", 3f);
