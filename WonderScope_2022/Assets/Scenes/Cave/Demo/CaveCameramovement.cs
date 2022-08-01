@@ -34,7 +34,9 @@ public class CaveCameramovement : MonoBehaviour
     private int reconnect_duration = 0;
 
     private int reset_index;
-    private float threshold = 1f;
+    private float threshold = 10f;
+
+    //private int rfidDetect = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -73,16 +75,14 @@ public class CaveCameramovement : MonoBehaviour
 
             if(!(data.tag_id[0] == 0 && data.tag_id[1] == 0 && data.tag_id[2] == 0 && data.tag_id[3] == 0))
             {
-                //rfid.text = "RFID : " + Convert.ToString(data.tag_id[0], 16) + ":" + Convert.ToString(data.tag_id[1], 16) + ":" + Convert.ToString(data.tag_id[2], 16) + ":" + Convert.ToString(data.tag_id[3], 16);
                 string id = System.BitConverter.ToString(data.tag_id).Replace("-", ":");
-                //rfid.text += " "+ id;
                 reset_index = Array.FindIndex(reset_RFIDs, element => element == id);
-                //rfid.text += Convert.ToString(" " + reset_index);
                 if (Vector3.Distance(cam.position, reset_points[reset_index].position) > threshold)
                 {
+                    //rfidDetect += 1;
                     //cam.position = cam.position - cam.GetChild(0).position + reset_points[reset_index].position;
                     cam.position = reset_points[reset_index].position;
-
+                    //rfid.text = "Dist: " + Convert.ToString(Vector3.Distance(cam.position, reset_points[reset_index].position)) + " thre: " + Convert.ToString(threshold);
                 }
 
             }
