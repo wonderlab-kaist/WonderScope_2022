@@ -27,6 +27,8 @@ public class TAG_loading : MonoBehaviour
     private bool scene_detected = false;
     private Vector3 sc_illust_origin;
 
+    public bool scene_transition_test = false;
+
     public string detected_expression;
 
     
@@ -53,7 +55,11 @@ public class TAG_loading : MonoBehaviour
             {
                 //Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
 
-
+                if (scene_transition_test)
+                {
+                    scene_detected = true;
+                    SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+                }
                 //scene_detected = true;
 
 
@@ -61,7 +67,7 @@ public class TAG_loading : MonoBehaviour
                 Debug.Log(System.BitConverter.ToString(tmp.tag_id).Replace("-", ""));
                 string id = System.BitConverter.ToString(tmp.tag_id).Replace("-", "");
                 address.SetLastRFID(id); //save RFID Address for load in next scene
-                explain.text = id;
+                //explain.text = id;
 
                 for (int i = 0; i < RFID_address.Length; i++)
                 {
