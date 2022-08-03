@@ -522,7 +522,7 @@ MonoBehaviour:
   touchPoint: {fileID: 494774532}
   ps_effect: {fileID: 1000011295657054, guid: 11ce829c7ac25d04faf119e825f822e3, type: 3}
   ps_origin: {fileID: 868697397}
-  detected_expression: "\uACE7 \uB2EC\uC5D0 \uCC29\uB959\uD569\uB2C8\uB2E4"
+  detected_expression: Let's go on an expedition!
 --- !u!4 &246349838
 Transform:
   m_ObjectHideFlags: 0
@@ -1789,7 +1789,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD0D0\uD5D8\uC744 \uC2DC\uC791\uD574\uBCFC\uAE4C\uC694?"
+  m_text: Shall we begin our expedition?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c82b809723c65324a8dc7598a7d5de87, type: 2}
   m_sharedMaterial: {fileID: -2166936816214912126, guid: c82b809723c65324a8dc7598a7d5de87,
@@ -2049,7 +2049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -708}
+  m_AnchoredPosition: {x: 182, y: -708}
   m_SizeDelta: {x: 664, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1090964571
@@ -2080,8 +2080,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD0DC\uADF8\uB97C \uCC3E\uC544\uC11C \uD0D0\uC0AC\uC120\uC744 \uCC29\uB959\uC2DC\uD0A4\uBA74\n\uB2EC
-    \uD0D0\uC0AC\uB97C \uC2DC\uC791\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4"
+  m_text: 'If you put the truck at the starting point,
+
+    you can start exploring
+    the cave!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c82b809723c65324a8dc7598a7d5de87, type: 2}
   m_sharedMaterial: {fileID: -2166936816214912126, guid: c82b809723c65324a8dc7598a7d5de87,
@@ -2145,7 +2147,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -165.01013, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
