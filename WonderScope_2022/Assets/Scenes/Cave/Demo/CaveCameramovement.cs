@@ -154,8 +154,8 @@ public class CaveCameramovement : MonoBehaviour
             }
             else if (data.distance >= distance_threshold)
             {
-                if (!isthisWatch) SceneManager.LoadScene("1_RFID_waiting", LoadSceneMode.Single); /// go back to rfid waiting scene...
-                else SceneManager.LoadScene("0_watch_start", LoadSceneMode.Single);
+                if (!isthisWatch) SceneManager.LoadScene(0, LoadSceneMode.Single); /// go back to rfid waiting scene...
+                else SceneManager.LoadScene(0, LoadSceneMode.Single);
 
 
             }
