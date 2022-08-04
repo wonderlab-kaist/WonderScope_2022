@@ -757,17 +757,17 @@ PrefabInstance:
     - target: {fileID: 2572705929382913992, guid: 1b3c587ddb5794b61b2af7f47c119428,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.92929
+      value: 0.70751494
       objectReference: {fileID: 0}
     - target: {fileID: 2572705929382913992, guid: 1b3c587ddb5794b61b2af7f47c119428,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.92929
+      value: 0.70751494
       objectReference: {fileID: 0}
     - target: {fileID: 2572705929382913992, guid: 1b3c587ddb5794b61b2af7f47c119428,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.92929
+      value: 0.70751494
       objectReference: {fileID: 0}
     - target: {fileID: 2572705929382913992, guid: 1b3c587ddb5794b61b2af7f47c119428,
         type: 3}
@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd7dc4fa634bc84db863939b20c06c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gain: 0.002
+  gain: 0.0017
   raw_data: {fileID: 0}
   cam: {fileID: 1769481472}
   rig: {fileID: 1394026571}
@@ -1187,7 +1187,7 @@ MonoBehaviour:
   use_gravity: 1
   move_activation: 1
   reset_by_dist: 1
-  recalibrate_while_movment: 1
+  recalibrate_while_movement: 1
   reset_RFIDs:
   - 1D:66:A0:A0
   - 1D:EC:CD:9F

@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Cave/Demo/demo1_1.unity
     guid: 4c8eaf3f955ed49fc93ef8bf7243ce27
+  - enabled: 0
+    path: Assets/Scenes/SIGGRAPH2022.unity
+    guid: 6b467c9ddad3f4d0cb1f593d0d8bb42d
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 1f6440deb770e435f898ae2eb6e57858,
       type: 2}

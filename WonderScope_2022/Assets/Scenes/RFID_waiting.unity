@@ -1265,7 +1265,7 @@ MonoBehaviour:
   touchPoint: {fileID: 1078000770}
   ps_effect: {fileID: 1000011295657054, guid: 11ce829c7ac25d04faf119e825f822e3, type: 3}
   ps_origin: {fileID: 1241740840}
-  scene_transition_test: 1
+  scene_transition_test: 0
   detected_expression: Wait for a second! Loading...
 --- !u!1 &1020245911
 GameObject:

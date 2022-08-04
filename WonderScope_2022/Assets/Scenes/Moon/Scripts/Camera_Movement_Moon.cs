@@ -57,7 +57,7 @@ public class Camera_Movement_Moon : MonoBehaviour
         q = new float[4];
         cam_original_height = cam.transform.position.y;
 
-        if (address.GetLastRFID().Equals("1D3C56A0"))
+        if (address.GetLastRFID().Equals("043B7B9A") || address.GetLastRFID().Equals("04197B9A") || address.GetLastRFID().Equals("04157B9A") || address.GetLastRFID().Equals("04017B9A") || address.GetLastRFID().Equals("04F77B9A") || address.GetLastRFID().Equals("04FB7B9A"))
         {
             cam.position = starting_point_2.position;
         }

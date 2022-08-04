@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
+  m_IndirectSpecularColor: {r: 0.4439403, g: 0.4931519, b: 0.5722083, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1312,12 +1312,24 @@ MonoBehaviour:
   heading: {fileID: 1436585912}
   explain: {fileID: 1348423687}
   RFID_address:
-  - 04F57C9A
-  - 04F97C9A
+  - 043F7B9A
+  - 043B7B9A
+  - 04377B9A
+  - 04297B9A
+  - 042D7B9A
+  - 04337B9A
+  - 041D7B9A
+  - 041D7B9A
+  - 04197B9A
+  - 04157B9A
+  - 04017B9A
+  - 04F77B9A
+  - 04FB7B9A
   scienscope_illust: {fileID: 1210280443}
   touchPoint: {fileID: 972532619}
   ps_effect: {fileID: 1000011295657054, guid: 11ce829c7ac25d04faf119e825f822e3, type: 3}
   ps_origin: {fileID: 176408431}
+  scene_transition_test: 0
   detected_expression: "\uACE7 \uB2EC\uC5D0 \uCC29\uB959\uD569\uB2C8\uB2E4"
 --- !u!1 &972532618
 GameObject:
@@ -2415,7 +2427,7 @@ PrefabInstance:
     - target: {fileID: 6402122941289838925, guid: a11a62b43551f714ba9484f10da5a4a2,
         type: 3}
       propertyPath: default_ble_address
-      value: C0:E4:4A:E4:D3:10
+      value: C5:31:BA:E3:E2:6A
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a11a62b43551f714ba9484f10da5a4a2, type: 3}
