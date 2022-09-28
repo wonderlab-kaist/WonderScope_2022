@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.4439403, g: 0.4931519, b: 0.5722083, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -517,11 +517,12 @@ MonoBehaviour:
   heading: {fileID: 929632886}
   explain: {fileID: 1090964572}
   RFID_address:
-  - 1D06899F
+  - 04457C9A
   scienscope_illust: {fileID: 1794038513}
   touchPoint: {fileID: 494774532}
   ps_effect: {fileID: 1000011295657054, guid: 11ce829c7ac25d04faf119e825f822e3, type: 3}
   ps_origin: {fileID: 868697397}
+  scene_transition_test: 0
   detected_expression: Let's go on an expedition!
 --- !u!4 &246349838
 Transform:

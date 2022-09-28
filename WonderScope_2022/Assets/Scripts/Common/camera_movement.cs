@@ -11,8 +11,8 @@ public class camera_movement : MonoBehaviour
 {
     public float gain;
 
-    float movement_threshold = 300;
-    float distance_threshold = 100;
+    float movement_threshold = 250f;
+    float distance_threshold = 100f;
 
     public TextMeshProUGUI raw_data; //debugging text, monitoring raw data from module
     private stethoscope_data data;
@@ -58,10 +58,10 @@ public class camera_movement : MonoBehaviour
         }
 
         q = new float[4];
-
+        Debug.Log(address.GetLastRFID());
         for(int i = 0; i < reset_RFIDs.Length;i++)
         {
-            if (address.GetLastRFID().Equals(reset_RFIDs)) cam.position = reset_points[i].position;
+            if (address.GetLastRFID().Equals(reset_RFIDs[i])) cam.position = reset_points[i].position;
         }
 
     }
@@ -74,7 +74,7 @@ public class camera_movement : MonoBehaviour
         if (income != null)
         {
             //string[] data = income.Split(' ');
-            data = new stethoscope_data(income);
+            data = new stethoscope_data(income, 1);
             string monitoring = "";
             monitoring += data.q[0] + " " + data.q[1] + " " + data.q[2];
             monitoring += "\n" + data.distance;
@@ -84,9 +84,10 @@ public class camera_movement : MonoBehaviour
             {
                 string id = System.BitConverter.ToString(data.tag_id).Replace("-", ":");
                 reset_index = Array.FindIndex(reset_RFIDs, element => element == id);
-                if (Vector3.Distance(cam.position, reset_points[reset_index].position) > threshold)
+                if (!address.GetLastRFID().Equals(id) && Vector3.Distance(cam.position, reset_points[reset_index].position) > threshold)
                 {
-                    cam.position = cam.position - cam.GetChild(0).position + reset_points[reset_index].position;
+                    address.SetLastRFID(id);
+                    cam.position = reset_points[reset_index].position;
                 }
 
             }
@@ -103,6 +104,8 @@ public class camera_movement : MonoBehaviour
 
                 //Quaternion for rotation
                 for (int i = 0; i < 3; i++) q[i + 1] = data.q[i] / 1073741824f;
+                //for (int i = 0; i < 3; i++) q[i + 1] = data.q[i];
+
 
                 if (1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2) > 0 && Mathf.Abs(q[1]) < 1 && Mathf.Abs(q[2]) < 1 && Mathf.Abs(q[3]) < 1)
                 {
@@ -127,6 +130,8 @@ public class camera_movement : MonoBehaviour
                         else origin = origin * Quaternion.Euler(0, 0, 90);
 
                         origin = origin * Quaternion.Inverse(rot);
+                        //Debug.Log(Vector3.Distance(cam.position, cam.GetChild(0).transform.position));
+                        //Debug.Log(cam.GetChild(0).transform.localRotation);
                     }
 
                     if (angle < 40)

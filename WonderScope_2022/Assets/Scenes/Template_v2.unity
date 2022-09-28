@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.4439403, g: 0.4931519, b: 0.5722083, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -590,6 +590,11 @@ MonoBehaviour:
   rig: {fileID: 1394026571}
   isthisWatch: 0
   use_gravity: 0
+  move_activation: 1
+  reset_by_dist: 1
+  recalibrate_while_movement: 1
+  reset_RFIDs: []
+  reset_points: []
 --- !u!4 &855604697
 Transform:
   m_ObjectHideFlags: 0
@@ -1277,7 +1282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1653606020
 Transform:
   m_ObjectHideFlags: 0

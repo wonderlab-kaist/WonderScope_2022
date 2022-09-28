@@ -1312,7 +1312,7 @@ MonoBehaviour:
   heading: {fileID: 1436585912}
   explain: {fileID: 1348423687}
   RFID_address:
-  - 043F7B9A
+  - 04F57C9A
   - 043B7B9A
   - 04377B9A
   - 04297B9A
@@ -1329,7 +1329,7 @@ MonoBehaviour:
   touchPoint: {fileID: 972532619}
   ps_effect: {fileID: 1000011295657054, guid: 11ce829c7ac25d04faf119e825f822e3, type: 3}
   ps_origin: {fileID: 176408431}
-  scene_transition_test: 0
+  scene_transition_test: 1
   detected_expression: "\uACE7 \uB2EC\uC5D0 \uCC29\uB959\uD569\uB2C8\uB2E4"
 --- !u!1 &972532618
 GameObject:
@@ -2003,8 +2003,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD0DC\uADF8\uB97C \uCC3E\uC544\uC11C \uD0D0\uC0AC\uC120\uC744 \uCC29\uB959\uC2DC\uD0A4\uBA74\n\uB2EC
-    \uD0D0\uC0AC\uB97C \uC2DC\uC791\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4"
+  m_text: 'Land the probe on the TAG
+
+    to start exploring the moon.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c82b809723c65324a8dc7598a7d5de87, type: 2}
   m_sharedMaterial: {fileID: -2166936816214912126, guid: c82b809723c65324a8dc7598a7d5de87,
@@ -2151,10 +2152,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD0D0\uD5D8\uC744 \uC2DC\uC791\uD574\uBCFC\uAE4C\uC694?"
+  m_text: Let's start exploring!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c82b809723c65324a8dc7598a7d5de87, type: 2}
-  m_sharedMaterial: {fileID: -2166936816214912126, guid: c82b809723c65324a8dc7598a7d5de87,
+  m_fontAsset: {fileID: 11400000, guid: 7eadd62adf23ae04d99069423678ccc9, type: 2}
+  m_sharedMaterial: {fileID: -838208868611597460, guid: 7eadd62adf23ae04d99069423678ccc9,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2427,7 +2428,7 @@ PrefabInstance:
     - target: {fileID: 6402122941289838925, guid: a11a62b43551f714ba9484f10da5a4a2,
         type: 3}
       propertyPath: default_ble_address
-      value: C5:31:BA:E3:E2:6A
+      value: C3:EF:4B:B7:7C:20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a11a62b43551f714ba9484f10da5a4a2, type: 3}

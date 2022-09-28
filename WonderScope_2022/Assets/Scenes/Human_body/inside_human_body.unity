@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd7dc4fa634bc84db863939b20c06c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gain: 0.0017
+  gain: 0.00162
   raw_data: {fileID: 0}
   cam: {fileID: 1769481472}
   rig: {fileID: 1394026571}
@@ -1189,9 +1189,9 @@ MonoBehaviour:
   reset_by_dist: 1
   recalibrate_while_movement: 1
   reset_RFIDs:
-  - 1D:66:A0:A0
-  - 1D:EC:CD:9F
-  - 1D:11:BC:9F
+  - 1D:07:49:A0
+  - 1D:4A:52:A0
+  - 1D:17:52:A0
   - 1D:CA:C4:9F
   reset_points:
   - {fileID: 1892399061}
@@ -2586,7 +2586,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603785836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27, y: 12.3, z: 96.2}
+  m_LocalPosition: {x: -27, y: 77, z: 96.2}
   m_LocalScale: {x: 8.840719, y: 8.840719, z: 8.840719}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2818,7 +2818,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729574446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 58.9, z: -10}
+  m_LocalPosition: {x: -1, y: 184, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3023,7 +3023,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769481471}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14, y: 16.6, z: -10}
+  m_LocalPosition: {x: -15, y: 56.199966, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3106,7 +3106,7 @@ PrefabInstance:
     - target: {fileID: 6402122941289838925, guid: a11a62b43551f714ba9484f10da5a4a2,
         type: 3}
       propertyPath: default_ble_address
-      value: F8:D8:39:47:6D:E4
+      value: DB:E9:9C:F7:DB:F2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a11a62b43551f714ba9484f10da5a4a2, type: 3}
@@ -3136,7 +3136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816355867}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -85, z: 0}
+  m_LocalPosition: {x: 0, y: -106.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

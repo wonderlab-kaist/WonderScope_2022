@@ -76,8 +76,10 @@ public class CaveCameramovement : MonoBehaviour
             if(!(data.tag_id[0] == 0 && data.tag_id[1] == 0 && data.tag_id[2] == 0 && data.tag_id[3] == 0))
             {
                 string id = System.BitConverter.ToString(data.tag_id).Replace("-", ":");
+                address.SetLastRFID(id);
+
                 reset_index = Array.FindIndex(reset_RFIDs, element => element == id);
-                if (Vector3.Distance(cam.position, reset_points[reset_index].position) > threshold)
+                if (!id.Equals(address.GetLastRFID()) && Vector3.Distance(cam.position, reset_points[reset_index].position) > threshold)
                 {
                     //rfidDetect += 1;
                     //cam.position = cam.position - cam.GetChild(0).position + reset_points[reset_index].position;

@@ -71,7 +71,7 @@ public class Camera_Movement_Moon : MonoBehaviour
         if (income != null && income != null)
         {
             //string[] data = income.Split(' ');
-            data = new stethoscope_data(income);
+            data = new stethoscope_data(income,1);
             string monitoring = "";
             monitoring += data.q[0] + " " + data.q[1] + " " + data.q[2];
             monitoring += " " + data.distance;

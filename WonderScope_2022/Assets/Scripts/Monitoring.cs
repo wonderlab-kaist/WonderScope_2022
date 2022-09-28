@@ -23,12 +23,14 @@ public class Monitoring : MonoBehaviour
         {
             connection.text = "Connection : True";
 
-            stethoscope_data tmp = new stethoscope_data(dataInput.getData());
+            stethoscope_data tmp = new stethoscope_data(dataInput.getData(),1);
+            Debug.Log(tmp.q[0]+ " " + tmp.q[1] + " " + tmp.q[2]);
 
-            distance.text = "Distance : " + (int)tmp.distance;
+
+            distance.text = "Distance : " + (float)tmp.distance;
             if (!(tmp.tag_id[0] == 0 && tmp.tag_id[1] == 0 && tmp.tag_id[2] == 0 && tmp.tag_id[3] == 0))
                 rfid.text = "RFID : " + Convert.ToString(tmp.tag_id[0],16)+":"+ Convert.ToString(tmp.tag_id[1], 16)+":"+ Convert.ToString(tmp.tag_id[2], 16)+":"+ Convert.ToString(tmp.tag_id[3], 16);
-            mouse.text = "Mouse : " + (int)tmp.mouse_x + ",  " + (int)tmp.mouse_y;
+            mouse.text = "Mouse : " + (float)tmp.mouse_x*100 + ",  " + (float)tmp.mouse_y*100;
 
 
             ////rotation/////
