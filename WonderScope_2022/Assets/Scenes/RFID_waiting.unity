@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.4439403, g: 0.4931519, b: 0.5722083, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -975,12 +975,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11ce829c7ac25d04faf119e825f822e3, type: 3}
---- !u!198 &500869029 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198810402891263512, guid: 11ce829c7ac25d04faf119e825f822e3,
-    type: 3}
-  m_PrefabInstance: {fileID: 500869028}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &500869031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010927547568, guid: 11ce829c7ac25d04faf119e825f822e3,
@@ -1263,16 +1257,16 @@ MonoBehaviour:
   heading: {fileID: 1436585912}
   explain: {fileID: 1315271461}
   RFID_address:
-  - 1D66A0A0
-  - 1DECCD9F
-  - 1D11BC9F
-  - 1DCAC49F
+  - 1D:07:49:A0
+  - 1D:4A:52:A0
+  - 1D:17:52:A0
+  - 1D:CA:C4:9F
   scienscope_illust: {fileID: 1210280443}
   touchPoint: {fileID: 1078000770}
   ps_effect: {fileID: 1000011295657054, guid: 11ce829c7ac25d04faf119e825f822e3, type: 3}
   ps_origin: {fileID: 1241740840}
+  scene_transition_test: 0
   detected_expression: Wait for a second! Loading...
-
 --- !u!1 &1020245911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,7 +1567,7 @@ RectTransform:
   - {fileID: 1942629330}
   - {fileID: 1315271459}
   - {fileID: 1241740840}
-
+  - {fileID: 500869031}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
