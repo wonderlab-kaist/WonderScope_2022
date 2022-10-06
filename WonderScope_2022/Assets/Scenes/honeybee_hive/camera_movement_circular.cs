@@ -165,8 +165,18 @@ public class camera_movement_circular : MonoBehaviour
 
                     //delta = cam.localRotation * delta;
                     delta = Quaternion.Euler(0, 0, rig.localEulerAngles.z) * delta;
-;                   move_smooth(delta);
-                    
+                    move_smooth(delta);
+
+                }
+                else
+                {
+                    cam.LookAt(target);
+
+                    if(Input.touchCount == 1)
+                    {
+                        delta = Input.GetTouch(0).deltaPosition * -30f;
+                        move_smooth(delta);
+                    }
                 }
             }
             else if (data.distance >= distance_threshold && reset_by_dist)
