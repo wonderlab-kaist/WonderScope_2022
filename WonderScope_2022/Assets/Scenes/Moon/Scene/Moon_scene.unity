@@ -6648,7 +6648,7 @@ MonoBehaviour:
   use_gravity: 0
   direction: 60
   popup: {fileID: 1037103714}
-  start_angle_shift: 80
+  start_angle_shift: 170
   starting_point_2: {fileID: 327986323}
 --- !u!1 &575268085
 GameObject:
@@ -17044,7 +17044,7 @@ RectTransform:
   m_GameObject: {fileID: 1965742041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3154954, y: 1.3154954, z: 1.0119194}
+  m_LocalScale: {x: 1.4709046, y: 1.4709046, z: 1.131465}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1360441914}
@@ -17059,7 +17059,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1294, y: -792}
+  m_AnchoredPosition: {x: 1442, y: -875}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1968086429
@@ -17221,7 +17221,7 @@ PrefabInstance:
     - target: {fileID: 6402122941289838925, guid: a11a62b43551f714ba9484f10da5a4a2,
         type: 3}
       propertyPath: default_ble_address
-      value: C3:EF:4B:B7:7C:20
+      value: CD:4D:DB:E1:65:DA
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a11a62b43551f714ba9484f10da5a4a2, type: 3}

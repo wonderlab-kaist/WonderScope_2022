@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Cave/Demo/demo1_2.unity
     guid: 13395a0e351fb4072a19a6b282e4df7b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RFID_waiting_MOON.unity
     guid: 85904ab329e2b4f99bcb44e149109dac
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Moon/Scene/Moon_scene.unity
     guid: 3d5ef07c708abab4f9bd66318bde789b
   - enabled: 0
@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Data Monitor.unity
     guid: a35582684545448e891f3016a07902b7
+  - enabled: 1
+    path: Assets/Scenes/honeybee_hive/honey_bee_hive.unity
+    guid: 917051c4aa3ab4c20a217f5568b8afc7
   m_configObjects:
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000,
       guid: 581403fb1f23447eca578a2d570f699f, type: 2}
