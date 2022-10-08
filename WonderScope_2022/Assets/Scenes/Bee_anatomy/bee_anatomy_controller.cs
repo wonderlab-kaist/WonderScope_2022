@@ -69,6 +69,51 @@ public class bee_anatomy_controller : MonoBehaviour
                 organ_name.text = "식도";
                 explanation.text = "꿀벌의 식도는 인두와 꿀주머니의 연결부위중에 가장 얇다. 꿀과 꽃가루를 먹는데 척추 동물처럼 강력한 근육은 필요 없다.";
             }
+            else if (close_organ.name == "org_vessel")
+            {
+                organ_name.text = "등혈관";
+                explanation.text = "등을 따라 돌다가 심장으로 이어지는 주요 동맥이다. 몸 전체로 피를 순환시킨다.";
+            }
+            else if (close_organ.name == "org_air")
+            {
+                organ_name.text = "기낭";
+                explanation.text = "기관이 큰 공기주머니처럼 팽창하여 형성되었다. 이를 통해 빠른 속도로 오래 날 수 있다.";
+            }
+            else if (close_organ.name == "org_air_1")
+            {
+                organ_name.text = "기낭";
+                explanation.text = "기관이 큰 공기주머니처럼 팽창하여 형성되었다. 이를 통해 빠른 속도로 오래 날 수 있다.";
+            }
+            else if (close_organ.name == "org_heart")
+            {
+                organ_name.text = "심장";
+                explanation.text = "혈액의 순환을 돕는 근육질 기관으로 5개의 심실로 이루어져있다. 심실 양쪽에 1쌍의 심문이 있다.";
+            }
+            else if (close_organ.name == "org_stomach")
+            {
+                organ_name.text = "중장/위";
+                explanation.text = "먹이가 변환되는 꿀주머니 뒤쪽에 위치한 소화관 부분이다. 음식을 소화와 가공한다.";
+            }
+            else if (close_organ.name == "org_end")
+            {
+                organ_name.text = "말피씨기관";
+                explanation.text = "창자에 달려있는 미세한 관으로 장을 통과한 혈액으로부터 흡수한 질소를 함유한 배설물을 배설하는 기관이다.";
+            }
+            else if (close_organ.name == "org_toxic")
+            {
+                organ_name.text = "독주머니";
+                explanation.text = "독샘과 연결되어 있으며 독샘에서 생성된 독이 들어있는 기관이다.";
+            }
+            else if (close_organ.name == "org_small")
+            {
+                organ_name.text = "소장";
+                explanation.text = "대부분의 소화 및 흡수가 일어나는 기관이다.";
+            }
+            else if (close_organ.name == "org_lin")
+            {
+                organ_name.text = "곧은창자";
+                explanation.text = "항문 앞에 있는 창자의 끝 부분이다.";
+            }
         } else
         {
             explanation.text = "";
