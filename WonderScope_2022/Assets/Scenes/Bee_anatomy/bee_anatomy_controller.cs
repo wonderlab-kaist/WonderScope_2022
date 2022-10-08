@@ -9,6 +9,7 @@ public class bee_anatomy_controller : MonoBehaviour
     public GameObject bee_anatomy_resp;
     public GameObject bee_anatomy_digest;
     public GameObject bee_anatomy_nerve;
+    public GameObject bee_anatomy_digest_animation;
 
     public TextMeshProUGUI organ_name;
     public TextMeshProUGUI explanation;
@@ -19,7 +20,7 @@ public class bee_anatomy_controller : MonoBehaviour
     private float viz_btn;
 
     public Transform[] organ_points;
-
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -94,6 +95,11 @@ public class bee_anatomy_controller : MonoBehaviour
                 organ_name.text = "중장/위";
                 explanation.text = "먹이가 변환되는 꿀주머니 뒤쪽에 위치한 소화관 부분이다. 음식을 소화와 가공한다.";
             }
+            else if (close_organ.name == "org_stomach_1")
+            {
+                organ_name.text = "중장/위";
+                explanation.text = "먹이가 변환되는 꿀주머니 뒤쪽에 위치한 소화관 부분이다. 음식을 소화와 가공한다.";
+            }
             else if (close_organ.name == "org_end")
             {
                 organ_name.text = "말피씨기관";
@@ -146,6 +152,7 @@ public class bee_anatomy_controller : MonoBehaviour
             bee_anatomy_default.SetActive(true);
             bee_anatomy_resp.SetActive(true);
             bee_anatomy_digest.SetActive(true);
+            bee_anatomy_digest_animation.SetActive(true);
             bee_anatomy_nerve.SetActive(true);
         }
         else if (viz == 1)
@@ -153,6 +160,7 @@ public class bee_anatomy_controller : MonoBehaviour
             bee_anatomy_default.SetActive(true);
             bee_anatomy_resp.SetActive(true);
             bee_anatomy_digest.SetActive(false);
+            bee_anatomy_digest_animation.SetActive(false);
             bee_anatomy_nerve.SetActive(false);
         }
         else if (viz ==2)
@@ -160,6 +168,7 @@ public class bee_anatomy_controller : MonoBehaviour
             bee_anatomy_default.SetActive(true);
             bee_anatomy_resp.SetActive(false);
             bee_anatomy_digest.SetActive(true);
+            bee_anatomy_digest_animation.SetActive(true);
             bee_anatomy_nerve.SetActive(false);
         }
         else if (viz == 3)
@@ -167,6 +176,7 @@ public class bee_anatomy_controller : MonoBehaviour
             bee_anatomy_default.SetActive(true);
             bee_anatomy_resp.SetActive(false);
             bee_anatomy_digest.SetActive(false);
+            bee_anatomy_digest_animation.SetActive(false);
             bee_anatomy_nerve.SetActive(true);
         }
     }
