@@ -29,9 +29,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Data Monitor.unity
     guid: a35582684545448e891f3016a07902b7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bee_Life/3-Bee_life_pupa1.unity
     guid: d5c51a8256b694e0c84db06d1eeecbfa
+  - enabled: 1
+    path: Assets/Scenes/Bee_Life/1-Bee_life_egg.unity
+    guid: e2d8a87e34b414d82bda2fe26b4b3510
   m_configObjects:
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000,
       guid: 581403fb1f23447eca578a2d570f699f, type: 2}
