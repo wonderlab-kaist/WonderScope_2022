@@ -13,11 +13,13 @@ public class TAG_loading : MonoBehaviour
     /// 해당 RFID 태그 주소의 index + 1의 scene id로 자동 대응되어 넘어갑니다.
     /// 혹은 아래 update 구분의 아래에, 직접 tag id와 scene builid index를 대응시켜 주세요.
     ///
+    ///
+    /// 이 스크립틑 벌 특별전 _용 스크립
     /// </summary>
     public TextMeshProUGUI heading;
     public TextMeshProUGUI explain;
 
-    public string[] RFID_address;
+    public string[] RFID_address_life, RFID_address_anatomy, RFID_address_hive;
 
     public GameObject scienscope_illust;
     public Transform touchPoint;
@@ -70,9 +72,37 @@ public class TAG_loading : MonoBehaviour
                 address.SetLastRFID(id); //save RFID Address for load in next scene
                 //explain.text = id;
 
-                for (int i = 0; i < RFID_address.Length; i++)
+                for (int i = 0; i < RFID_address_anatomy.Length; i++)
                 {
-                    if (RFID_address[i].Equals(id))
+                    if (RFID_address_anatomy[i].Equals(id))
+                    {
+                        explain.text = detected_expression;
+                        Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
+
+                        /// move on contents scenes ///
+                        scene_detected = true;
+                        SceneManager.LoadSceneAsync(1, LoadSceneMode.Single); ///i값을 원하는 scene의 build index로 대체
+                        
+                    }
+                }
+
+                for (int i = 0; i < RFID_address_life.Length; i++)
+                {
+                    if (RFID_address_life[i].Equals(id))
+                    {
+                        explain.text = detected_expression;
+                        Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
+
+
+                        /// move on contents scenes ///
+                        scene_detected = true;
+                        SceneManager.LoadSceneAsync(3+i, LoadSceneMode.Single); ///i값을 원하는 scene의 build index로 대체
+
+                    }
+                }
+                for (int i = 0; i < RFID_address_hive.Length; i++)
+                {
+                    if (RFID_address_hive[i].Equals(id))
                     {
                         explain.text = detected_expression;
                         Instantiate(ps_effect, ps_origin).transform.localPosition = Vector3.zero;
@@ -81,11 +111,10 @@ public class TAG_loading : MonoBehaviour
 
                         /// move on contents scenes ///
                         scene_detected = true;
-                        SceneManager.LoadSceneAsync(1, LoadSceneMode.Single); ///i값을 원하는 scene의 build index로 대체
-                        
+                        SceneManager.LoadSceneAsync(2, LoadSceneMode.Single); ///i값을 원하는 scene의 build index로 대체
+
                     }
                 }
-                
 
 
 

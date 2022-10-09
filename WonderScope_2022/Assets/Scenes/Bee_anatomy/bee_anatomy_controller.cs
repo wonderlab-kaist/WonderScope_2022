@@ -33,7 +33,7 @@ public class bee_anatomy_controller : MonoBehaviour
     {
         cam_pos = new Vector3(Cam.transform.position.x, Cam.transform.position.y + 5, 0);
         Transform close_organ = GetClosestOrgan(organ_points);
-        Debug.Log(close_organ.name);
+        //Debug.Log(close_organ.name);
         if (Vector3.Distance(close_organ.position, Vector3.ProjectOnPlane(Cam.transform.position, new Vector3(0, 0, 1))) <= 3f) {
             if (close_organ.name == "org_brain")
             {

@@ -516,8 +516,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heading: {fileID: 929632886}
   explain: {fileID: 1090964572}
-  RFID_address:
-  - 04457C9A
+  RFID_address_life:
+  - 04:05:7B:9A
+  - 04:0D:7B:9A
+  - 1D:3D:D7:9F
+  - 1D:62:E0:9F
+  - 1D:0E:E9:9F
+  RFID_address_anatomy:
+  - 1D:E2:8D:9F
+  RFID_address_hive:
+  - 1D:DD:9A:9F
+  - 1D:45:94:9F
   scienscope_illust: {fileID: 1794038513}
   touchPoint: {fileID: 494774532}
   ps_effect: {fileID: 1000011295657054, guid: 11ce829c7ac25d04faf119e825f822e3, type: 3}
@@ -2997,7 +3006,7 @@ PrefabInstance:
     - target: {fileID: 6402122941289838925, guid: a11a62b43551f714ba9484f10da5a4a2,
         type: 3}
       propertyPath: default_ble_address
-      value: C3:EF:4B:B7:7C:20
+      value: F8:D8:39:47:6D:E4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a11a62b43551f714ba9484f10da5a4a2, type: 3}
