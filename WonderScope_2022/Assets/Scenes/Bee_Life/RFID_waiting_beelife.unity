@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.4439403, g: 0.4931519, b: 0.5722083, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -523,7 +523,7 @@ MonoBehaviour:
   ps_effect: {fileID: 1000011295657054, guid: 11ce829c7ac25d04faf119e825f822e3, type: 3}
   ps_origin: {fileID: 868697397}
   scene_transition_test: 0
-  detected_expression: "\uAFC0\uBC8C \uC18D\uC73C\uB85C \uB5A0\uB098\uC694!"
+  detected_expression: "\uC7A0\uC2DC\uB9CC \uAE30\uB2E4\uB824 \uC8FC\uC138\uC694!"
 --- !u!4 &246349838
 Transform:
   m_ObjectHideFlags: 0
@@ -1790,7 +1790,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBC8C\uC758 \uC0DD\uC560\uB97C\n\uC54C\uC544\uBCFC\uAE4C\uC694?"
+  m_text: "\uBC8C\uB4E4\uC758 \uC138\uC0C1\uC744\n\uB4E4\uC5EC\uB2E4 \uBCFC\uAE4C\uC694?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c82b809723c65324a8dc7598a7d5de87, type: 2}
   m_sharedMaterial: {fileID: -2166936816214912126, guid: c82b809723c65324a8dc7598a7d5de87,
@@ -2081,8 +2081,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBC8C\uC9D1 \uC704\uC758 \uD0DC\uADF8\uC5D0 \uAE30\uAE30\uB97C \uAC00\uC838\uB2E4\uB300\uBA74,\n\uBC8C\uC744
-    \uC790\uC138\uD788 \uB4E4\uC5EC\uB2E4\uBCFC \uC218 \uC788\uC5B4\uC694!"
+  m_text: "\uC804\uC2DC\uBB3C\uB4E4 \uC911 \uC2A4\uD2F0\uCEE4\uAC00 \uBD99\uC5B4\uC788\uB294
+    \uACF3\uC5D0\n\uC6D0\uB354\uC2A4\uCF54\uD504\uB97C \uAC00\uAE4C\uC774 \uAC00\uC838\uB2E4
+    \uB300\uC138\uC694!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c82b809723c65324a8dc7598a7d5de87, type: 2}
   m_sharedMaterial: {fileID: -2166936816214912126, guid: c82b809723c65324a8dc7598a7d5de87,

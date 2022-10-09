@@ -71,10 +71,32 @@ public class camera_movement_circular : MonoBehaviour
         theta = Mathf.Acos((cam.position - target.transform.position).x / (tmp_radius * Mathf.Cos(psy)));
         Debug.Log(theta + " " + psy);
         cam_dis_target = Vector3.Distance(cam.position, target.position);
+
     }
 
     void Update()
     {
+#if UNITY_EDITOR
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            psy += 0.01f;
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            psy -= 0.01f;
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            theta += 0.01f;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            theta -= 0.01f;
+        }
+        cam.LookAt(target);
+        cam.position = target.position + new Vector3(cam_dis_target * Mathf.Cos(theta) * Mathf.Cos(psy), cam_dis_target * Mathf.Sin(psy), cam_dis_target * Mathf.Cos(psy) * Mathf.Sin(theta));
+
+#endif
 
         byte[] income = dataInput.getData();
 
@@ -164,7 +186,8 @@ public class camera_movement_circular : MonoBehaviour
                     rotate_smooth(new Vector3(0, 0, rig.localEulerAngles.z));
 
                     //delta = cam.localRotation * delta;
-                    delta = Quaternion.Euler(0, 0, rig.localEulerAngles.z) * delta;
+                    delta = cam.GetChild(0).localRotation * delta;
+                    //Debug.Log(delta);
                     move_smooth(delta);
 
                 }
@@ -207,7 +230,7 @@ public class camera_movement_circular : MonoBehaviour
     //In this application, it will be rotate
     void move_smooth(Vector3 delta_distance)
     {
-        StartCoroutine("moveSmooth", delta_distance * gain);
+        StartCoroutine("moveSmooth_rot", delta_distance * gain);
 
     }
 
@@ -239,11 +262,37 @@ public class camera_movement_circular : MonoBehaviour
         if ((goal_pos - target.transform.position).x / (tmp_radius * Mathf.Cos(goal_psy)) >= 1) goal_theta = 0f;
         else if ((goal_pos - target.transform.position).x / (tmp_radius * Mathf.Cos(goal_psy)) <= -1) goal_theta = Mathf.PI;
 
-        if ((goal_pos - target.transform.position).z < 0) theta = -goal_theta;
-        else theta = goal_theta;
+        Debug.Log("(" + theta + "," + psy + ") -> " + "(" + goal_theta + "," + psy + ")" + "   "+ (goal_pos - target.transform.position).z);
+
+        //if ((goal_pos - target.transform.position).z < 0f) theta = -goal_theta;
+        theta = goal_theta;
         psy = goal_psy;
 
-        cam.position = target.position + new Vector3(cam_dis_target * Mathf.Cos(theta) * Mathf.Cos(psy), cam_dis_target * Mathf.Sin(psy), cam_dis_target * Mathf.Cos(psy) * Mathf.Sin(theta));
+        //cam.position = target.position + new Vector3(cam_dis_target * Mathf.Cos(theta) * Mathf.Cos(psy), cam_dis_target * Mathf.Sin(psy), cam_dis_target * Mathf.Cos(psy) * Mathf.Sin(theta));
+        cam.position = target.position + Quaternion.AngleAxis(psy * 180/Mathf.PI, Quaternion.Euler(0f, theta * 180 / Mathf.PI, 0f) * Vector3.forward) *(Quaternion.Euler(0f,theta * 180 / Mathf.PI,0f) * new Vector3(cam_dis_target, 0f, 0f));
+
+
+        yield return new WaitForEndOfFrame();
+    }
+
+    IEnumerator moveSmooth_rot(Vector3 d)
+    {
+        Vector3 goal_pos = cam.position + cam.rotation * d;
+        float tmp_radius = (goal_pos - target.position).magnitude;
+
+        Vector3 goal_pos_vector = goal_pos - target.position;
+        goal_pos_vector *= cam_dis_target / tmp_radius;
+
+        cam.position = target.position + goal_pos_vector;
+
+        psy = Mathf.Asin((goal_pos - target.transform.position).y / tmp_radius);
+        theta = Mathf.Acos((goal_pos - target.transform.position).x / (tmp_radius * Mathf.Cos(psy)));
+        
+        if ((goal_pos - target.transform.position).y / tmp_radius >= 1) psy = Mathf.PI / 2f;
+        else if ((goal_pos - target.transform.position).y / tmp_radius <= -1) psy = -Mathf.PI / 2f;
+        if ((goal_pos - target.transform.position).x / (tmp_radius * Mathf.Cos(psy)) >= 1) theta = 0f;
+        else if ((goal_pos - target.transform.position).x / (tmp_radius * Mathf.Cos(psy)) <= -1) theta = Mathf.PI;
+
         yield return new WaitForEndOfFrame();
     }
 
