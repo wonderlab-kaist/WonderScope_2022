@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: df2970a4cec2549deb929893a7c65353
+<<<<<<<< HEAD:WonderScope_2022/Assets/Scenes/Bee_Life/Models/larva.fbx.meta
+guid: 863741a84670248ed9230e0a5f50cbe2
+========
+guid: 820263c8e1b8f4c248f587cad1235e22
+>>>>>>>> bee_exhibition_sohyun:WonderScope_2022/Assets/Scenes/Bee_Life/Models/honeycomb2.fbx.meta
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
