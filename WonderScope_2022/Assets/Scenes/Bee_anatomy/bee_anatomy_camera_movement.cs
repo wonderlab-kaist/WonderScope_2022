@@ -249,4 +249,9 @@ public class bee_anatomy_camera_movement : MonoBehaviour
         if (data == null) return false;
         else return true;
     }
+
+    public bool isMovementActive()
+    {
+        return move_activation;
+    }
 }

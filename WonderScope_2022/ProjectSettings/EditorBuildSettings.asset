@@ -32,7 +32,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Bee_Life/RFID_waiting_beelife.unity
     guid: 1d6522f283b794f4b99307d7e39e5f86
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Bee_anatomy/bee_anatomy.unity
     guid: 3a0172b2d25d146838ee152db31f21f0
   - enabled: 0
@@ -53,7 +53,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Bee_Life/5-Bee_life_bee.unity
     guid: cb1a991e7ffda4a1c8024099fe8ba1a5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bee_anatomy/bee_anatomy_clone.unity
     guid: 4120ee7e0b8034dad9b4d20e97b4d7f0
   m_configObjects:
