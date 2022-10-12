@@ -15,6 +15,9 @@ public class bee_anatomy_controller : MonoBehaviour
     public TextMeshProUGUI explanation;
 
     public GameObject Cam;
+    public Transform bee_origin;
+    public Transform probe;
+    public Transform minimap;
 
     private float viz_btn;
 
@@ -35,11 +38,11 @@ public class bee_anatomy_controller : MonoBehaviour
     {
         explanation.text = "";
         organ_name.text = "";
-        if (GameObject.Find("scene_control").GetComponent<bee_anatomy_camera_movement>().move_activation == false)
+        /*if (GameObject.Find("scene_control").GetComponent<bee_anatomy_camera_movement>().move_activation == false)
         {
             Cam.transform.position = organ_points[num].transform.position;
 
-        }
+        }*/
     }
 
     // Update is called once per frame
@@ -57,7 +60,11 @@ public class bee_anatomy_controller : MonoBehaviour
 
         swipedRight = false;
         swipedLeft = false;
+
+        Vector3 cam_relative_pos = new Vector3(Cam.transform.position.x - bee_origin.position.x, Cam.transform.position.y - bee_origin.position.y, 0);
+        probe.localPosition = (cam_relative_pos + new Vector3(7.0f,0,0)) * 4.2f;
         //move activation false 일 경우
+        /*
         if (GameObject.Find("scene_control").GetComponent<bee_anatomy_camera_movement>().move_activation == false)
         {
             if (Input.touches.Length > 0)
@@ -103,6 +110,7 @@ public class bee_anatomy_controller : MonoBehaviour
                 }
             }
         }
+        */
     }
 
     public Transform GetClosestOrgan(Transform[] organs)

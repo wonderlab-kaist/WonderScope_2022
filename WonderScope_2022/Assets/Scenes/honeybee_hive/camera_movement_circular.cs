@@ -191,23 +191,23 @@ public class camera_movement_circular : MonoBehaviour
                     move_smooth(delta);
 
                 }
-                else
-                {
-                    cam.LookAt(target);
-
-                    if(Input.touchCount == 1)
-                    {
-                        delta = Input.GetTouch(0).deltaPosition * -30f;
-                        move_smooth(delta);
-                    }
-                }
             }
             else if (data.distance >= distance_threshold && reset_by_dist)
             {
                 SceneManager.LoadScene(0, LoadSceneMode.Single);
             }
 
+            if (!move_activation && Input.touchCount > 0 && Input.touchCount <= 2)
+            {
 
+                //Debug.Log("movemove");
+                Vector3 delta = new Vector3();
+                if (Input.touchCount == 1) delta = Input.GetTouch(0).deltaPosition * -30f;
+                else if (Input.touchCount == 2) delta = (Input.GetTouch(0).deltaPosition + Input.GetTouch(1).deltaPosition) * -30f;
+                move_smooth(delta);
+                cam.LookAt(target);
+
+            }
 
             reconnect_duration = 0;
         }
@@ -309,6 +309,10 @@ public class camera_movement_circular : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
+    }
+    public void go_back_home()
+    {
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }
 

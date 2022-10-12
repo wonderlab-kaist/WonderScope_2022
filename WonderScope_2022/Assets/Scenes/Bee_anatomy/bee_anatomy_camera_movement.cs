@@ -171,6 +171,14 @@ public class bee_anatomy_camera_movement : MonoBehaviour
 
             }
 
+            if (!move_activation && Input.touchCount > 0 && Input.touchCount <= 2)
+            {
+                //Debug.Log("movemove");
+                Vector3 delta = new Vector3();
+                if (Input.touchCount == 1) delta = Input.GetTouch(0).deltaPosition * 3f;
+                else if (Input.touchCount == 2) delta = (Input.GetTouch(0).deltaPosition + Input.GetTouch(1).deltaPosition) * 3f;
+                move_smooth(delta);
+            }
 
 
             reconnect_duration = 0;
@@ -253,5 +261,10 @@ public class bee_anatomy_camera_movement : MonoBehaviour
     public bool isMovementActive()
     {
         return move_activation;
+    }
+
+    public void go_back_home()
+    {
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }

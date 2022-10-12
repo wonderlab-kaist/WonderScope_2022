@@ -171,6 +171,14 @@ public class camera_movement : MonoBehaviour
 
             }
 
+            if (!move_activation && Input.touchCount > 0 && Input.touchCount <= 2)
+            {
+                //Debug.Log("movemove");
+                Vector3 delta = new Vector3();
+                if (Input.touchCount == 1) delta = Input.GetTouch(0).deltaPosition * 30f;
+                else if (Input.touchCount == 2) delta = (Input.GetTouch(0).deltaPosition + Input.GetTouch(1).deltaPosition) * 30f;
+                move_smooth(delta);
+            }
 
 
             reconnect_duration = 0;
@@ -248,5 +256,10 @@ public class camera_movement : MonoBehaviour
     {
         if (data == null) return false;
         else return true;
+    }
+
+    public void go_back_home()
+    {
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }
