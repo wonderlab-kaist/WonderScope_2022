@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Cave/Demo/demo1_2.unity
     guid: 13395a0e351fb4072a19a6b282e4df7b
   - enabled: 0
-    path: Assets/Scenes/RFID_waiting_MOON.unity
+    path: Assets/Scenes/Moon/RFID_waiting_MOON.unity
     guid: 85904ab329e2b4f99bcb44e149109dac
   - enabled: 0
     path: Assets/Scenes/Moon/Scene/Moon_scene.unity
