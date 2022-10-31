@@ -11,8 +11,8 @@ public class camera_movement : MonoBehaviour
 {
     public float gain;
 
-    float movement_threshold = 250f;
-    float distance_threshold = 100f;
+    float movement_threshold = 0.0000025f;
+    float distance_threshold = 130f;
 
     public TextMeshProUGUI raw_data; //debugging text, monitoring raw data from module
     private stethoscope_data data;
@@ -73,12 +73,8 @@ public class camera_movement : MonoBehaviour
 
         if (income != null)
         {
-            //string[] data = income.Split(' ');
-            data = new stethoscope_data(income, 1);
-            string monitoring = "";
-            monitoring += data.q[0] + " " + data.q[1] + " " + data.q[2];
-            monitoring += "\n" + data.distance;
-            monitoring += "\n" + data.mouse_x + " " + data.mouse_y;
+            data = new stethoscope_data(income, 2);
+            Debug.Log(data.mouse_x + " " + data.mouse_y);
 
             if (recalibrate_while_movement && !(data.tag_id[0] == 0 && data.tag_id[1] == 0 && data.tag_id[2] == 0 && data.tag_id[3] == 0))
             {
@@ -100,11 +96,13 @@ public class camera_movement : MonoBehaviour
                 float y = 0;
                 if (Mathf.Abs(data.mouse_x) > movement_threshold) x = data.mouse_x;
                 if (Mathf.Abs(data.mouse_y) > movement_threshold) y = data.mouse_y;
-                Vector3 delta = new Vector3(-y, x, 0);
+                //Vector3 delta = new Vector3(-y,x,0);// version 2
+                Vector3 delta = new Vector3(x, y, 0) * -1f;
 
+                //Debug.Log(delta);
                 //Quaternion for rotation
-                for (int i = 0; i < 3; i++) q[i + 1] = data.q[i] / 1073741824f;
-                //for (int i = 0; i < 3; i++) q[i + 1] = data.q[i];
+                //for (int i = 0; i < 3; i++) q[i + 1] = data.q[i] / 1073741824f; // version 1
+                for (int i = 0; i < 3; i++) q[i + 1] = data.q[i];
 
 
                 if (1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2) > 0 && Mathf.Abs(q[1]) < 1 && Mathf.Abs(q[2]) < 1 && Mathf.Abs(q[3]) < 1)
