@@ -397,7 +397,7 @@ PrefabInstance:
     - target: {fileID: 6402122941289838925, guid: a11a62b43551f714ba9484f10da5a4a2,
         type: 3}
       propertyPath: default_ble_address
-      value: F8:D8:39:47:6D:E4
+      value: C1:3A:E5:67:0D:14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a11a62b43551f714ba9484f10da5a4a2, type: 3}
@@ -3602,7 +3602,7 @@ MonoBehaviour:
   use_gravity: 0
   move_activation: 1
   reset_by_dist: 0
-  recalibrate_while_movment: 0
+  recalibrate_while_movement: 1
   reset_RFIDs: []
   reset_points: []
 --- !u!4 &2000268187

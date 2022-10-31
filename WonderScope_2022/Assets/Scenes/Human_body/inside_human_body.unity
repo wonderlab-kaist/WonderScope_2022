@@ -1179,12 +1179,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd7dc4fa634bc84db863939b20c06c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gain: 0.00162
+  gain: 2220
   raw_data: {fileID: 0}
   cam: {fileID: 1769481472}
   rig: {fileID: 1394026571}
   isthisWatch: 0
-  use_gravity: 1
+  use_gravity: 0
   move_activation: 1
   reset_by_dist: 1
   recalibrate_while_movement: 1
