@@ -21,7 +21,7 @@ public class TAG_loading : MonoBehaviour
 
     public GameObject scienscope_illust;
     public Transform touchPoint;
-    public GameObject ps_effect;
+    //public GameObject ps_effect;
     public Transform ps_origin;
 
     private bool scene_detected = false;
@@ -42,7 +42,7 @@ public class TAG_loading : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        stethoscope_data tmp = new stethoscope_data(dataInput.getData());
+        stethoscope_data tmp = new stethoscope_data(dataInput.getData(), 2);
 
         if (tmp!=null&&Application.platform == RuntimePlatform.Android)
         {
@@ -70,13 +70,10 @@ public class TAG_loading : MonoBehaviour
 
                         /// move on contents scenes ///
                         scene_detected = true;
-                        SceneManager.LoadSceneAsync(1, LoadSceneMode.Single); ///i값을 원하는 scene의 build index로 대체
+                        SceneManager.LoadSceneAsync(i+1, LoadSceneMode.Single); ///i값을 원하는 scene의 build index로 대체
                         
                     }
                 }
-                
-
-
 
 
             }

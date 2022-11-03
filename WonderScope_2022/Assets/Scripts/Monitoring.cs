@@ -7,7 +7,7 @@ using System;
 
 public class Monitoring : MonoBehaviour
 {
-    public TextMeshProUGUI address, connection, distance, rfid, mouse, rotation;
+    public TextMeshProUGUI address, connection, distance, rfid, mouse, rotation, battery;
     public GameObject rotation_indicator;
     Quaternion q;
 
@@ -23,18 +23,19 @@ public class Monitoring : MonoBehaviour
         {
             connection.text = "Connection : True";
 
-            stethoscope_data tmp = new stethoscope_data(dataInput.getData(),1);
+            stethoscope_data tmp = new stethoscope_data(dataInput.getData(),2);
             Debug.Log(tmp.q[0]+ " " + tmp.q[1] + " " + tmp.q[2]);
 
 
             distance.text = "Distance : " + (float)tmp.distance;
             if (!(tmp.tag_id[0] == 0 && tmp.tag_id[1] == 0 && tmp.tag_id[2] == 0 && tmp.tag_id[3] == 0))
                 rfid.text = "RFID : " + Convert.ToString(tmp.tag_id[0],16)+":"+ Convert.ToString(tmp.tag_id[1], 16)+":"+ Convert.ToString(tmp.tag_id[2], 16)+":"+ Convert.ToString(tmp.tag_id[3], 16);
-            mouse.text = "Mouse : " + (float)tmp.mouse_x*100 + ",  " + (float)tmp.mouse_y*100;
+            mouse.text = "Mouse : " + (float)tmp.mouse_x + ",  " + (float)tmp.mouse_y;
 
 
             ////rotation/////
-            for (int i = 0; i < 3; i++) q[i + 1] = tmp.q[i] / 1073741824f;
+            //for (int i = 0; i < 3; i++) q[i + 1] = tmp.q[i] / 1073741824f; // for version 1
+            for (int i = 0; i < 3; i++) q[i+1] = tmp.q[i];
 
             if (1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2) > 0 && Mathf.Abs(q[1]) < 1 && Mathf.Abs(q[2]) < 1 && Mathf.Abs(q[3]) < 1)
             {
@@ -50,6 +51,8 @@ public class Monitoring : MonoBehaviour
 
             rotation.text = "Angle : " + rotation_indicator.transform.localEulerAngles;
             //////////////////
+            ///
+            battery.text = "Battery: " + tmp.battery;
         }
     }
 }
