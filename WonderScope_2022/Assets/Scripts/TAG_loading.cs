@@ -51,34 +51,33 @@ public class TAG_loading : MonoBehaviour
 
             if (!(tmp.tag_id[0] == 0&& tmp.tag_id[1] == 0&& tmp.tag_id[2] == 0&& tmp.tag_id[3] == 0) && !scene_detected)
             {
-                if (scene_transition_test)
-                {
-                    scene_detected = true;
-
-                    SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
-                }
-
                 Debug.Log(System.BitConverter.ToString(tmp.tag_id).Replace("-", ":"));
                 string id = System.BitConverter.ToString(tmp.tag_id).Replace("-", ":");
                 address.SetLastRFID(id); //save RFID Address for load in next scene
 
-                for (int i = 0; i < RFID_address.Length; i++)
+                if (scene_transition_test)
                 {
-                    if (RFID_address[i].Equals(id))
-                    {
-                        explain.text = detected_expression;
+                    scene_detected = true;
+                    explain.text = detected_expression;
+                    SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+                }
+                else
+                {
 
-                        /// move on contents scenes ///
-                        scene_detected = true;
-                        SceneManager.LoadSceneAsync(i+1, LoadSceneMode.Single); ///i값을 원하는 scene의 build index로 대체
-                        
+                    for (int i = 0; i < RFID_address.Length; i++)
+                    {
+                        if (RFID_address[i].Equals(id))
+                        {
+                            explain.text = detected_expression;
+
+                            /// move on contents scenes ///
+                            scene_detected = true;
+                            SceneManager.LoadSceneAsync(i + 1, LoadSceneMode.Single); ///i값을 원하는 scene의 build index로 대체
+
+                        }
                     }
                 }
-
-
             }
         }
-
-        
     }
 }
