@@ -906,9 +906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89749a1360b534210823010d49a23ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeSlider: {fileID: 1473485356}
-  rulerImg: {fileID: 513488078}
-  scaleTxt: {fileID: 1733583234}
 --- !u!1 &702769865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,6 +1346,7 @@ MonoBehaviour:
   rfid: {fileID: 1469216136}
   mouse: {fileID: 1240545266}
   rotation: {fileID: 708650582}
+  battery: {fileID: 0}
   rotation_indicator: {fileID: 0}
 --- !u!4 &1088857284
 Transform:
@@ -1389,7 +1387,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183527204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 90}
+  m_LocalPosition: {x: 0, y: 1, z: 90.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3594,7 +3592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd7dc4fa634bc84db863939b20c06c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gain: 0.001534
+  gain: 0.05
   raw_data: {fileID: 1866444720}
   cam: {fileID: 1711231328}
   rig: {fileID: 1716061026}

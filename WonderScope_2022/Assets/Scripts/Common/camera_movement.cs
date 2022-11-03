@@ -10,9 +10,8 @@ using System;
 public class camera_movement : MonoBehaviour
 {
     public float gain;
-
-    float movement_threshold = 0.0000025f;
-    float distance_threshold = 130f;
+    public float movement_threshold = 10f;
+    public float distance_threshold = 130f;
 
     public TextMeshProUGUI raw_data; //debugging text, monitoring raw data from module
     private stethoscope_data data;
@@ -74,7 +73,7 @@ public class camera_movement : MonoBehaviour
         if (income != null)
         {
             data = new stethoscope_data(income, 2);
-            Debug.Log(data.mouse_x + " " + data.mouse_y);
+            //Debug.Log(data.mouse_x + " " + data.mouse_y);
 
             if (recalibrate_while_movement && !(data.tag_id[0] == 0 && data.tag_id[1] == 0 && data.tag_id[2] == 0 && data.tag_id[3] == 0))
             {
