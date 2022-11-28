@@ -9,8 +9,8 @@ public class Camera_Movement_Moon : MonoBehaviour
 {
     public float gain;
 
-    float movement_threshold = 200;
-    float distance_threshold = 60;
+    float movement_threshold = 8;
+    float distance_threshold = 100;
     float distance_limitation = 150;
 
     public Text altitude;
@@ -71,7 +71,7 @@ public class Camera_Movement_Moon : MonoBehaviour
         if (income != null && income != null)
         {
             //string[] data = income.Split(' ');
-            data = new stethoscope_data(income,1);
+            data = new stethoscope_data(income,2);
             string monitoring = "";
             monitoring += data.q[0] + " " + data.q[1] + " " + data.q[2];
             monitoring += " " + data.distance;
@@ -88,11 +88,13 @@ public class Camera_Movement_Moon : MonoBehaviour
                 if (Mathf.Abs(data.mouse_y) > movement_threshold) y = data.mouse_y;
                 if (Mathf.Abs(data.distance) > distance_threshold) z = data.distance;
                 //Vector3 delta = new Vector3(-x, 0, y);
-                Vector3 delta = new Vector3(-x, 0, y);
-                delta = Quaternion.AngleAxis(180, new Vector3(-1, 0, 1)) * delta;
+                Vector3 delta = new Vector3(y, 0, -x);
+                delta = Quaternion.AngleAxis(90, new Vector3(0, 1, 0)) * delta;
+                Debug.Log(delta);
 
                 //Quaternion for ratation
-                for (int i = 0; i < 3; i++) q[i + 1] = data.q[i] / 1073741824f;
+                //for (int i = 0; i < 3; i++) q[i + 1] = data.q[i] / 1073741824f;
+                for(int i = 0; i < 3; i++) q[i + 1] = data.q[i];
 
                 if (1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2) > 0 && Mathf.Abs(q[1]) < 1 && Mathf.Abs(q[2]) < 1 && Mathf.Abs(q[3]) < 1)
                 {
@@ -144,7 +146,10 @@ public class Camera_Movement_Moon : MonoBehaviour
                 }
 
                 //rotate_smooth(new Vector3(0, -rig.localEulerAngles.z, 0));
-                rotate_smooth(new Vector3(0, -rig.localEulerAngles.z + start_angle_shift, 0));
+                //rotate_smooth(new Vector3(0, -rig.localEulerAngles.z + start_angle_shift, 0));
+                //cam.localRotation = Quaternion.EulerRotation(new Vector3(0, -rig.localEulerAngles.z, 0));
+                cam.localRotation = Quaternion.Euler(new Vector3(0, -rig.localEulerAngles.z + start_angle_shift, 0));
+                //Debug.Log(rig.localEulerAngles);
 
                 delta = cam.localRotation * delta;
                 //directionTxt.text = "" + delta;

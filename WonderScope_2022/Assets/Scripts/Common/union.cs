@@ -33,3 +33,14 @@ public struct union_float
     [FieldOffset(3)]
     public byte b3;
 }
+
+[StructLayout(LayoutKind.Explicit)]
+public struct union_16int
+{
+    [FieldOffset(0)]
+    public short i;
+    [FieldOffset(0)]
+    public byte b0;
+    [FieldOffset(1)]
+    public byte b1;
+}

@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Cave/Demo/demo1_2.unity
     guid: 13395a0e351fb4072a19a6b282e4df7b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/RFID_waiting_MOON.unity
     guid: 85904ab329e2b4f99bcb44e149109dac
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Moon/Scene/Moon_scene.unity
     guid: 3d5ef07c708abab4f9bd66318bde789b
   - enabled: 0
@@ -29,28 +29,28 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Data Monitor.unity
     guid: a35582684545448e891f3016a07902b7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bee_Life/RFID_waiting_beelife.unity
     guid: 1d6522f283b794f4b99307d7e39e5f86
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bee_anatomy/bee_anatomy.unity
     guid: 3a0172b2d25d146838ee152db31f21f0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/honeybee_hive/honey_bee_hive.unity
     guid: 917051c4aa3ab4c20a217f5568b8afc7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bee_Life/1-Bee_life_egg.unity
     guid: e2d8a87e34b414d82bda2fe26b4b3510
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bee_Life/2-Bee_life_larva.unity
     guid: 46d2f5f6277634743926d02cbe5fb777
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bee_Life/3-Bee_life_pupa1.unity
     guid: d5c51a8256b694e0c84db06d1eeecbfa
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bee_Life/4-Bee_life_pupa2.unity
     guid: 519a7079edb254b4eab08154de7388ec
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bee_Life/5-Bee_life_bee.unity
     guid: cb1a991e7ffda4a1c8024099fe8ba1a5
   m_configObjects:

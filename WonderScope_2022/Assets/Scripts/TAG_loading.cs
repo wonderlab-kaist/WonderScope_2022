@@ -44,7 +44,7 @@ public class TAG_loading : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        stethoscope_data tmp = new stethoscope_data(dataInput.getData());
+        stethoscope_data tmp = new stethoscope_data(dataInput.getData(),2);
 
         if (tmp!=null&&Application.platform == RuntimePlatform.Android)
         {

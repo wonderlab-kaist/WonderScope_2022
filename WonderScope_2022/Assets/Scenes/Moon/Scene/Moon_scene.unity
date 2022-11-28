@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.23456255, g: 0.2510821, b: 0.25573352, a: 1}
+  m_IndirectSpecularColor: {r: 0.23464468, g: 0.2511669, b: 0.25582013, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -6638,7 +6638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09194b397cce46c4e9e1b03995226591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gain: 0.005
+  gain: 0.17
   altitude: {fileID: 71649922}
   raw_data: {fileID: 1553257826}
   directionTxt: {fileID: 938451943}
@@ -6646,9 +6646,9 @@ MonoBehaviour:
   rig: {fileID: 903245057}
   isthisWatch: 0
   use_gravity: 0
-  direction: 60
+  direction: 0
   popup: {fileID: 1037103714}
-  start_angle_shift: 170
+  start_angle_shift: -80
   starting_point_2: {fileID: 327986323}
 --- !u!1 &575268085
 GameObject:
@@ -17221,7 +17221,7 @@ PrefabInstance:
     - target: {fileID: 6402122941289838925, guid: a11a62b43551f714ba9484f10da5a4a2,
         type: 3}
       propertyPath: default_ble_address
-      value: CD:4D:DB:E1:65:DA
+      value: C1:3A:E5:67:0D:14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a11a62b43551f714ba9484f10da5a4a2, type: 3}
