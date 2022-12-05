@@ -90,7 +90,7 @@ public class Camera_Movement_Moon : MonoBehaviour
                 //Vector3 delta = new Vector3(-x, 0, y);
                 Vector3 delta = new Vector3(y, 0, -x);
                 delta = Quaternion.AngleAxis(90, new Vector3(0, 1, 0)) * delta;
-                Debug.Log(delta);
+                ////Debug.Log(delta);
 
                 //Quaternion for ratation
                 //for (int i = 0; i < 3; i++) q[i + 1] = data.q[i] / 1073741824f;
@@ -211,7 +211,7 @@ public class Camera_Movement_Moon : MonoBehaviour
             cam.position += d / 3f;
             yield return new WaitForSeconds(0.02f / 2f);
         }
-        cam.position = new Vector3(cam.position.x, cam_original_height + data.distance/3, cam.position.z);
+        cam.position = new Vector3(cam.position.x, cam_original_height, cam.position.z);
         altitude.text = string.Format("{0:N2}", data.distance); //altitude
         raw_data.text = cam.position.ToString();
     }

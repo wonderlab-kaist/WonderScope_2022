@@ -6648,7 +6648,7 @@ MonoBehaviour:
   use_gravity: 0
   direction: 0
   popup: {fileID: 1037103714}
-  start_angle_shift: -80
+  start_angle_shift: 0
   starting_point_2: {fileID: 327986323}
 --- !u!1 &575268085
 GameObject:

@@ -92,7 +92,7 @@ public class stethoscope_data
         union_16int u16i;
 
         if (ver_ == 2)
-        {
+        { 
             uf.f = 0;
             uf.b0 = data_in[0];
             uf.b1 = data_in[1];

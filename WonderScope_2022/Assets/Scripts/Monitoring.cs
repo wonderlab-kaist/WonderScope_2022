@@ -40,8 +40,9 @@ public class Monitoring : MonoBehaviour
             if (1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2) > 0 && Mathf.Abs(q[1]) < 1 && Mathf.Abs(q[2]) < 1 && Mathf.Abs(q[3]) < 1)
             {
                 q[0] = Mathf.Sqrt(1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2));
-                Quaternion rot = new Quaternion(q[2], -q[1], -q[3], -q[0]);
-
+                //Quaternion rot = new Quaternion(q[2], -q[1], -q[3], -q[0]);
+                Quaternion rot = new Quaternion(q[1], q[2], q[3], q[0]);
+                
                 rotation_indicator.transform.rotation = rot;
             }
             else
