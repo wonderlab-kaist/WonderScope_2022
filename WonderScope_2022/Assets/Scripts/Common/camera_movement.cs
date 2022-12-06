@@ -105,14 +105,14 @@ public class camera_movement : MonoBehaviour
 
                 //Quaternion for rotation
                 //for (int i = 0; i < 3; i++) q[i + 1] = data.q[i] / 1073741824f;
-                for (int i = 0; i < 3; i++) q[i + 1] = data.q[i];
+                for (int i = 0; i < 4; i++) q[i] = data.q[i];
 
 
                 if (1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2) > 0 && Mathf.Abs(q[1]) < 1 && Mathf.Abs(q[2]) < 1 && Mathf.Abs(q[3]) < 1)
                 {
-                    q[0] = Mathf.Sqrt(1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2));
-                    Quaternion rot = new Quaternion(q[2], -q[1], -q[3], -q[0]);
-
+                    //q[0] = Mathf.Sqrt(1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2));
+                    //Quaternion rot = new Quaternion(q[2], -q[1], -q[3], -q[0]);
+                    Quaternion rot = new Quaternion(q[0], q[1], q[2], q[3]);
                     float angle = Quaternion.Angle((origin * rot), rig.rotation);
 
                     if (!originated && !use_gravity)
@@ -154,8 +154,8 @@ public class camera_movement : MonoBehaviour
 
                 if (move_activation)
                 {
-                    rotate_smooth(new Vector3(0, 0, rig.localEulerAngles.z));
-
+                    //rotate_smooth(new Vector3(0, 0, rig.localEulerAngles.z));
+                    cam.localRotation = Quaternion.Euler(new Vector3(0, 0, rig.localEulerAngles.z));
                     delta = cam.localRotation * delta;
                     move_smooth(delta);
                 }

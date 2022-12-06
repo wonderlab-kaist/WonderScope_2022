@@ -24,7 +24,7 @@ public class Monitoring : MonoBehaviour
             connection.text = "Connection : True";
 
             stethoscope_data tmp = new stethoscope_data(dataInput.getData(),2);
-            Debug.Log(tmp.q[0]+ " " + tmp.q[1] + " " + tmp.q[2]);
+            //Debug.Log(tmp.q[0]+ " " + tmp.q[1] + " " + tmp.q[2]+ " " + tmp.q[3]);
 
 
             distance.text = "Distance : " + (float)tmp.distance;
@@ -35,14 +35,15 @@ public class Monitoring : MonoBehaviour
 
             ////rotation/////
             //for (int i = 0; i < 3; i++) q[i + 1] = tmp.q[i] / 1073741824f;
-            for (int i = 0; i < 3; i++) q[i + 1] = tmp.q[i];
+            for (int i = 0; i < 4; i++) q[i] = tmp.q[i];
+            Debug.Log(q[0]+ " " + q[1] + " " + q[2]+ " " + q[3]);
 
-            if (1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2) > 0 && Mathf.Abs(q[1]) < 1 && Mathf.Abs(q[2]) < 1 && Mathf.Abs(q[3]) < 1)
+            if (1 - Mathf.Pow(q[0], 2) - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) > 0 && Mathf.Abs(q[0]) < 1 && Mathf.Abs(q[1]) < 1 && Mathf.Abs(q[2]) < 1)
             {
-                q[0] = Mathf.Sqrt(1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2));
+                //q[3] = Mathf.Sqrt(1 - Mathf.Pow(q[0], 2) - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2));
                 //Quaternion rot = new Quaternion(q[2], -q[1], -q[3], -q[0]);
-                Quaternion rot = new Quaternion(q[1], q[2], q[3], q[0]);
-                
+                Quaternion rot = new Quaternion(q[0], q[1], q[2], q[3]);
+                Debug.Log(rot.eulerAngles);
                 rotation_indicator.transform.rotation = rot;
             }
             else

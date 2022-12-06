@@ -6638,7 +6638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09194b397cce46c4e9e1b03995226591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gain: 0.17
+  gain: 0.25
   altitude: {fileID: 71649922}
   raw_data: {fileID: 1553257826}
   directionTxt: {fileID: 938451943}
@@ -6648,7 +6648,6 @@ MonoBehaviour:
   use_gravity: 0
   direction: 0
   popup: {fileID: 1037103714}
-  start_angle_shift: 0
   starting_point_2: {fileID: 327986323}
 --- !u!1 &575268085
 GameObject:
@@ -17216,6 +17215,11 @@ PrefabInstance:
     - target: {fileID: 6402122941289838924, guid: a11a62b43551f714ba9484f10da5a4a2,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402122941289838925, guid: a11a62b43551f714ba9484f10da5a4a2,
+        type: 3}
+      propertyPath: reconnect
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6402122941289838925, guid: a11a62b43551f714ba9484f10da5a4a2,

@@ -16,8 +16,8 @@ public class stethoscope_data
     public stethoscope_data()
     {
         
-        q = new float[3];
-        tag_id = new byte[4];
+        //q = new float[3];
+        //tag_id = new byte[4];
     }
 
     public stethoscope_data(byte[] data_in)
@@ -84,7 +84,7 @@ public class stethoscope_data
     {
 
         if (data_in == null) return;
-        q = new float[3];
+        //q = new float[3];
         a = new float[3];
         tag_id = new byte[4];
         union_float uf;
@@ -92,7 +92,8 @@ public class stethoscope_data
         union_16int u16i;
 
         if (ver_ == 2)
-        { 
+        {
+            q = new float[4];
             uf.f = 0;
             uf.b0 = data_in[0];
             uf.b1 = data_in[1];
@@ -116,45 +117,52 @@ public class stethoscope_data
             uf.b1 = data_in[13];
             uf.b2 = data_in[14];
             uf.b3 = data_in[15];
-            a[0] = uf.f;
+            q[3] = uf.f;
 
             uf.b0 = data_in[16];
             uf.b1 = data_in[17];
             uf.b2 = data_in[18];
             uf.b3 = data_in[19];
-            a[1] = uf.f;
+            a[0] = uf.f;
 
             uf.b0 = data_in[20];
             uf.b1 = data_in[21];
             uf.b2 = data_in[22];
             uf.b3 = data_in[23];
+            a[1] = uf.f;
+
+            uf.b0 = data_in[24];
+            uf.b1 = data_in[25];
+            uf.b2 = data_in[26];
+            uf.b3 = data_in[27];
             a[2] = uf.f;
 
 
             u16i.i = 0;
-            u16i.b0 = data_in[24];
-            u16i.b1 = data_in[25];
+            u16i.b0 = data_in[28];
+            u16i.b1 = data_in[29];
             distance = u16i.i;
 
             u16i.i = 0;
-            u16i.b0 = data_in[26];
-            u16i.b1 = data_in[27];
+            u16i.b0 = data_in[30];
+            u16i.b1 = data_in[31];
             mouse_x = u16i.i / 100;
 
-            u16i.b0 = data_in[28];
-            u16i.b1 = data_in[29];
+            u16i.b0 = data_in[32];
+            u16i.b1 = data_in[33];
             mouse_y = u16i.i / 100;
 
-            tag_id[0] = data_in[30];
-            tag_id[1] = data_in[31];
-            tag_id[2] = data_in[32];
-            tag_id[3] = data_in[33];
+            tag_id[0] = data_in[34];
+            tag_id[1] = data_in[35];
+            tag_id[2] = data_in[36];
+            tag_id[3] = data_in[37];
 
-            battery = data_in[34];
+            battery = data_in[38];
 
         }
         else if (ver_ == 1)
         {
+            q = new float[3];
             ui.i = 0;
             ui.b0 = data_in[0];
             ui.b1 = data_in[1];

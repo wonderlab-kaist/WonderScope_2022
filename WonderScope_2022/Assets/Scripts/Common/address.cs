@@ -7,6 +7,8 @@ public static class address
     public static string BTaddress = "";
     private static string lastRFID = "";
     //public static GameObject aimed_object;
+
+    public static float start_angle_shift = 0;
     
 
 

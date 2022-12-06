@@ -24,7 +24,7 @@ public class Camera_Movement_Moon : MonoBehaviour
     public float direction; //oriention float
     public GameObject popup; //no signal pop-up
 
-    public float start_angle_shift;
+    //public float start_angle_shift;
 
     public Transform starting_point_2;
 
@@ -68,6 +68,12 @@ public class Camera_Movement_Moon : MonoBehaviour
     {
         byte[] income = dataInput.getData();
 
+        if (Input.touchCount > 2)
+        {
+            address.start_angle_shift += Input.GetTouch(2).deltaPosition.x * 0.5f;
+        }
+
+
         if (income != null && income != null)
         {
             //string[] data = income.Split(' ');
@@ -94,13 +100,13 @@ public class Camera_Movement_Moon : MonoBehaviour
 
                 //Quaternion for ratation
                 //for (int i = 0; i < 3; i++) q[i + 1] = data.q[i] / 1073741824f;
-                for(int i = 0; i < 3; i++) q[i + 1] = data.q[i];
+                for(int i = 0; i < 4; i++) q[i] = data.q[i];
 
-                if (1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2) > 0 && Mathf.Abs(q[1]) < 1 && Mathf.Abs(q[2]) < 1 && Mathf.Abs(q[3]) < 1)
+                if (1 - Mathf.Pow(q[0], 2) - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) > 0 && Mathf.Abs(q[0]) < 1 && Mathf.Abs(q[1]) < 1 && Mathf.Abs(q[2]) < 1)
                 {
-                    q[0] = Mathf.Sqrt(1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2));
-                    Quaternion rot = new Quaternion(q[2], -q[1], -q[3], -q[0]);
-                    //Quaternion rot = new Quaternion(q[0], q[1], q[2], q[3]);
+                    //q[0] = Mathf.Sqrt(1 - Mathf.Pow(q[1], 2) - Mathf.Pow(q[2], 2) - Mathf.Pow(q[3], 2));
+                    //Quaternion rot = new Quaternion(q[2], -q[1], -q[3], -q[0]);
+                    Quaternion rot = new Quaternion(q[0], q[1], q[2], q[3]);
 
                     float angle = Quaternion.Angle((origin * rot), rig.rotation);
                     direction =  (rot.ToEuler().z / Mathf.PI * 180f)+180;
@@ -148,7 +154,7 @@ public class Camera_Movement_Moon : MonoBehaviour
                 //rotate_smooth(new Vector3(0, -rig.localEulerAngles.z, 0));
                 //rotate_smooth(new Vector3(0, -rig.localEulerAngles.z + start_angle_shift, 0));
                 //cam.localRotation = Quaternion.EulerRotation(new Vector3(0, -rig.localEulerAngles.z, 0));
-                cam.localRotation = Quaternion.Euler(new Vector3(0, -rig.localEulerAngles.z + start_angle_shift, 0));
+                cam.localRotation = Quaternion.Euler(new Vector3(0, -rig.localEulerAngles.z + address.start_angle_shift, 0));
                 //Debug.Log(rig.localEulerAngles);
 
                 delta = cam.localRotation * delta;

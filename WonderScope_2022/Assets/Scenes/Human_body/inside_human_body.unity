@@ -1184,7 +1184,7 @@ MonoBehaviour:
   cam: {fileID: 1769481472}
   rig: {fileID: 1394026571}
   isthisWatch: 0
-  use_gravity: 1
+  use_gravity: 0
   move_activation: 1
   reset_by_dist: 1
   recalibrate_while_movement: 1
@@ -3106,7 +3106,7 @@ PrefabInstance:
     - target: {fileID: 6402122941289838925, guid: a11a62b43551f714ba9484f10da5a4a2,
         type: 3}
       propertyPath: default_ble_address
-      value: E8:4E:3D:48:C6:38
+      value: C1:3A:E5:67:0D:14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a11a62b43551f714ba9484f10da5a4a2, type: 3}
